@@ -1,39 +1,816 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weapon Classification Guide | ARCS + SAS</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
-    <style>
-        .fade-in { animation: fadeIn 0.3s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weapons Classification Assistant</title>
+  <style>
+    :root {
+      --bg: #f4f3f0;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --accent: #2c5f8a;
+      --accent-light: #e8f0f7;
+      --border: #d4d0c8;
+      --border-hover: #2c5f8a;
+      --warning: #8a4c2c;
+      --warning-bg: #fdf3ec;
+      --success: #2c6e49;
+      --success-bg: #ecf5f0;
+      --result-bg: #f8f7f4;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-hover: 0 2px 8px rgba(0,0,0,0.12);
+      --radius: 6px;
+      --font-body: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'SF Mono', 'Consolas', 'Liberation Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: var(--surface);
+      border-bottom: 2px solid var(--border);
+      padding: 1rem 1.5rem;
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .header .subtitle {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 0.15rem;
+    }
+
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    /* Breadcrumb trail */
+    .breadcrumb {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .breadcrumb-item button {
+      background: none;
+      border: none;
+      color: var(--accent);
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: var(--font-body);
+      padding: 0.15rem 0.3rem;
+      border-radius: 3px;
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      transition: all 0.15s;
+    }
+
+    .breadcrumb-item button:hover {
+      text-decoration-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .breadcrumb-sep {
+      color: var(--border);
+      font-size: 0.7rem;
+      user-select: none;
+    }
+
+    .breadcrumb-current {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Question card */
+    .question-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .question-card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .question-help {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 0;
+    }
+
+    .question-help-toggle {
+      background: none;
+      border: none;
+      color: var(--accent);
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: var(--font-body);
+      padding: 0.2rem 0;
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .question-help-toggle:hover {
+      text-decoration: underline;
+    }
+
+    .question-help-text {
+      margin-top: 0.5rem;
+      padding: 0.75rem;
+      background: var(--accent-light);
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .question-help-text.hidden {
+      display: none;
+    }
+
+    /* Options grid */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .option-card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .option-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-1px);
+    }
+
+    .option-card:active {
+      transform: translateY(0);
+    }
+
+    .option-image {
+      width: 100%;
+      max-width: 180px;
+      aspect-ratio: 4 / 3;
+      background: var(--bg);
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .option-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .option-image .placeholder-icon {
+      color: var(--border);
+      font-size: 2rem;
+    }
+
+    .option-label {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+
+    .option-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* Result card */
+    .result-card {
+      background: var(--surface);
+      border: 2px solid var(--success);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .result-header {
+      background: var(--success-bg);
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(44, 110, 73, 0.15);
+    }
+
+    .result-header h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .result-body {
+      padding: 1.5rem;
+    }
+
+    .classification-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.25rem;
+      font-size: 0.85rem;
+    }
+
+    .classification-table th,
+    .classification-table td {
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .classification-table th {
+      font-weight: 600;
+      color: var(--text-secondary);
+      width: 120px;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    .classification-table td {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .classification-table tr:last-child th,
+    .classification-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .result-section {
+      margin-bottom: 1.25rem;
+    }
+
+    .result-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .result-section h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-section .content {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .result-section .content p {
+      margin-bottom: 0.5rem;
+    }
+
+    .result-section .content strong {
+      color: var(--text);
+    }
+
+    .result-section .content ol,
+    .result-section .content ul {
+      padding-left: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-section .content li {
+      margin-bottom: 0.35rem;
+    }
+
+    .safety-warning {
+      background: var(--warning-bg);
+      border: 1px solid rgba(138, 76, 44, 0.2);
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      color: var(--warning);
+      line-height: 1.5;
+    }
+
+    .safety-warning strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .references-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .references-list li {
+      margin-bottom: 0.4rem;
+    }
+
+    .references-list a {
+      color: var(--accent);
+      font-size: 0.8rem;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .references-list a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    /* Navigation */
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.55rem 1rem;
+      font-size: 0.85rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.15s;
+      border: 1px solid;
+    }
+
+    .btn-back {
+      background: var(--surface);
+      border-color: var(--border);
+      color: var(--text-secondary);
+    }
+
+    .btn-back:hover {
+      border-color: var(--text-secondary);
+      color: var(--text);
+    }
+
+    .btn-restart {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .btn-restart:hover {
+      background: #244f73;
+      border-color: #244f73;
+    }
+
+    /* Loading & error */
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .error-box {
+      background: var(--warning-bg);
+      border: 1px solid rgba(138, 76, 44, 0.3);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      color: var(--warning);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .error-box code {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      background: rgba(138, 76, 44, 0.08);
+      padding: 0.15rem 0.3rem;
+      border-radius: 3px;
+    }
+
+    /* Footer */
+    .footer {
+      max-width: 900px;
+      margin: 2rem auto 0;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .main { padding: 1rem; }
+      .question-card { padding: 1rem; }
+      .result-body { padding: 1rem; }
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+      .classification-table th {
+        width: 90px;
+      }
+    }
+
+    /* Print */
+    @media print {
+      .header { border-bottom: 1px solid #000; }
+      .nav-bar { display: none; }
+      .breadcrumb-item button { color: #000; text-decoration: none; }
+      .option-card { break-inside: avoid; }
+    }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <h1>Weapons Classification Assistant</h1>
+      <div class="subtitle">Based on the ARES Arms &amp; Munitions Classification System (ARCS) &amp; SAS Weapons Identification Guide</div>
+    </div>
+  </header>
 
-    <nav class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center shadow-xl sticky top-0 z-50">
-        <div>
-            <h1 class="text-lg font-bold tracking-tight uppercase">Weapon Classification Guide</h1>
-            <p class="text-[10px] text-slate-400">ARES ARCS v1.3 + Small Arms Survey</p>
-        </div>
-        <button onclick="resetFlow()" class="bg-slate-700 hover:bg-red-600 px-4 py-2 rounded text-xs font-bold transition-all uppercase tracking-widest">
-            Restart
-        </button>
-        <a href="index_mermaid.html" class="text-xs border border-slate-500 px-2 py-1 rounded hover:bg-slate-700">
-            View Mermaid Flow
-        </a>
-    </nav>
+  <main class="main" id="app">
+    <div class="loading">Loading classification data…</div>
+  </main>
 
-    <main id="app" class="max-w-5xl mx-auto p-6 min-h-screen">
-        </main>
+  <footer class="footer" id="footer" style="display:none;">
+    <p>
+      Classification system based on the
+      <a href="https://armamentresearch.com/wp-content/uploads/2022/08/The-ARES-Arms-Munitions-Classification-System-ARCS-ver1.3-public-release.pdf" target="_blank" rel="noopener">ARES ARCS v1.3</a> and the
+      <a href="https://www.smallarmssurvey.org/sites/default/files/SAS-HB-06-Weapons-ID-Guide-Full.pdf" target="_blank" rel="noopener">SAS Weapons Identification Guide</a>.
+      This tool assists with <strong>classification only</strong>. Identification of specific make, model, and variant requires specialist expertise.
+      Always consult qualified specialists before handling arms or munitions.
+    </p>
+  </footer>
 
-    <footer class="bg-white border-t p-8 mt-12 text-center text-xs text-slate-400">
-        <p>Educational tool for journalists/OSINT. All outputs are hypotheses.</p>
-        <p class="mt-2">Logic: Armament Research Services (ARES) | Visuals: Small Arms Survey</p>
-    </footer>
+  <script>
+    (function() {
+      'use strict';
 
-    <script src="app.js"></script>
+      const app = document.getElementById('app');
+      const footer = document.getElementById('footer');
+      let config = null;
+      let history = []; // Array of { nodeId, choiceLabel }
+      let currentNodeId = 'start';
+
+      // Load config
+      async function init() {
+        try {
+          const resp = await fetch('config.json');
+          if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
+          config = await resp.json();
+
+          if (!config.nodes || !config.nodes.start) {
+            throw new Error('Config missing "nodes.start" — check config.json structure.');
+          }
+
+          render();
+          footer.style.display = 'block';
+        } catch (err) {
+          app.innerHTML = `
+            <div class="error-box">
+              <strong>Failed to load classification data.</strong><br>
+              ${escapeHtml(err.message)}<br><br>
+              Make sure <code>config.json</code> is in the same directory as this HTML file.
+            </div>`;
+        }
+      }
+
+      function render() {
+        const node = config.nodes[currentNodeId];
+        if (!node) {
+          app.innerHTML = `<div class="error-box">Unknown node: <code>${escapeHtml(currentNodeId)}</code>. Check your config.json — a "next" value may be pointing to a node that doesn't exist.</div>`;
+          return;
+        }
+
+        if (node.result) {
+          renderResult(node);
+        } else {
+          renderQuestion(node);
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Breadcrumb
+      function renderBreadcrumb() {
+        if (history.length === 0) return '';
+
+        let html = '<nav class="breadcrumb" aria-label="Classification path">';
+        html += '<span class="breadcrumb-item"><button onclick="goToStep(-1)">Start</button></span>';
+
+        history.forEach((step, i) => {
+          html += '<span class="breadcrumb-sep">›</span>';
+          if (i < history.length - 1) {
+            html += `<span class="breadcrumb-item"><button onclick="goToStep(${i})">${escapeHtml(step.choiceLabel)}</button></span>`;
+          } else {
+            html += `<span class="breadcrumb-item"><span class="breadcrumb-current">${escapeHtml(step.choiceLabel)}</span></span>`;
+          }
+        });
+
+        html += '</nav>';
+        return html;
+      }
+
+      // Question view
+      function renderQuestion(node) {
+        let html = renderBreadcrumb();
+
+        html += '<div class="question-card">';
+        html += `<h2>${escapeHtml(node.question)}</h2>`;
+
+        if (node.help) {
+          html += `<button class="question-help-toggle" onclick="toggleHelp()" aria-expanded="false">
+            <span id="help-arrow">▸</span> Guidance
+          </button>`;
+          html += `<div class="question-help-text hidden" id="help-text">${escapeHtml(node.help)}</div>`;
+        }
+
+        html += '</div>';
+
+        html += '<div class="options-grid">';
+        node.options.forEach((opt, i) => {
+          html += `<div class="option-card" onclick="selectOption(${i})" role="button" tabindex="0"
+                    onkeydown="if(event.key==='Enter')selectOption(${i})">`;
+
+          html += '<div class="option-image">';
+          if (opt.image) {
+            html += `<img src="${escapeHtml(opt.image)}" alt="${escapeHtml(opt.label)}" onerror="this.parentElement.innerHTML='<span class=\\'placeholder-icon\\'>&#9744;</span>'">`;
+          } else {
+            html += '<span class="placeholder-icon">&#9744;</span>';
+          }
+          html += '</div>';
+
+          html += `<div class="option-label">${escapeHtml(opt.label)}</div>`;
+          if (opt.description) {
+            html += `<div class="option-desc">${escapeHtml(opt.description)}</div>`;
+          }
+          html += '</div>';
+        });
+        html += '</div>';
+
+        // Nav
+        html += '<div class="nav-bar">';
+        if (history.length > 0) {
+          html += '<button class="btn btn-back" onclick="goBack()">← Back</button>';
+        }
+        if (history.length > 0) {
+          html += '<button class="btn btn-restart" onclick="restart()">↺ Start over</button>';
+        }
+        html += '</div>';
+
+        app.innerHTML = html;
+      }
+
+      // Result view
+      function renderResult(node) {
+        let html = renderBreadcrumb();
+
+        html += '<div class="result-card">';
+        html += '<div class="result-header"><h2>✓ Classification Complete</h2></div>';
+        html += '<div class="result-body">';
+
+        // Classification table
+        if (node.classification) {
+          html += '<div class="result-section">';
+          html += '<h3>Classification</h3>';
+          html += '<table class="classification-table">';
+
+          const c = node.classification;
+          if (c.class) html += `<tr><th>Class</th><td>${escapeHtml(c.class)}</td></tr>`;
+          if (c.group) html += `<tr><th>Group</th><td>${escapeHtml(c.group)}</td></tr>`;
+          if (c.subgroup) html += `<tr><th>Subgroup</th><td>${escapeHtml(c.subgroup)}</td></tr>`;
+          if (c.type) html += `<tr><th>Type</th><td>${escapeHtml(c.type)}</td></tr>`;
+
+          html += '</table>';
+          html += '</div>';
+        }
+
+        // Summary
+        if (node.summary) {
+          html += '<div class="result-section">';
+          html += '<h3>Summary</h3>';
+          html += `<div class="content">${renderMarkdown(node.summary)}</div>`;
+          html += '</div>';
+        }
+
+        // Safety warning for explosive items
+        const text = (node.next_steps || '') + (node.summary || '');
+        if (text.toLowerCase().includes('safety note') || text.toLowerCase().includes('explosive') || text.toLowerCase().includes('do not handle')) {
+          html += '<div class="safety-warning"><strong>⚠ Safety Warning</strong>This item may contain explosive components. Do not handle without appropriate specialist training (EOD, ammunition technical officer, or equivalent).</div>';
+        }
+
+        // Next steps
+        if (node.next_steps) {
+          html += '<div class="result-section">';
+          html += '<h3>Next Steps for Identification</h3>';
+          html += `<div class="content">${renderMarkdown(node.next_steps)}</div>`;
+          html += '</div>';
+        }
+
+        // Path taken
+        html += '<div class="result-section">';
+        html += '<h3>Your Classification Path</h3>';
+        html += '<div class="content"><p>';
+        const pathLabels = history.map(h => h.choiceLabel);
+        html += pathLabels.map(l => `<strong>${escapeHtml(l)}</strong>`).join(' → ');
+        html += '</p></div>';
+        html += '</div>';
+
+        // References
+        if (node.references && node.references.length > 0) {
+          html += '<div class="result-section">';
+          html += '<h3>Reference Sources</h3>';
+          html += '<ul class="references-list">';
+          node.references.forEach(ref => {
+            html += `<li><a href="${escapeHtml(ref.url)}" target="_blank" rel="noopener">${escapeHtml(ref.name)}</a></li>`;
+          });
+          html += '</ul>';
+          html += '</div>';
+        }
+
+        html += '</div>'; // result-body
+        html += '</div>'; // result-card
+
+        // Nav
+        html += '<div class="nav-bar">';
+        html += '<button class="btn btn-back" onclick="goBack()">← Back</button>';
+        html += '<button class="btn btn-restart" onclick="restart()">↺ Start over</button>';
+        html += '</div>';
+
+        app.innerHTML = html;
+      }
+
+      // Actions (global)
+      window.selectOption = function(i) {
+        const node = config.nodes[currentNodeId];
+        const opt = node.options[i];
+        history.push({ nodeId: currentNodeId, choiceLabel: opt.label });
+        currentNodeId = opt.next;
+        render();
+      };
+
+      window.goBack = function() {
+        if (history.length === 0) return;
+        const prev = history.pop();
+        currentNodeId = prev.nodeId;
+        render();
+      };
+
+      window.goToStep = function(index) {
+        if (index === -1) {
+          // Go to start
+          history = [];
+          currentNodeId = 'start';
+        } else {
+          currentNodeId = history[index].nodeId;
+          // Reselect that option to land on the next node
+          const node = config.nodes[currentNodeId];
+          const choiceLabel = history[index].choiceLabel;
+          const opt = node.options.find(o => o.label === choiceLabel);
+          history = history.slice(0, index + 1);
+          if (opt) {
+            currentNodeId = opt.next;
+          }
+        }
+        render();
+      };
+
+      window.restart = function() {
+        history = [];
+        currentNodeId = 'start';
+        render();
+      };
+
+      window.toggleHelp = function() {
+        const text = document.getElementById('help-text');
+        const arrow = document.getElementById('help-arrow');
+        const btn = text.previousElementSibling;
+        if (text.classList.contains('hidden')) {
+          text.classList.remove('hidden');
+          arrow.textContent = '▾';
+          btn.setAttribute('aria-expanded', 'true');
+        } else {
+          text.classList.add('hidden');
+          arrow.textContent = '▸';
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      };
+
+      // Helpers
+      function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      // Very simple markdown-like rendering (bold, numbered lists, paragraphs)
+      function renderMarkdown(text) {
+        let html = escapeHtml(text);
+
+        // Bold: **text**
+        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+        // Split into paragraphs
+        const paragraphs = html.split(/\n\n+/);
+        let result = '';
+
+        paragraphs.forEach(p => {
+          p = p.trim();
+          if (!p) return;
+
+          // Check if paragraph is a numbered list
+          const lines = p.split('\n');
+          const isNumberedList = lines.every(l => /^\d+\.\s/.test(l.trim()) || l.trim() === '');
+
+          if (isNumberedList) {
+            result += '<ol>';
+            lines.forEach(l => {
+              l = l.trim();
+              if (/^\d+\.\s/.test(l)) {
+                result += `<li>${l.replace(/^\d+\.\s/, '')}</li>`;
+              }
+            });
+            result += '</ol>';
+          } else {
+            result += `<p>${p.replace(/\n/g, '<br>')}</p>`;
+          }
+        });
+
+        return result;
+      }
+
+      init();
+    })();
+  </script>
 </body>
 </html>
