@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCS Classification Map</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .mermaid { display: flex; justify-content: center; background: white; padding: 20px; border-radius: 8px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
 
+    <nav class="bg-slate-800 text-white p-4 shadow-md">
+        <h1 class="text-xl font-bold">Small Arms Classification Flow</h1>
+        <p class="text-xs opacity-80">Based on ARES ARCS v1.3 & Small Arms Survey</p>
+    </nav>
+
+    <div class="max-w-6xl mx-auto p-6">
+        <div class="bg-amber-50 border-l-4 border-amber-400 p-4 mb-8 text-sm">
+            <strong>Educational Use Only:</strong> This chart represents classification hypotheses. It does not provide definitive identification. 
+            Citations: ARCS v1.3 & SAS Weapons ID Guide.
+        </div>
+
+        <div class="mermaid">
+            graph TD
+                %% Spec 4: Core Classification Flow
+                Start((START)) --> Class{Class: Small Arm?}
+                
+                Class -- Yes --> Group{Group Selection}
+                Class -- No --> Out[Out of Scope]
+                Class -- Cant Tell --> FJ[Feature Jump Menu]
+
+                %% Groupings
+                Group --> Handguns{Handguns}
+                Group --> LongGuns{Long Guns}
+
+                %% Handgun Branch
+                Handguns --> SLP[Self-loading Pistols]
+                Handguns --> REV[Revolvers]
+                
+                %% Long Gun Branch
+                LongGuns --> RIF[Rifles]
+                LongGuns --> SMG[Sub-machine Guns]
+                LongGuns --> MG[Machine Guns]
+                LongGuns --> SHOT[Shotguns]
+
+                %% Spec 5: Uncertainty Thresholds
+                FJ --> Obs[Observation Mode Triggered]
+                Obs --> |Identify Features| Group
+
+                %% Styling
+                style Start fill:#1e293b,color:#fff
+                style Obs fill:#fef3c7,stroke:#d97706
+                style Out fill:#fee2e2,stroke:#ef4444
+        </div>
+
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 shadow-sm rounded border">
+                <h3 class="font-bold border-b pb-2 mb-4">Handgun Features (SAS p. 21)</h3>
+                <img src="https://raw.githubusercontent.com/paigemoody/weapons_classification_resources/main/small_arms_survey/visuals/Figure_3.2_Typical%20features%20of%20a%20modern%20handgun.png" alt="Handgun Reference">
+            </div>
+            <div class="bg-white p-6 shadow-sm rounded border text-sm italic">
+                <h3 class="font-bold border-b pb-2 mb-4 not-italic">Quick Tips</h3>
+                <p>Check the **Muzzle device** and **Feeding system** first if unsure between Rifle and SMG classifications.</p>
+                <p class="mt-4">"Observation Mode" is triggered after 3 consecutive "Can't Tells".</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+</body>
+</html>
