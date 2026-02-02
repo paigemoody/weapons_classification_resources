@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weapon Classification Guide | ARCS + SAS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <style>
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <nav class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center shadow-xl sticky top-0 z-50">
+        <div>
+            <h1 class="text-lg font-bold tracking-tight uppercase">Weapon Classification Guide</h1>
+            <p class="text-[10px] text-slate-400">ARES ARCS v1.3 + Small Arms Survey</p>
+        </div>
+        <button onclick="resetFlow()" class="bg-slate-700 hover:bg-red-600 px-4 py-2 rounded text-xs font-bold transition-all uppercase tracking-widest">
+            Restart
+        </button>
+    </nav>
+
+    <main id="app" class="max-w-5xl mx-auto p-6 min-h-screen">
+        </main>
+
+    <footer class="bg-white border-t p-8 mt-12 text-center text-xs text-slate-400">
+        <p>Educational tool for journalists/OSINT. All outputs are hypotheses.</p>
+        <p class="mt-2">Logic: Armament Research Services (ARES) | Visuals: Small Arms Survey</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
