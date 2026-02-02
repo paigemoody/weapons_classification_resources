@@ -4,9 +4,6 @@ A simple, interactive tool for classifying Small Arms and Light Weapons (SALW) b
 
 This tool guides users through a step-by-step visual taxonomy to classify an item down to its **type** (ARCS Levels 1–3), then provides guidance on how to proceed toward **identification** (determining make, model, and variant).
 
-## Live Demo
-
-Deploy to GitHub Pages and access at `https://yourusername.github.io/your-repo-name/`
 
 ## How to Update the Classification Tree
 
