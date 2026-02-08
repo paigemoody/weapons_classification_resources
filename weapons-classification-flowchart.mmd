@@ -1,7 +1,7 @@
-flowchart TB
+ flowchart TB
   %% Top level
   SmallArms["
-  Which **class** best fits?
+  Which Small Arms **group** best fits?
   **Handguns** or **Long Guns**<br/>
   <img src='' width='56' height='56'/>
   "]
@@ -10,19 +10,17 @@ flowchart TB
   SmallArms --> LongGuns
 
   %% Level 2
-  Handguns["Handguns - Which **group** best fits? <br/><img src='' width='56' height='56'/>"]
-  LongGuns["Long Guns - Which **group** best fits?<br/><img src='' width='56' height='56'/>"]
+  Handguns["Handguns - Which **type** best fits? <br/><img src='' width='56' height='56'/>"]
+  LongGuns["Long Guns - Which **type** best fits?<br/><img src='' width='56' height='56'/>"]
 
-
+  Handguns --> Rifiled_SelfLoadingPistols
+  Handguns --> Rifiled_Revolvers
+  Handguns --> SmoothBore_OtherHandguns
 
   %% Handguns branch
-  SelfLoadingPistols["Self-loading<br/>Pistols<br/><img src='' width='56' height='56'/>"]
-  Revolvers["Revolvers<br/><img src='' width='56' height='56'/>"]
-  OtherHandguns["Other Handguns<br/><img src='' width='56' height='56'/>"]
-
-  Handguns --> SelfLoadingPistols
-  Handguns --> Revolvers
-  Handguns --> OtherHandguns
+  Rifiled_SelfLoadingPistols["Rifiled: Self-loading<br/>Pistols<br/><img src='' width='56' height='56'/>"]
+  Rifiled_Revolvers["Rifiled: Revolvers<br/><img src='' width='56' height='56'/>"]
+  SmoothBore_OtherHandguns["Smooth-bore: Other handguns<br/><img src='' width='56' height='56'/>"]
 
   %% Long guns branch (first row under Long Guns)
   SubMachineGuns["Sub-machine<br/>Guns<br/><img src='' width='56' height='56'/>"]
