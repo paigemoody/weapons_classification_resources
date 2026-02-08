@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mermaid Zoomable</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- svg-pan-zoom for zoom/pan -->
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+
+  <style>
+    #diagram-wrap {
+      height: calc(100vh - 120px);
+      overflow: hidden;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+    }
+    #diagram svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "loose",
+      flowchart: { htmlLabels: true, useMaxWidth: false }, // important for zoom
+    });
+
+    let panZoomInstance;
+
+    async function loadDiagram() {
+      const container = document.getElementById("diagram");
+      try {
+        const res = await fetch("./weapons-classification-flowchart.mmd", { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const mmd = await res.text();
+
+        const { svg } = await mermaid.render("weaponsFlowSvg", mmd);
+        container.innerHTML = svg;
+
+        const svgEl = container.querySelector("svg");
+        if (!svgEl) throw new Error("No SVG rendered");
+
+        // ensure it has an id for svg-pan-zoom
+        svgEl.setAttribute("id", "mermaidSvg");
+
+        // reset old instance if re-rendering
+        if (panZoomInstance) panZoomInstance.destroy();
+
+        panZoomInstance = svgPanZoom("#mermaidSvg", {
+          zoomEnabled: true,
+          controlIconsEnabled: true,   // + / - buttons
+          fit: true,                   // fit diagram to viewport initially
+          center: true,
+          minZoom: 0.2,
+          maxZoom: 20,
+          mouseWheelZoomEnabled: true,
+          dblClickZoomEnabled: true,
+          panEnabled: true,
+        });
+
+        // optional keyboard shortcuts
+        window.addEventListener("keydown", (e) => {
+          if (!panZoomInstance) return;
+          if (e.key === "+" || e.key === "=") panZoomInstance.zoomIn();
+          if (e.key === "-") panZoomInstance.zoomOut();
+          if (e.key.toLowerCase() === "f") panZoomInstance.fit();
+          if (e.key.toLowerCase() === "c") panZoomInstance.center();
+        });
+      } catch (err) {
+        container.innerHTML = `
+          <div class="text-red-700 bg-red-50 border border-red-200 rounded p-4 text-sm">
+            Could not load Mermaid file.<br />
+            <span class="opacity-80">${String(err.message || err)}</span>
+          </div>
+        `;
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", loadDiagram);
+  </script>
+</head>
+<body class="bg-slate-100 m-0">
+  <nav class="bg-slate-800 text-white p-4 shadow-md">
+    <h1 class="text-xl font-bold">[DEMO - WORK IN PROGRESS] Small Arms Classification Flow</h1>
+    <p class="text-xs opacity-80">Based on ARES ARCS v1.3 & Small Arms Survey</p>
+  </nav>
+
+  <main class="p-4">
+    <div id="diagram-wrap">
+      <div id="diagram" class="w-full h-full"></div>
+    </div>
+    <p class="text-xs text-slate-600 mt-2">
+      Tips: scroll to zoom, click-drag to pan, double-click to zoom, press <kbd>f</kbd> to fit.
+    </p>
+  </main>
+</body>
+</html>
