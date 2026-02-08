@@ -1,0 +1,98 @@
+flowchart TB
+  %% Top level
+  SmallArms["Which Small Arms **group** best fits?<br/><img src='' width='56' height='56'/>"]
+
+  SmallArms --> |Handguns| Handguns
+  SmallArms --> |LongGuns| LongGuns
+
+  %% Level 2
+  Handguns["Which **bore type** best fits?<br/><img src='' width='56' height='56'/>"]
+  LongGuns["Which **bore type** best fits?<br/><img src='' width='56' height='56'/>"]
+
+  %% Bore-type breaks
+  Handguns --> |Rifled| Handguns_Rifled
+  Handguns --> |SmoothBore| SmoothBore_OtherHandguns
+  LongGuns --> LongGuns_Rifled
+  LongGuns --> LongGuns_SmoothBore
+
+  Handguns_Rifled["Which rifled type best matches?<br/><img src='' width='56' height='56'/>"]
+  LongGuns_Rifled["Rifled<br/><img src='' width='56' height='56'/>"]
+  LongGuns_SmoothBore["Smooth-bore<br/><img src='' width='56' height='56'/>"]
+
+  %% Handguns details
+  Handguns_Rifled --> |Self Loading Pistols| Rifled_SelfLoadingPistols
+  Handguns_Rifled --> |Revolvers| Rifled_Revolvers
+
+  Rifled_SelfLoadingPistols["Self-loading<br/>Pistols<br/><img src='' width='56' height='56'/>"]
+  Rifled_Revolvers["Revolvers<br/><img src='' width='56' height='56'/>"]
+  SmoothBore_OtherHandguns["Other handguns<br/><img src='' width='56' height='56'/>"]
+
+  %% Long guns details
+  LongGuns_Rifled --> Rifled_SubMachineGuns
+  LongGuns_Rifled --> Rifled_ManPortableMachineGuns
+  LongGuns_Rifled --> Rifles
+
+  LongGuns_SmoothBore --> Shotguns
+  LongGuns_SmoothBore --> OtherSmoothBoreLongGuns
+
+  Rifled_SubMachineGuns["Sub-machine<br/>guns<br/><img src='' width='56' height='56'/>"]
+  Rifled_ManPortableMachineGuns["Man-portable<br/>machine guns<br/><img src='' width='56' height='56'/>"]
+  Rifles["Rifles: Which **sub-type** matches best?<br/><img src='' width='56' height='56'/>"]
+
+  Shotguns["Shotguns<br/><img src='' width='56' height='56'/>"]
+  OtherSmoothBoreLongGuns["Other smooth-bore<br/>long guns<br/><img src='' width='56' height='56'/>"]
+
+  %% Rifles split
+  SelfLoadingRifles["Self-loading<br/>Rifles<br/><img src='' width='56' height='56'/>"]
+  ManuallyOperatedRifles["Manually<br/>Operated Rifles<br/><img src='' width='56' height='56'/>"]
+
+  Rifles --> SelfLoadingRifles
+  Rifles --> ManuallyOperatedRifles
+
+  %% Self-loading rifles leaves
+  AutomaticRifles["Automatic Rifles<br/><img src='' width='56' height='56'/>"]
+  SemiAutomaticRifles["Semi-automatic<br/>Rifles<br/><img src='' width='56' height='56'/>"]
+
+  SelfLoadingRifles --> AutomaticRifles
+  SelfLoadingRifles --> SemiAutomaticRifles
+
+  %% Manually operated rifles leaves
+  BreakActionRifles["Break-action<br/>Rifles<br/><img src='' width='56' height='56'/>"]
+  BoltActionRifles["Bolt-action<br/>Rifles<br/><img src='' width='56' height='56'/>"]
+  LeverActionRifles["Lever-action<br/>Rifles<br/><img src='' width='56' height='56'/>"]
+  PumpActionRifles["Pump-action<br/>Rifles<br/><img src='' width='56' height='56'/>"]
+  OtherManuallyOperatedRifles["Other Manually<br/>Operated Rifles<br/><img src='' width='56' height='56'/>"]
+
+  ManuallyOperatedRifles --> BreakActionRifles
+  ManuallyOperatedRifles --> BoltActionRifles
+  ManuallyOperatedRifles --> LeverActionRifles
+  ManuallyOperatedRifles --> PumpActionRifles
+  ManuallyOperatedRifles --> OtherManuallyOperatedRifles
+
+  %% Shotguns split (matches reference structure)
+  SelfLoadingShotguns["Self-loading<br/>Shotguns<br/><img src='' width='56' height='56'/>"]
+  ManuallyOperatedShotguns["Manually<br/>Operated Shotguns<br/><img src='' width='56' height='56'/>"]
+
+  Shotguns --> SelfLoadingShotguns
+  Shotguns --> ManuallyOperatedShotguns
+
+  %% Self-loading shotguns leaves
+  AutomaticShotguns["Automatic Shotguns<br/><img src='' width='56' height='56'/>"]
+  SemiAutomaticShotguns["Semi-automatic<br/>Shotguns<br/><img src='' width='56' height='56'/>"]
+
+  SelfLoadingShotguns --> AutomaticShotguns
+  SelfLoadingShotguns --> SemiAutomaticShotguns
+
+  %% Manually operated shotguns leaves
+  BreakActionShotguns["Break-action<br/>Shotguns<br/><img src='' width='56' height='56'/>"]
+  BoltActionShotguns["Bolt-action<br/>Shotguns<br/><img src='' width='56' height='56'/>"]
+  LeverActionShotguns["Lever-action<br/>Shotguns<br/><img src='' width='56' height='56'/>"]
+  PumpActionShotguns["Pump-action<br/>Shotguns<br/><img src='' width='56' height='56'/>"]
+  OtherManuallyOperatedShotguns["Other Manually<br/>Operated Shotguns<br/><img src='' width='56' height='56'/>"]
+
+  ManuallyOperatedShotguns --> BreakActionShotguns
+  ManuallyOperatedShotguns --> BoltActionShotguns
+  ManuallyOperatedShotguns --> LeverActionShotguns
+  ManuallyOperatedShotguns --> PumpActionShotguns
+  ManuallyOperatedShotguns --> OtherManuallyOperatedShotguns
+
