@@ -37,17 +37,15 @@ flowchart TB
   LongGuns_Rifled --> Rifled_SubMachineGuns
   LongGuns_Rifled --> Rifled_ManPortableMachineGuns
   LongGuns_Rifled --> Rifles
-  LongGuns_Rifled --> SelfLoadingShotguns
 
-  %% Long-gun smooth-bore now has exactly two nodes
-  LongGuns_SmoothBore --> ManuallyOperatedShotguns
+  LongGuns_SmoothBore --> Shotguns
   LongGuns_SmoothBore --> OtherSmoothBoreLongGuns
 
   Rifled_SubMachineGuns["Sub-machine<br/>guns<br/><img src='' width='56' height='56'/>"]
   Rifled_ManPortableMachineGuns["Man-portable<br/>machine guns<br/><img src='' width='56' height='56'/>"]
   Rifles["Rifles: Which **sub-type** matches best?<br/><img src='' width='56' height='56'/>"]
 
-  ManuallyOperatedShotguns["Manually<br/>Operated Shotguns<br/><img src='' width='56' height='56'/>"]
+  Shotguns["Shotguns<br/><img src='' width='56' height='56'/>"]
   OtherSmoothBoreLongGuns["Other smooth-bore<br/>long guns<br/><img src='' width='56' height='56'/>"]
 
   %% Rifles split
@@ -77,8 +75,14 @@ flowchart TB
   ManuallyOperatedRifles --> PumpActionRifles
   ManuallyOperatedRifles --> OtherManuallyOperatedRifles
 
-  %% Rifled self-loading shotguns leaves
+  %% Shotguns split (matches reference structure)
   SelfLoadingShotguns["Self-loading<br/>Shotguns<br/><img src='' width='56' height='56'/>"]
+  ManuallyOperatedShotguns["Manually<br/>Operated Shotguns<br/><img src='' width='56' height='56'/>"]
+
+  Shotguns --> SelfLoadingShotguns
+  Shotguns --> ManuallyOperatedShotguns
+
+  %% Self-loading shotguns leaves
   AutomaticShotguns["Automatic Shotguns<br/><img src='' width='56' height='56'/>"]
   SemiAutomaticShotguns["Semi-automatic<br/>Shotguns<br/><img src='' width='56' height='56'/>"]
 
