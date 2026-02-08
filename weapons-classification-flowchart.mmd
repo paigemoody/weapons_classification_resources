@@ -1,27 +1,34 @@
 flowchart TD
-  %% Decision nodes
-  start["What CLASS of item are you looking at? <br> - Small Arm (firearms intended for use by individuals), <br> - Light Weapon (weapons designed for use by two or three persons serving as a crew, although some may be carried and used by a single person)"]
-  
-  sa_group["Is the item a handgun or a long gun?"]
+%%   Decision nodes
+  start["
+  What **CLASS** of weapon are you looking at?
+  <br>
+  - Small Arm (firearms intended for use by individuals)
+  - Light Weapon (weapons designed for use by two or three persons serving as a crew, although some may be carried and used by a single person)
+  "
+  ]   
+  click start "https://www.google.com" "Open reference"
+  sa_group["Is the item a *handgun* or a *long gun*?"]
+
   sa_handgun_bore["Is the handgun rifled or smooth-bore?"]
   sa_handgun_rifled_type["What type of action does the handgun have?"]
+  
   sa_longgun_bore["Is the long gun rifled or smooth-bore?"]
   sa_longgun_rifled_type["What type of rifled long gun is it?"]
+  
   sa_selfloading_rifle_subtype["Can you further classify the self-loading rifle's operating type?"]
+  
   sa_machinegun_subtype["What category of machine gun is it?"]
+  
   sa_longgun_smoothbore_type["What type of smooth-bore long gun is it?"]
 
   lw_group["Is the light weapon hand-held or crew-served?"]
   lw_handheld_type["What type of hand-held light weapon is it?"]
   lw_crewserved_type["What type of crew-served light weapon is it?"]
 
-  ammo_group["What broad type of ammunition or munition is it?"]
-  ammo_small_cal_type["What type of small-calibre cartridge is it?"]
-
   %% Top-level option image nodes
   start_opt_small["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/small_arms_survey/visuals/Figure_3.1_Typical%20features%20of%20a%20modern%20military%20rifle.png' width='56' height='56'/><br/>Small Arm"]
   start_opt_light["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/small_arms_survey/visuals/Box_5.2_Myths%20and%20misconceptions%20_rocket%20launchers_%20versus%20_recoilless%20weapons.png' width='56' height='56'/><br/>Light Weapon"]
-  start_opt_ammo["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/small_arms_survey/visuals/Figure_4.1_Cross-section%20of%20a%207.62%20x%2051%20mm%20cartridge.png' width='56' height='56'/><br/>Ammunition / Munition"]
 
   %% SA group option image nodes
   sa_group_handgun["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/small_arms_survey/visuals/Figure_3.2_Typical%20features%20of%20a%20modern%20handgun.png' width='56' height='56'/><br/>Handgun"]
@@ -80,17 +87,6 @@ flowchart TD
   lw_c_mortar["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/small_arms_survey/visuals/Figure_5.3_Arrangement%20of%20a%20typical%20mortar%20projectile.png' width='56' height='56'/><br/>Light/Medium Mortar"]
   lw_c_other["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/images/lw-other-crewserved.svg' width='56' height='56'/><br/>Other Crew-served"]
 
-  %% Ammo group options
-  ammo_opt_small["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/small_arms_survey/visuals/Figure_4.2_Basic%20composition%20of%20a%207.62%20x%2039%20mm%20cartridge.png' width='56' height='56'/><br/>Small-calibre Cartridge (<20 mm)"]
-  ammo_opt_medium["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/small_arms_survey/visuals/Figure_5.2_Sample%20markings%20on%20a%20Bulgarian%20Arsenal%20RLV-HEF-1%2040%20x%2046SR%20mm%20HE-FRAG%20.png' width='56' height='56'/><br/>Medium-calibre (20 to <57 mm)"]
-  ammo_opt_large["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/small_arms_survey/visuals/Figure_5.3_Arrangement%20of%20a%20typical%20mortar%20projectile.png' width='56' height='56'/><br/>Large-calibre (57 mm+)"]
-  ammo_opt_powered["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/small_arms_survey/visuals/Figure_5.4_Arrangement%20of%20a%20typical%20fin-stabilized%20rocket.png' width='56' height='56'/><br/>Rocket or Guided Missile"]
-
-  %% Ammo small-cal options
-  ammo_sc_pistol["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/small_arms_survey/visuals/Table_4.2_Selected%20common%20pistol%20cartridges%20worldwide.png' width='56' height='56'/><br/>Pistol / SMG Cartridge"]
-  ammo_sc_rifle["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/small_arms_survey/visuals/Table_4.1_Dominant%20rifle%20and%20machine%20gun%20cartridges%20in%20global%20military%20service.png' width='56' height='56'/><br/>Rifle / MG Cartridge"]
-  ammo_sc_shotgun["<img src='https://raw.githubusercontent.com/paigemoody/weapons_classification_resources.github.io/main/small_arms_survey/visuals/Figure_3.7_Typical%20features%20of%20a%20break-action%20shotgun.png' width='56' height='56'/><br/>Shotgun Shell"]
-
   %% Result nodes
   result_sa_selfloading_pistol["RESULT: Small Arm -> Handgun -> Rifled Handgun -> Self-loading Pistol"]
   result_sa_revolver["RESULT: Small Arm -> Handgun -> Rifled Handgun -> Revolver"]
@@ -120,17 +116,10 @@ flowchart TD
   result_lw_mortar["RESULT: Light Weapon -> Crew-served -> Light or Medium Mortar"]
   result_lw_other_crewserved["RESULT: Light Weapon -> Crew-served -> Other Crew-served Light Weapon"]
 
-  result_ammo_pistol["RESULT: Ammunition -> Small-calibre -> Pistol/SMG Cartridge"]
-  result_ammo_rifle["RESULT: Ammunition -> Small-calibre -> Rifle/MG Cartridge"]
-  result_ammo_shotgun["RESULT: Ammunition -> Small-calibre -> Shotgun Shell"]
-  result_ammo_medium_cal["RESULT: Ammunition -> Medium-calibre Cartridge (20 mm to <57 mm)"]
-  result_ammo_large_cal["RESULT: Ammunition -> Large-calibre Ammunition (57 mm+)"]
-  result_ammo_powered["RESULT: Ammunition -> Powered Munitions -> Rocket or Guided Missile"]
 
   %% Flow
   start --> start_opt_small --> sa_group
   start --> start_opt_light --> lw_group
-  start --> start_opt_ammo --> ammo_group
 
   sa_group --> sa_group_handgun --> sa_handgun_bore
   sa_group --> sa_group_longgun --> sa_longgun_bore
@@ -178,14 +167,6 @@ flowchart TD
   lw_crewserved_type --> lw_c_mortar --> result_lw_mortar
   lw_crewserved_type --> lw_c_other --> result_lw_other_crewserved
 
-  ammo_group --> ammo_opt_small --> ammo_small_cal_type
-  ammo_group --> ammo_opt_medium --> result_ammo_medium_cal
-  ammo_group --> ammo_opt_large --> result_ammo_large_cal
-  ammo_group --> ammo_opt_powered --> result_ammo_powered
-
-  ammo_small_cal_type --> ammo_sc_pistol --> result_ammo_pistol
-  ammo_small_cal_type --> ammo_sc_rifle --> result_ammo_rifle
-  ammo_small_cal_type --> ammo_sc_shotgun --> result_ammo_shotgun
 
   %% Styling
   classDef decision fill:#e3f2fd,stroke:#1e88e5,stroke-width:1px,color:#0d47a1;
