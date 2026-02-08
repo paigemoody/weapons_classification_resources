@@ -10,31 +10,45 @@ flowchart TB
   SmallArms --> LongGuns
 
   %% Level 2
-  Handguns["Handguns - Which **type** best fits? <br/><img src='' width='56' height='56'/>"]
-  LongGuns["Long Guns - Which **type** best fits?<br/><img src='' width='56' height='56'/>"]
+  Handguns["Handguns - Which **bore type** best fits?<br/><img src='' width='56' height='56'/>"]
+  LongGuns["Long Guns - Which **bore type** best fits?<br/><img src='' width='56' height='56'/>"]
 
-  Handguns --> Rifiled_SelfLoadingPistols
-  Handguns --> Rifiled_Revolvers
-  Handguns --> SmoothBore_OtherHandguns
+  %% Bore-type breaks
+  Handguns --> Handguns_Rifled
+  Handguns --> Handguns_SmoothBore
+  LongGuns --> LongGuns_Rifled
+  LongGuns --> LongGuns_SmoothBore
 
-  %% Handguns branch
-  Rifiled_SelfLoadingPistols["Rifiled: Self-loading<br/>Pistols<br/><img src='' width='56' height='56'/>"]
-  Rifiled_Revolvers["Rifiled: Revolvers<br/><img src='' width='56' height='56'/>"]
-  SmoothBore_OtherHandguns["Smooth-bore: Other handguns<br/><img src='' width='56' height='56'/>"]
-  
-  LongGuns --> Rifiled_SubMachineGuns
-  LongGuns --> Rifiled_ManPortableMachineGuns
-  LongGuns --> Rifles
-  LongGuns --> Shotguns
-  LongGuns --> OtherLongGuns
+  Handguns_Rifled["Rifled<br/><img src='' width='56' height='56'/>"]
+  Handguns_SmoothBore["Smooth-bore<br/><img src='' width='56' height='56'/>"]
+  LongGuns_Rifled["Rifled<br/><img src='' width='56' height='56'/>"]
+  LongGuns_SmoothBore["Smooth-bore<br/><img src='' width='56' height='56'/>"]
 
-  %% Long guns branch (first row under Long Guns)
-  Rifiled_SubMachineGuns["Rifiled Sub-machine<br/>Guns<br/><img src='' width='56' height='56'/>"]
-  Rifiled_ManPortableMachineGuns["Rifiled Man-portable<br/>Machine Guns<br/><img src='' width='56' height='56'/>"]
+  %% Handguns details
+  Handguns_Rifled --> Rifled_SelfLoadingPistols
+  Handguns_Rifled --> Rifled_Revolvers
+  Handguns_SmoothBore --> SmoothBore_OtherHandguns
+
+  Rifled_SelfLoadingPistols["Self-loading<br/>Pistols<br/><img src='' width='56' height='56'/>"]
+  Rifled_Revolvers["Revolvers<br/><img src='' width='56' height='56'/>"]
+  SmoothBore_OtherHandguns["Other handguns<br/><img src='' width='56' height='56'/>"]
+
+  %% Long guns details
+  LongGuns_Rifled --> Rifled_SubMachineGuns
+  LongGuns_Rifled --> Rifled_ManPortableMachineGuns
+  LongGuns_Rifled --> Rifles
+  LongGuns_Rifled --> SelfLoadingShotguns
+
+  %% Long-gun smooth-bore now has exactly two nodes
+  LongGuns_SmoothBore --> ManuallyOperatedShotguns
+  LongGuns_SmoothBore --> OtherSmoothBoreLongGuns
+
+  Rifled_SubMachineGuns["Sub-machine<br/>guns<br/><img src='' width='56' height='56'/>"]
+  Rifled_ManPortableMachineGuns["Man-portable<br/>machine guns<br/><img src='' width='56' height='56'/>"]
   Rifles["Rifles: Which **sub-type** matches best?<br/><img src='' width='56' height='56'/>"]
-  Shotguns["Shotguns<br/><img src='' width='56' height='56'/>"]
-  OtherLongGuns["Other Long<br/>Guns<br/><img src='' width='56' height='56'/>"]
 
+  ManuallyOperatedShotguns["Manually<br/>Operated Shotguns<br/><img src='' width='56' height='56'/>"]
+  OtherSmoothBoreLongGuns["Other smooth-bore<br/>long guns<br/><img src='' width='56' height='56'/>"]
 
   %% Rifles split
   SelfLoadingRifles["Self-loading<br/>Rifles<br/><img src='' width='56' height='56'/>"]
@@ -42,13 +56,6 @@ flowchart TB
 
   Rifles --> SelfLoadingRifles
   Rifles --> ManuallyOperatedRifles
-
-  %% Shotguns split
-  SelfLoadingShotguns["Self-loading<br/>Shotguns<br/><img src='' width='56' height='56'/>"]
-  ManuallyOperatedShotguns["Manually<br/>Operated Shotguns<br/><img src='' width='56' height='56'/>"]
-
-  Shotguns --> SelfLoadingShotguns
-  Shotguns --> ManuallyOperatedShotguns
 
   %% Self-loading rifles leaves
   AutomaticRifles["Automatic Rifles<br/><img src='' width='56' height='56'/>"]
@@ -70,7 +77,8 @@ flowchart TB
   ManuallyOperatedRifles --> PumpActionRifles
   ManuallyOperatedRifles --> OtherManuallyOperatedRifles
 
-  %% Self-loading shotguns leaves
+  %% Rifled self-loading shotguns leaves
+  SelfLoadingShotguns["Self-loading<br/>Shotguns<br/><img src='' width='56' height='56'/>"]
   AutomaticShotguns["Automatic Shotguns<br/><img src='' width='56' height='56'/>"]
   SemiAutomaticShotguns["Semi-automatic<br/>Shotguns<br/><img src='' width='56' height='56'/>"]
 
