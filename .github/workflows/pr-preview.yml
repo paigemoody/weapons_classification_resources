@@ -3,10 +3,6 @@ name: PR Preview
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    paths:
-      - "weapons-classification-flowchart.mmd"
-      - "src/**"
-      - ".github/workflows/pr-preview.yml"
 
 permissions:
   contents: write
