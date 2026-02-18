@@ -1,21 +1,42 @@
-name: PR Preview (smoke)
+name: Branch Preview
 
 on:
   push:
     branches-ignore:
       - gh-pages
-  pull_request:
-    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: branch-preview-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  smoke:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Show context
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Build preview site into dist/
         run: |
-          echo "event: $GITHUB_EVENT_NAME"
-          echo "ref:   $GITHUB_REF"
-          echo "sha:   $GITHUB_SHA"
-          ls -la
+          mkdir -p dist
+          python src/mermaid_to_clickthrough.py \
+            --input-mmd weapons-classification-flowchart.mmd \
+            --output-html dist/classification-guide.html \
+            --app-name "[BRANCH PREVIEW] Weapons Classification Guide"
+          touch dist/.nojekyll
+
+      - name: Publish to gh-pages under branch/<branch-name>/
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: dist
+          destination_dir: branch/${{ github.ref_name }}
+          enable_jekyll: false
+          keep_files: true
