@@ -1,0 +1,101 @@
+flowchart TB
+  %% Top level
+  SmallArms["<h1>Which Small Arms group best fits?</h1><p></p><img src='' />"]
+
+  SmallArms --> |"<h1>Handgun</h1><p>a firearm which is grasped by placing both the control hand and support hand around the pistol grip, and which may be readily fired with one hand (ARES p37)</p><img src='https://github.com/paigemoody/weapons_classification_resources.github.io/blob/main/sources/ARES_arms_munitions_classification_system/visuals/Figure2.8_2.9_2.10_Handguns.png?raw=true' />"| Handguns_BarrelType
+  SmallArms --> |"<h1>Long Gun</h1><p>A firearm which is grasped by placing the control hand and support hand in different locations, and which is typically fitted with a buttstock intended to be braced against the user’s shoulder when fired.</p><img src='' />"| LongGuns
+
+  Handguns_BarrelType["<h1>Which barrel type best fits?</h1><p></p><img src='https://github.com/paigemoody/weapons_classification_resources.github.io/blob/main/sources/small_arms_survey/visuals/Figure_3.4_Rifled_and_smooth-bore_barrels.png?raw=true' />"]
+
+  %% Bore-type breaks
+  Handguns_BarrelType --> |"<h1>Rifled</h1><p></p><img src='' />"| Handguns_Rifled
+  Handguns_BarrelType --> |"<h1>Smooth Bore</h1><p></p><img src='' />"| SmoothBore_OtherHandguns
+
+  %% Handguns details
+  Handguns_Rifled["<h1>Which type of rifiled handgun best matches?</h1><p></p><img src='' />"]
+  Handguns_Rifled --> |"<h1>Self Loading Pistols</h1><p></p><img src='' />"| Rifled_SelfLoadingPistols
+  Handguns_Rifled --> |"<h1>Revolvers</h1><p></p><img src='' />"| Rifled_Revolvers
+
+  SmoothBore_OtherHandguns["<h1>Other handguns</h1><p></p><img src='' />"]
+
+
+  %% Long guns details
+  LongGuns["<h1>Which barrel type best fits?</h1><p></p><img src='' />"]
+
+  LongGuns --> |"<h1>Rifled</h1><p></p><img src='' />"| LongGuns_Rifled
+  LongGuns --> |"<h1>Smooth Bore</h1><p></p><img src='' />"| LongGuns_SmoothBore
+
+  Rifled_SelfLoadingPistols["<h1>Self-loading Pistols</h1><p></p><img src='https://github.com/paigemoody/weapons_classification_resources.github.io/blob/main/sources/ARES_arms_munitions_classification_system/visuals/Figure2.13_SelfLoading_Pistols.png?raw=true' />"]
+  Rifled_Revolvers["<h1>Revolvers</h1><p></p><img src='https://github.com/paigemoody/weapons_classification_resources.github.io/blob/main/sources/ARES_arms_munitions_classification_system/visuals/Figure2.12_Revolvers.png?raw=true' />"]
+
+  LongGuns_Rifled["<h1>Which type of rifiled long gun best matches?</h1><p></p><img src='' />"]
+  Rifled_SubMachineGuns["<h1>Sub-machine guns</h1><p></p><img src='' />"]
+  Rifled_ManPortableMachineGuns["<h1>Man-portable machine guns</h1><p></p><img src='' />"]
+
+  LongGuns_SmoothBore["<h1>Smooth-bore</h1><p></p><img src='' />"]
+
+  LongGuns_Rifled --> |"<h1>Sub-machine Guns</h1><p></p><img src='' />"| Rifled_SubMachineGuns
+  LongGuns_Rifled --> |"<h1>Man-portable Machine Guns</h1><p></p><img src='' />"| Rifled_ManPortableMachineGuns
+  LongGuns_Rifled --> |"<h1>Other</h1><p></p><img src='' />"| Rifles
+
+  LongGuns_SmoothBore --> |"<h1>Shotguns</h1><p></p><img src='' />"| Shotguns
+  LongGuns_SmoothBore --> |"<h1>Other Smooth Bore Long Guns</h1><p></p><img src='' />"| OtherSmoothBoreLongGuns
+
+  Rifles["<h1>Rifles: Which sub-type of rifled long guns matches best?</h1><p></p><img src='' />"]
+
+  Rifles --> |"<h1>Self-Loading</h1><p></p><img src='' />"| SelfLoadingRifles
+  Rifles --> |"<h1>Manually-Loaded</h1><p></p><img src='' />"| ManuallyOperatedRifles
+
+  Shotguns["<h1>How is amunition loaded into the shotgun?</h1><p></p><img src='' />"]
+  OtherSmoothBoreLongGuns["<h1>Other smooth-bore long guns</h1><p></p><img src='' />"]
+
+  %% Rifles split
+  SelfLoadingRifles["<h1>Which operation method of self-loading rifled long gun best fits?</h1><p></p><img src='' />"]
+  ManuallyOperatedRifles["<h1>Which operation method manually-loading rifled long gun best fits?</h1><p></p><img src='' />"]
+
+  %% Self-loading rifles leaves
+  AutomaticRifles["<h1>Automatic Rifles</h1><p></p><img src='' />"]
+  SemiAutomaticRifles["<h1>Semi-automatic Rifles</h1><p></p><img src='' />"]
+
+  SelfLoadingRifles --> |"<h1>Automatic Rifles</h1><p></p><img src='' />"| AutomaticRifles
+  SelfLoadingRifles --> |"<h1>Semi-automatic Rifles</h1><p></p><img src='' />"| SemiAutomaticRifles
+
+  %% Manually operated rifles leaves
+  BreakActionRifles["<h1>Break-action Rifles</h1><p></p><img src='' />"]
+  BoltActionRifles["<h1>Bolt-action Rifles</h1><p></p><img src='' />"]
+  LeverActionRifles["<h1>Lever-action Rifles</h1><p></p><img src='' />"]
+  PumpActionRifles["<h1>Pump-action Rifles</h1><p></p><img src='' />"]
+  OtherManuallyOperatedRifles["<h1>Other Manually Operated Rifles</h1><p></p><img src='' />"]
+
+  ManuallyOperatedRifles --> |"<h1>Break Action Rifles</h1><p></p><img src='' />"| BreakActionRifles
+  ManuallyOperatedRifles --> |"<h1>Bolt Action Rifles</h1><p></p><img src='' />"| BoltActionRifles
+  ManuallyOperatedRifles --> |"<h1>Lever Action Rifles</h1><p></p><img src='' />"| LeverActionRifles
+  ManuallyOperatedRifles --> |"<h1>Pump Action Rifles</h1><p></p><img src='' />"| PumpActionRifles
+  ManuallyOperatedRifles --> |"<h1>Other Manually Operated Rifles</h1><p></p><img src='' />"| OtherManuallyOperatedRifles
+
+  %% Shotguns split
+  SelfLoadingShotguns["<h1>Which self-loading shotgun matches best?</h1><p></p><img src='' />"]
+  ManuallyOperatedShotguns["<h1>Which manually operated shotguns matches best?</h1><p></p><img src='' />"]
+
+  Shotguns --> |"<h1>Self-Loading</h1><p></p><img src='' />"| SelfLoadingShotguns
+  Shotguns --> |"<h1>Manual</h1><p></p><img src='' />"| ManuallyOperatedShotguns
+
+  %% Self-loading shotguns leaves
+  AutomaticShotguns["<h1>Automatic Shotguns</h1><p></p><img src='' />"]
+  SemiAutomaticShotguns["<h1>Semi-automatic Shotguns</h1><p></p><img src='' />"]
+
+  SelfLoadingShotguns --> |"<h1>Automatic Shotguns</h1><p></p><img src='' />"| AutomaticShotguns
+  SelfLoadingShotguns --> |"<h1>Semi-Automatic Shotguns</h1><p></p><img src='' />"| SemiAutomaticShotguns
+
+  %% Manually operated shotguns leaves
+  BreakActionShotguns["<h1>Break-action Shotguns</h1><p></p><img src='' />"]
+  BoltActionShotguns["<h1>Bolt-action Shotguns</h1><p></p><img src='' />"]
+  LeverActionShotguns["<h1>Lever-action Shotguns</h1><p></p><img src='' />"]
+  PumpActionShotguns["<h1>Pump-action Shotguns</h1><p></p><img src='' />"]
+  OtherManuallyOperatedShotguns["<h1>Other Manually Operated Shotguns</h1><p></p><img src='' />"]
+
+  ManuallyOperatedShotguns --> |"<h1>Break Action Shotguns</h1><p></p><img src='' />"| BreakActionShotguns
+  ManuallyOperatedShotguns --> |"<h1>Bolt Action Shotguns</h1><p></p><img src='' />"| BoltActionShotguns
+  ManuallyOperatedShotguns --> |"<h1>Lever Action Shotguns</h1><p></p><img src='' />"| LeverActionShotguns
+  ManuallyOperatedShotguns --> |"<h1>Pump Action Shotguns</h1><p></p><img src='' />"| PumpActionShotguns
+  ManuallyOperatedShotguns --> |"<h1>Other Manually Operated Shotguns</h1><p></p><img src='' />"| OtherManuallyOperatedShotguns

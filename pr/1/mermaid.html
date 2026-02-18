@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>[DEMO - WORK IN PROGRESS]Small Arms Classification Flow (Mermaid)</title>
+
+    <!-- Tailwind (for navbar classes) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Mermaid -->
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "loose",
+        flowchart: { htmlLabels: true, useMaxWidth: true },
+      });
+
+      async function loadDiagram() {
+        const container = document.getElementById("diagram");
+        try {
+          const res = await fetch("./weapons-classification-flowchart.mmd", {
+            cache: "no-store",
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status} loading .mmd file`);
+          const mmd = await res.text();
+
+          const { svg } = await mermaid.render("weaponsFlowSvg", mmd);
+          container.innerHTML = svg;
+        } catch (err) {
+          container.innerHTML = `
+            <div class="text-red-700 bg-red-50 border border-red-200 rounded p-4 text-sm">
+              Could not load Mermaid file: <code>weapons-classification-flowchart.mmd</code><br/>
+              <span class="opacity-80">${String(err.message || err)}</span>
+            </div>
+          `;
+        }
+      }
+
+      window.addEventListener("DOMContentLoaded", loadDiagram);
+    </script>
+  </head>
+  <body class="bg-slate-100 min-h-screen m-0">
+    <nav class="bg-slate-800 text-white p-4 shadow-md sticky top-0 z-50">
+      <h1 class="text-xl font-bold">[DEMO - WORK IN PROGRESS] Small Arms Classification Flow</h1>
+      <p class="text-xs opacity-80">
+        Based on ARES ARCS v1.3 &amp; Small Arms Survey
+      </p>
+      <a
+        href="classification-guide.html"
+        class="text-xs border border-slate-500 px-2 py-1 rounded hover:bg-slate-700 inline-block mt-2"
+      >
+        View interactive
+      </a>
+    </nav>
+
+    <main class="p-4">
+      <div class="bg-white rounded-lg shadow p-3 overflow-auto">
+        <div id="diagram" class="min-h-[200px]"></div>
+      </div>
+    </main>
+  </body>
+</html>
