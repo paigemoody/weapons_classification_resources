@@ -1,0 +1,42 @@
+name: PR Preview
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build-preview:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Generate clickthrough HTML
+        run: |
+          python src/mermaid_to_clickthrough.py \
+            --input-mmd weapons-classification-flowchart.mmd \
+            --output-html classification-guide.html \
+            --app-name "[PREVIEW] Weapons Classification Guide"
+
+      - name: Publish preview to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          destination_dir: pr/${{ github.event.number }}
+      
+      - name: Comment preview link
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: |
+            Preview available:
+
+            https://paigemoody.github.io/weapons_classification_resources.github.io/pr/${{ github.event.number }}/classification-guide.html
