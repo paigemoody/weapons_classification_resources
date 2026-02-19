@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[BRANCH PREVIEW] Weapons Classification Guide</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useMemo, useState } = React;
+
+    const APP_NAME = "[BRANCH PREVIEW] Weapons Classification Guide";
+    const TREE = {
+  "nodeId": "SmallArms",
+  "questionHtml": "<h1>Which Small Arms group best fits?</h1><p></p><img src='' />",
+  "questionText": "Which Small Arms group best fits?",
+  "options": [
+    {
+      "label": "Handgun",
+      "titleHtml": "Handgun",
+      "contextHtml": "<p>a firearm which is grasped by placing both the control hand and support hand around the pistol grip, and which may be readily fired with one hand (ARES p37)</p>",
+      "nextNodeId": "Handguns_BarrelType",
+      "imageTag": "<img src='https://github.com/paigemoody/weapons_classification_resources.github.io/blob/main/sources/ARES_arms_munitions_classification_system/visuals/Figure2.8_2.9_2.10_Handguns.png?raw=true' />",
+      "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/main/sources/ARES_arms_munitions_classification_system/visuals/Figure2.8_2.9_2.10_Handguns.png?raw=true",
+      "next": {
+        "nodeId": "Handguns_BarrelType",
+        "questionHtml": "<h1>Which barrel type best fits?</h1><p></p><img src='https://github.com/paigemoody/weapons_classification_resources.github.io/blob/main/sources/small_arms_survey/visuals/Figure_3.4_Rifled_and_smooth-bore_barrels.png?raw=true' />",
+        "questionText": "Which barrel type best fits?",
+        "options": [
+          {
+            "label": "Rifled",
+            "titleHtml": "Rifled",
+            "contextHtml": "<p></p>",
+            "nextNodeId": "Handguns_Rifled",
+            "imageTag": "<img src='' />",
+            "imageSrc": "",
+            "next": {
+              "nodeId": "Handguns_Rifled",
+              "questionHtml": "<h1>Which type of rifiled handgun best matches?</h1><p></p><img src='' />",
+              "questionText": "Which type of rifiled handgun best matches?",
+              "options": [
+                {
+                  "label": "Self Loading Pistols",
+                  "titleHtml": "Self Loading Pistols",
+                  "contextHtml": "<p></p>",
+                  "nextNodeId": "Rifled_SelfLoadingPistols",
+                  "imageTag": "<img src='' />",
+                  "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/main/sources/ARES_arms_munitions_classification_system/visuals/Figure2.13_SelfLoading_Pistols.png?raw=true",
+                  "resultHtml": "<h1>Self-loading Pistols</h1><p></p><img src='https://github.com/paigemoody/weapons_classification_resources.github.io/blob/main/sources/ARES_arms_munitions_classification_system/visuals/Figure2.13_SelfLoading_Pistols.png?raw=true' />",
+                  "resultText": "Self-loading Pistols"
+                },
+                {
+                  "label": "Revolvers",
+                  "titleHtml": "Revolvers",
+                  "contextHtml": "<p></p>",
+                  "nextNodeId": "Rifled_Revolvers",
+                  "imageTag": "<img src='' />",
+                  "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/main/sources/ARES_arms_munitions_classification_system/visuals/Figure2.12_Revolvers.png?raw=true",
+                  "resultHtml": "<h1>Revolvers</h1><p></p><img src='https://github.com/paigemoody/weapons_classification_resources.github.io/blob/main/sources/ARES_arms_munitions_classification_system/visuals/Figure2.12_Revolvers.png?raw=true' />",
+                  "resultText": "Revolvers"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Smooth Bore",
+            "titleHtml": "Smooth Bore",
+            "contextHtml": "<p></p>",
+            "nextNodeId": "SmoothBore_OtherHandguns",
+            "imageTag": "<img src='' />",
+            "imageSrc": "",
+            "resultHtml": "<h1>Other handguns</h1><p></p><img src='' />",
+            "resultText": "Other handguns"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Long Gun",
+      "titleHtml": "Long Gun",
+      "contextHtml": "<p>A firearm which is grasped by placing the control hand and support hand in different locations, and which is typically fitted with a buttstock intended to be braced against the user’s shoulder when fired.</p>",
+      "nextNodeId": "LongGuns",
+      "imageTag": "<img src='' />",
+      "imageSrc": "",
+      "next": {
+        "nodeId": "LongGuns",
+        "questionHtml": "<h1>Which barrel type best fits?</h1><p></p><img src='' />",
+        "questionText": "Which barrel type best fits?",
+        "options": [
+          {
+            "label": "Rifled",
+            "titleHtml": "Rifled",
+            "contextHtml": "<p></p>",
+            "nextNodeId": "LongGuns_Rifled",
+            "imageTag": "<img src='' />",
+            "imageSrc": "",
+            "next": {
+              "nodeId": "LongGuns_Rifled",
+              "questionHtml": "<h1>Which type of rifiled long gun best matches?</h1><p></p><img src='' />",
+              "questionText": "Which type of rifiled long gun best matches?",
+              "options": [
+                {
+                  "label": "Sub-machine Guns",
+                  "titleHtml": "Sub-machine Guns",
+                  "contextHtml": "<p></p>",
+                  "nextNodeId": "Rifled_SubMachineGuns",
+                  "imageTag": "<img src='' />",
+                  "imageSrc": "",
+                  "resultHtml": "<h1>Sub-machine guns</h1><p></p><img src='' />",
+                  "resultText": "Sub-machine guns"
+                },
+                {
+                  "label": "Man-portable Machine Guns",
+                  "titleHtml": "Man-portable Machine Guns",
+                  "contextHtml": "<p></p>",
+                  "nextNodeId": "Rifled_ManPortableMachineGuns",
+                  "imageTag": "<img src='' />",
+                  "imageSrc": "",
+                  "resultHtml": "<h1>Man-portable machine guns</h1><p></p><img src='' />",
+                  "resultText": "Man-portable machine guns"
+                },
+                {
+                  "label": "Other",
+                  "titleHtml": "Other",
+                  "contextHtml": "<p></p>",
+                  "nextNodeId": "Rifles",
+                  "imageTag": "<img src='' />",
+                  "imageSrc": "",
+                  "next": {
+                    "nodeId": "Rifles",
+                    "questionHtml": "<h1>Rifles: Which sub-type of rifled long guns matches best?</h1><p></p><img src='' />",
+                    "questionText": "Rifles: Which sub-type of rifled long guns matches best?",
+                    "options": [
+                      {
+                        "label": "Self-Loading",
+                        "titleHtml": "Self-Loading",
+                        "contextHtml": "<p></p>",
+                        "nextNodeId": "SelfLoadingRifles",
+                        "imageTag": "<img src='' />",
+                        "imageSrc": "",
+                        "next": {
+                          "nodeId": "SelfLoadingRifles",
+                          "questionHtml": "<h1>Which operation method of self-loading rifled long gun best fits?</h1><p></p><img src='' />",
+                          "questionText": "Which operation method of self-loading rifled long gun best fits?",
+                          "options": [
+                            {
+                              "label": "Automatic Rifles",
+                              "titleHtml": "Automatic Rifles",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "AutomaticRifles",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Automatic Rifles</h1><p></p><img src='' />",
+                              "resultText": "Automatic Rifles"
+                            },
+                            {
+                              "label": "Semi-automatic Rifles",
+                              "titleHtml": "Semi-automatic Rifles",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "SemiAutomaticRifles",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Semi-automatic Rifles</h1><p></p><img src='' />",
+                              "resultText": "Semi-automatic Rifles"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "label": "Manually-Loaded",
+                        "titleHtml": "Manually-Loaded",
+                        "contextHtml": "<p></p>",
+                        "nextNodeId": "ManuallyOperatedRifles",
+                        "imageTag": "<img src='' />",
+                        "imageSrc": "",
+                        "next": {
+                          "nodeId": "ManuallyOperatedRifles",
+                          "questionHtml": "<h1>Which operation method manually-loading rifled long gun best fits?</h1><p></p><img src='' />",
+                          "questionText": "Which operation method manually-loading rifled long gun best fits?",
+                          "options": [
+                            {
+                              "label": "Break Action Rifles",
+                              "titleHtml": "Break Action Rifles",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "BreakActionRifles",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Break-action Rifles</h1><p></p><img src='' />",
+                              "resultText": "Break-action Rifles"
+                            },
+                            {
+                              "label": "Bolt Action Rifles",
+                              "titleHtml": "Bolt Action Rifles",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "BoltActionRifles",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Bolt-action Rifles</h1><p></p><img src='' />",
+                              "resultText": "Bolt-action Rifles"
+                            },
+                            {
+                              "label": "Lever Action Rifles",
+                              "titleHtml": "Lever Action Rifles",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "LeverActionRifles",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Lever-action Rifles</h1><p></p><img src='' />",
+                              "resultText": "Lever-action Rifles"
+                            },
+                            {
+                              "label": "Pump Action Rifles",
+                              "titleHtml": "Pump Action Rifles",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "PumpActionRifles",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Pump-action Rifles</h1><p></p><img src='' />",
+                              "resultText": "Pump-action Rifles"
+                            },
+                            {
+                              "label": "Other Manually Operated Rifles",
+                              "titleHtml": "Other Manually Operated Rifles",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "OtherManuallyOperatedRifles",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Other Manually Operated Rifles</h1><p></p><img src='' />",
+                              "resultText": "Other Manually Operated Rifles"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "label": "Smooth Bore",
+            "titleHtml": "Smooth Bore",
+            "contextHtml": "<p></p>",
+            "nextNodeId": "LongGuns_SmoothBore",
+            "imageTag": "<img src='' />",
+            "imageSrc": "",
+            "next": {
+              "nodeId": "LongGuns_SmoothBore",
+              "questionHtml": "<h1>Smooth-bore</h1><p></p><img src='' />",
+              "questionText": "Smooth-bore",
+              "options": [
+                {
+                  "label": "Shotguns",
+                  "titleHtml": "Shotguns",
+                  "contextHtml": "<p></p>",
+                  "nextNodeId": "Shotguns",
+                  "imageTag": "<img src='' />",
+                  "imageSrc": "",
+                  "next": {
+                    "nodeId": "Shotguns",
+                    "questionHtml": "<h1>How is amunition loaded into the shotgun?</h1><p></p><img src='' />",
+                    "questionText": "How is amunition loaded into the shotgun?",
+                    "options": [
+                      {
+                        "label": "Self-Loading",
+                        "titleHtml": "Self-Loading",
+                        "contextHtml": "<p></p>",
+                        "nextNodeId": "SelfLoadingShotguns",
+                        "imageTag": "<img src='' />",
+                        "imageSrc": "",
+                        "next": {
+                          "nodeId": "SelfLoadingShotguns",
+                          "questionHtml": "<h1>Which self-loading shotgun matches best?</h1><p></p><img src='' />",
+                          "questionText": "Which self-loading shotgun matches best?",
+                          "options": [
+                            {
+                              "label": "Automatic Shotguns",
+                              "titleHtml": "Automatic Shotguns",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "AutomaticShotguns",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Automatic Shotguns</h1><p></p><img src='' />",
+                              "resultText": "Automatic Shotguns"
+                            },
+                            {
+                              "label": "Semi-Automatic Shotguns",
+                              "titleHtml": "Semi-Automatic Shotguns",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "SemiAutomaticShotguns",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Semi-automatic Shotguns</h1><p></p><img src='' />",
+                              "resultText": "Semi-automatic Shotguns"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "label": "Manually",
+                        "titleHtml": "Manually",
+                        "contextHtml": "<p></p>",
+                        "nextNodeId": "ManuallyOperatedShotguns",
+                        "imageTag": "<img src='' />",
+                        "imageSrc": "",
+                        "next": {
+                          "nodeId": "ManuallyOperatedShotguns",
+                          "questionHtml": "<h1>Which manually operated shotguns matches best?</h1><p></p><img src='' />",
+                          "questionText": "Which manually operated shotguns matches best?",
+                          "options": [
+                            {
+                              "label": "Break Action Shotguns",
+                              "titleHtml": "Break Action Shotguns",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "BreakActionShotguns",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Break-action Shotguns</h1><p></p><img src='' />",
+                              "resultText": "Break-action Shotguns"
+                            },
+                            {
+                              "label": "Bolt Action Shotguns",
+                              "titleHtml": "Bolt Action Shotguns",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "BoltActionShotguns",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Bolt-action Shotguns</h1><p></p><img src='' />",
+                              "resultText": "Bolt-action Shotguns"
+                            },
+                            {
+                              "label": "Lever Action Shotguns",
+                              "titleHtml": "Lever Action Shotguns",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "LeverActionShotguns",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Lever-action Shotguns</h1><p></p><img src='' />",
+                              "resultText": "Lever-action Shotguns"
+                            },
+                            {
+                              "label": "Pump Action Shotguns",
+                              "titleHtml": "Pump Action Shotguns",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "PumpActionShotguns",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Pump-action Shotguns</h1><p></p><img src='' />",
+                              "resultText": "Pump-action Shotguns"
+                            },
+                            {
+                              "label": "Other Manually Operated Shotguns",
+                              "titleHtml": "Other Manually Operated Shotguns",
+                              "contextHtml": "<p></p>",
+                              "nextNodeId": "OtherManuallyOperatedShotguns",
+                              "imageTag": "<img src='' />",
+                              "imageSrc": "",
+                              "resultHtml": "<h1>Other Manually Operated Shotguns</h1><p></p><img src='' />",
+                              "resultText": "Other Manually Operated Shotguns"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Other Smooth Bore Long Guns",
+                  "titleHtml": "Other Smooth Bore Long Guns",
+                  "contextHtml": "<p></p>",
+                  "nextNodeId": "OtherSmoothBoreLongGuns",
+                  "imageTag": "<img src='' />",
+                  "imageSrc": "",
+                  "resultHtml": "<h1>Other smooth-bore long guns</h1><p></p><img src='' />",
+                  "resultText": "Other smooth-bore long guns"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+};
+
+    function ClassificationGuide() {
+      const [path, setPath] = useState([]); // each item: { optionIndex, optionLabel, nodeQuestionText }
+      const [result, setResult] = useState(null); // { text, html }
+
+      const getCurrentNode = () => {
+        let node = TREE;
+        for (const step of path) {
+          const opt = node?.options?.[step.optionIndex];
+          if (!opt) return node;
+          if (opt.next) node = opt.next;
+          else return node;
+        }
+        return node;
+      };
+
+      const currentNode = result ? null : getCurrentNode();
+
+      const choose = (idx) => {
+        const node = getCurrentNode();
+        if (!node) return;
+        const opt = node.options?.[idx];
+        if (!opt) return;
+
+        const nextPath = [
+          ...path,
+          {
+            optionIndex: idx,
+            optionLabel: opt.label || "Option",
+            nodeQuestionText: node.questionText || "Step"
+          }
+        ];
+
+        if (opt.resultHtml || opt.resultText) {
+          setPath(nextPath);
+          setResult({
+            text: opt.resultText || "",
+            html: opt.resultHtml || opt.resultText || ""
+          });
+        } else if (opt.next) {
+          setPath(nextPath);
+        }
+      };
+
+      const goToStep = (stepIndex) => {
+        if (stepIndex < 0) {
+          setPath([]);
+          setResult(null);
+          return;
+        }
+
+        const newPath = path.slice(0, stepIndex + 1);
+        setResult(null);
+        setPath(newPath);
+      };
+
+      const backOne = () => {
+        if (result) {
+          setResult(null);
+          return;
+        }
+        if (path.length > 0) {
+          setPath(path.slice(0, -1));
+        }
+      };
+
+      const reset = () => {
+        setPath([]);
+        setResult(null);
+      };
+
+      const breadcrumbItems = useMemo(() => {
+        return path.map((p, i) => ({
+          label: p.optionLabel,
+          stepIndex: i
+        }));
+      }, [path]);
+
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h1 className="text-3xl font-bold text-slate-800 mb-4 text-center">{APP_NAME}</h1>
+
+              <div className="mb-6">
+                <div className="text-xs uppercase tracking-wide text-slate-500 mb-2">Path</div>
+                <div className="flex flex-wrap items-center gap-2 text-sm">
+                  <button
+                    onClick={() => goToStep(-1)}
+                    className="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700"
+                  >
+                    Start
+                  </button>
+                  {breadcrumbItems.map((b, i) => (
+                    <React.Fragment key={i}>
+                      <span className="text-slate-400">→</span>
+                      <button
+                        onClick={() => goToStep(i)}
+                        className="px-2 py-1 rounded bg-blue-50 hover:bg-blue-100 text-blue-800"
+                        title={`Go back to step ${i + 1}`}
+                      >
+                        {b.label}
+                      </button>
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+
+              {result && (
+                <div className="text-center">
+                  <h2 className="text-xl font-semibold text-slate-700 mb-4">Classification Complete</h2>
+                  <div
+                    className="inline-block bg-blue-100 text-blue-900 px-5 py-4 rounded-lg text-lg font-semibold"
+                    dangerouslySetInnerHTML={{ __html: result.html }}
+                  />
+                  <div className="mt-8 flex gap-3 justify-center">
+                    <button
+                      onClick={backOne}
+                      className="px-4 py-2 text-slate-700 hover:text-slate-900"
+                    >
+                      ← Back
+                    </button>
+                    <button
+                      onClick={reset}
+                      className="px-4 py-2 rounded bg-slate-700 text-white hover:bg-slate-800"
+                    >
+                      Start Over
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {!result && currentNode && (
+                <div>
+                  <h2
+                    className="text-xl font-semibold text-slate-800 mb-6 text-center"
+                    dangerouslySetInnerHTML={{ __html: currentNode.questionHtml }}
+                  />
+
+                  <div className="space-y-3">
+                    {currentNode.options.map((opt, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => choose(idx)}
+                        className="w-full bg-white border-2 border-slate-300 rounded-lg p-4 hover:border-blue-500 hover:bg-blue-50 transition-all text-left"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className="w-24 h-24 bg-slate-100 rounded flex-shrink-0 flex items-center justify-center overflow-hidden">
+                            {opt.imageSrc ? (
+                              <img
+                                src={opt.imageSrc}
+                                alt={opt.label}
+                                className="w-full h-full object-contain"
+                              />
+                            ) : opt.imageTag ? (
+                              <span
+                                className="w-full h-full flex items-center justify-center"
+                                dangerouslySetInnerHTML={{ __html: opt.imageTag }}
+                              />
+                            ) : (
+                              <span className="text-slate-400 text-xs">No image</span>
+                            )}
+                          </div>
+
+                          <div className="min-w-0">
+                            <div
+                              className="text-lg font-semibold text-slate-800"
+                              dangerouslySetInnerHTML={{ __html: opt.titleHtml || opt.label }}
+                            />
+                            {opt.contextHtml && (
+                              <div
+                                className="mt-1 text-sm text-slate-600"
+                                dangerouslySetInnerHTML={{ __html: opt.contextHtml }}
+                              />
+                            )}
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 flex gap-3">
+                    <button
+                      onClick={backOne}
+                      disabled={path.length === 0}
+                      className={`px-4 py-2 ${path.length === 0 ? "text-slate-300 cursor-not-allowed" : "text-slate-700 hover:text-slate-900"}`}
+                    >
+                      ← Back
+                    </button>
+                    <button
+                      onClick={reset}
+                      className="ml-auto px-4 py-2 text-slate-700 hover:text-slate-900"
+                    >
+                      Start Over
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {!result && !currentNode && (
+                <div className="text-center">
+                  <div className="text-red-600 mb-4">
+                    Could not render this step.
+                  </div>
+                  <div className="flex gap-3 justify-center">
+                    <button onClick={backOne} className="px-4 py-2 text-slate-700 hover:text-slate-900">
+                      ← Back
+                    </button>
+                    <button onClick={reset} className="px-4 py-2 rounded bg-slate-700 text-white hover:bg-slate-800">
+                      Start Over
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<ClassificationGuide />);
+  </script>
+</body>
+</html>
