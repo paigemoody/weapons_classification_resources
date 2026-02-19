@@ -31,12 +31,12 @@ jobs:
             --app-name "[BRANCH PREVIEW] Weapons Classification Guide"
           touch dist/.nojekyll
 
-      - name: Publish to gh-pages under branch/<branch-name>/
+      - name: Publish to gh-pages under branch-preview/<branch-name>/
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: dist
-          destination_dir: branch/${{ github.ref_name }}
+          destination_dir: branch-preview/${{ github.ref_name }}
           enable_jekyll: false
           keep_files: true
