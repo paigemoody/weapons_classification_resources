@@ -1,0 +1,88 @@
+# Branch Preview (GitHub Pages)
+# -----------------------------
+# What this workflow does:
+# - Every time you push to (almost) any branch, it builds a small static site into `dist/`
+# - Then it publishes that `dist/` folder to the `gh-pages` branch under:
+#     branch-preview/<branch-name>/
+#
+# Why this exists:
+# - It lets you preview changes from any branch without merging to the “main” deploy path
+#
+# Where previews show up:
+# - Your repo’s GitHub Pages base URL + `/branch-preview/<branch-name>/`
+#   Example:
+#     https://<org-or-user>.github.io/<repo>/branch-preview/my-feature-branch/
+#
+# Key implementation detail:
+# - We do NOT overwrite the whole `gh-pages` branch each time.
+# - `keep_files: true` tells the deploy action to keep other existing preview folders.
+#
+# Heads-up about cleanup:
+# - This workflow *creates/updates* previews, but it does not delete them.
+
+name: Branch Preview
+
+on:
+  # Run on every push to the repo...
+  push:
+    # ...except pushes to gh-pages (since that branch is our publish target).
+    branches-ignore:
+      - gh-pages
+
+# The deploy action commits to `gh-pages`, so we need write access to repository contents.
+permissions:
+  contents: write
+
+# Concurrency prevents multiple runs for the same branch from racing each other.
+# - group: ensures only one run per branch ref is active at a time
+# - cancel-in-progress: cancels an older run if a newer push happens quickly after
+concurrency:
+  group: branch-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Pull the repo contents into the runner so we can build from them.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2) Install Python so we can run the build script.
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      # 3) Build the preview site into `dist/`.
+      # - We create `dist/` if it doesn't exist
+      # - We run our generator script to produce HTML output
+      # - We add `.nojekyll` so GitHub Pages serves files as-is (no Jekyll processing)
+      - name: Build preview site into dist/
+        run: |
+          mkdir -p dist
+          python src/mermaid_to_clickthrough.py \
+            --input-mmd weapons-classification-flowchart.mmd \
+            --output-html dist/classification-guide.html \
+            --app-name "[BRANCH PREVIEW] Weapons Classification Guide"
+          touch dist/.nojekyll
+
+      # 4) Publish `dist/` to the `gh-pages` branch under a branch-specific subfolder.
+      #
+      # destination_dir: branch-preview/${{ github.ref_name }}
+      # - github.ref_name is the short branch name (e.g., "my-feature-branch")
+      # - so the final path becomes: branch-preview/my-feature-branch/
+      #
+      # keep_files: true
+      # - keeps previously-published previews for other branches
+      # - without this, each publish can wipe out other preview folders
+      - name: Publish to gh-pages under branch-preview/<branch-name>/
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: dist
+          destination_dir: branch-preview/${{ github.ref_name }}
+          enable_jekyll: false
+          keep_files: true
