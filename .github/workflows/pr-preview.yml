@@ -1,66 +1,90 @@
-# Branch Preview (GitHub Pages) + Auto-regenerate root HTML on specific Mermaid changes
-# Triggers only when weapons-classification-flowchart.mmd (or the generator/workflow) changes:
-# 1) Regenerates classification-guide.html at repo root
-# 2) Commits the regenerated HTML back to the SAME branch
-# 3) Copies it into dist/ for publishing
-# 4) Publishes dist/ to gh-pages under branch-preview/<branch-name>/
+# Branch Preview + Regenerate root HTML when the Mermaid source changes
+# -------------------------------------------------------------------
+# Your repo layout (from the repo root) is:
+# - weapons-classification-flowchart.mmd   (source)
+# - classification-guide.html             (generated output)
+# (These are already side-by-side in the repo root.) :contentReference[oaicite:0]{index=0}
 #
-# Loop prevention:
-# - The commit is created by github-actions[bot], so we skip runs when that actor triggers the push.
+# Goals:
+# 1) Any time weapons-classification-flowchart.mmd changes on ANY branch:
+#    - regenerate classification-guide.html at the repo root
+#    - commit the regenerated HTML back to that SAME branch
+# 2) For non-gh-pages branches:
+#    - also publish a branch preview to gh-pages under:
+#        branch-preview/<branch-name>/
+# 3) For gh-pages itself:
+#    - do NOT publish a preview folder
+#    - just keep the source + generated HTML side-by-side at the root
 
 name: Branch Preview
 
 on:
   push:
-    branches-ignore:
-      - gh-pages
+    # Run only when the ONE source Mermaid file changes (plus a couple "build plumbing" files)
+    # This is what prevents commit loops:
+    # - the workflow commits classification-guide.html (NOT the .mmd),
+    # - so that follow-up "HTML-only" push does NOT match these paths, and won't rerun.
     paths:
       - "weapons-classification-flowchart.mmd"
+      # If the generator changes, we want to regenerate too.
       - "src/mermaid_to_clickthrough.py"
+      # If the workflow changes, we want to validate it by running once.
       - ".github/workflows/branch-preview.yml"
 
+# We need to push commits back to the current branch, and also push preview content into gh-pages.
 permissions:
   contents: write
 
+# Prevent two pushes to the same branch from racing each other.
 concurrency:
   group: branch-preview-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build-commit-and-publish:
-    if: ${{ github.actor != 'github-actions[bot]' }}
+  build-commit-and-maybe-publish-preview:
     runs-on: ubuntu-latest
 
+    # Extra belt-and-suspenders loop guard:
+    # If GitHub Actions is the actor (e.g., from our own "push HTML" step),
+    # don't run. The paths filter already prevents loops, but this makes it even safer.
+    if: ${{ github.actor != 'github-actions[bot]' }}
+
     steps:
+      # Checkout the branch that triggered the workflow (including gh-pages if that's where the push happened).
+      # fetch-depth: 0 is important so we can push back cleanly.
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: true
 
+      # Install Python for the generator.
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.13"
 
-      # 1) Generate HTML at repo root
-      - name: Regenerate root HTML
+      # Regenerate the HTML at the repo root (side-by-side with the .mmd source).
+      - name: Regenerate classification-guide.html at repo root
         run: |
           python src/mermaid_to_clickthrough.py \
             --input-mmd weapons-classification-flowchart.mmd \
             --output-html classification-guide.html \
             --app-name "[BRANCH PREVIEW] Weapons Classification Guide"
 
-      # 2) Commit regenerated HTML back to the branch (only if it changed)
-      - name: Commit regenerated HTML back to branch
+      # Commit the regenerated HTML back to the SAME branch that triggered the workflow.
+      # This ensures branches always carry the correct generated output next to the source.
+      - name: Commit regenerated HTML back to the same branch
         env:
           BRANCH_NAME: ${{ github.ref_name }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          # Stage only the generated HTML (not the whole repo).
           git add classification-guide.html
 
+          # If the generator produced identical output, skip committing.
           if git diff --cached --quiet; then
             echo "No HTML changes to commit."
             exit 0
@@ -69,15 +93,23 @@ jobs:
           git commit -m "Regenerate classification-guide.html [skip ci]"
           git push origin "HEAD:${BRANCH_NAME}"
 
-      # 3) Prepare a minimal publish directory for GitHub Pages
-      - name: Prepare dist/ for publishing
+      # Everything below is ONLY for preview branches.
+      # If the branch is gh-pages, we stop here—because gh-pages already serves the root directly.
+      - name: Prepare dist/ payload for branch preview publish
+        if: ${{ github.ref_name != 'gh-pages' }}
         run: |
+          # dist/ is just a publish payload directory (NOT a source-of-truth).
+          # Your source + generated HTML remain at the repo root.
           mkdir -p dist
           cp classification-guide.html dist/classification-guide.html
+
+          # Disable Jekyll processing so GitHub Pages serves files as-is.
           touch dist/.nojekyll
 
-      # 4) Publish to gh-pages under branch-preview/<branch-name>/
-      - name: Publish to gh-pages under branch-preview/<branch-name>/
+      # Publish only the dist/ payload into gh-pages under branch-preview/<branch-name>/.
+      # keep_files: true ensures other branches' preview folders remain intact.
+      - name: Publish preview to gh-pages under branch-preview/<branch-name>/
+        if: ${{ github.ref_name != 'gh-pages' }}
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
