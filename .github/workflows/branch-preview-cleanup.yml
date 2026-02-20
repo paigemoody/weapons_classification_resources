@@ -1,9 +1,38 @@
+# .github/workflows/branch-preview-cleanup.yml
+#
+# Branch Preview Cleanup (via PR to gh-pages)
+# ------------------------------------------
+# Purpose
+# - This workflow removes a *single branch preview folder* from GitHub Pages when it’s no longer needed.
+# - Our branch preview publish workflow writes previews to the `gh-pages` branch under:
+#     branch-preview/<branch-name>/
+# - This cleanup workflow deletes ONLY that <branch-name> subfolder (not the parent `branch-preview/` folder),
+#   and it does so by opening a Pull Request into `gh-pages` (because `gh-pages` is protected by rulesets).
+#
+# When it runs
+# - pull_request: closed  -> whenever a PR is closed (merged OR closed without merge)
+# - delete              -> whenever a branch is deleted (ignores tag deletions)
+# - workflow_dispatch    -> optional manual cleanup (handy if something got stuck)
+#
+# Safety guarantees
+# - Never targets `gh-pages` as a branch name
+# - Only deletes paths that start with `branch-preview/` and are not exactly `branch-preview/`
+# - Only edits the `gh-pages` branch (we explicitly checkout gh-pages and then verify HEAD is gh-pages)
+#
+# Note
+# - This creates a PR instead of pushing directly, because your repository rules require PRs for gh-pages.
+
 name: Branch Preview Cleanup
 
 on:
+  # Clean up when a PR is finished (merged or simply closed)
   pull_request:
     types: [closed]
+
+  # Clean up when a branch is deleted in GitHub (NOT when a tag is deleted)
   delete:
+
+  # Optional: allow manual cleanup runs
   workflow_dispatch:
     inputs:
       branch:
@@ -11,37 +40,46 @@ on:
         required: true
         type: string
 
+# Needed because we:
+# - create a branch + commit (contents: write)
+# - open a PR (pull-requests: write)
 permissions:
   contents: write
-
-concurrency:
-  group: branch-preview-cleanup
-  cancel-in-progress: false
+  pull-requests: write
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
 
     steps:
+      # ------------------------------------------------------------
+      # 1) Figure out which branch preview folder we should delete
+      #
+      # Each event type stores the branch name differently:
+      # - pull_request.closed: github.event.pull_request.head.ref (source branch)
+      # - delete:             github.event.ref (deleted branch name)
+      # - workflow_dispatch:  inputs.branch
+      #
+      # We also decide whether to skip:
+      # - tag deletions (delete event can be tag or branch)
+      # - gh-pages itself (extra safety)
+      # ------------------------------------------------------------
       - name: Resolve branch name + decide whether to skip
         id: vars
         shell: bash
         run: |
           set -euo pipefail
 
-          # Single-source-of-truth branch name for each event type:
-          # - PR closed: PR head branch
-          # - delete: deleted ref name (branch or tag)
-          # - workflow_dispatch: input
+          # Resolve BRANCH based on event payload (first non-empty wins)
           BRANCH="${{ github.event.pull_request.head.ref || github.event.ref || inputs.branch }}"
 
-          # Skip tag deletions
+          # If this is a delete event and it's NOT a branch deletion, skip (tag deletion)
           if [[ "${{ github.event_name }}" == "delete" && "${{ github.event.ref_type }}" != "branch" ]]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          # Never touch gh-pages
+          # Extra guardrail: never attempt to clean up a preview for gh-pages itself
           if [[ "$BRANCH" == "gh-pages" ]]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
@@ -50,6 +88,12 @@ jobs:
           echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
+      # ------------------------------------------------------------
+      # 2) Checkout the gh-pages branch (this is where previews live)
+      #
+      # We make changes *on* gh-pages, but we won't push directly.
+      # Instead we’ll create a PR targeting gh-pages (ruleset-friendly).
+      # ------------------------------------------------------------
       - name: Checkout gh-pages
         if: steps.vars.outputs.skip != 'true'
         uses: actions/checkout@v4
@@ -57,37 +101,76 @@ jobs:
           ref: gh-pages
           fetch-depth: 0
 
-      - name: Delete preview folder + push commit (only if it existed)
+      # ------------------------------------------------------------
+      # 3) Delete ONLY the branch preview subfolder:
+      #
+      #   branch-preview/<branch-name>/
+      #
+      # Important: we do NOT delete `branch-preview/` itself.
+      #
+      # We output `changed=true/false` so we can avoid opening a PR
+      # when there’s nothing to delete.
+      # ------------------------------------------------------------
+      - name: Remove branch preview subfolder (if present)
+        id: delete
         if: steps.vars.outputs.skip != 'true'
         shell: bash
         run: |
           set -euo pipefail
 
-          # Hard safety: only operate on gh-pages
+          # Hard safety: ensure we are actually on gh-pages
           CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
           if [[ "$CURRENT_BRANCH" != "gh-pages" ]]; then
             echo "Not on gh-pages (on $CURRENT_BRANCH). Refusing."
             exit 1
           fi
 
+          # This is the ONLY directory we intend to delete:
           PREVIEW_DIR="branch-preview/${{ steps.vars.outputs.branch }}"
 
-          # Hard safety: only allow deletions under branch-preview/
+          # Hard safety: only allow deletions inside branch-preview/ and never the parent folder itself
           if [[ "$PREVIEW_DIR" != branch-preview/* || "$PREVIEW_DIR" == "branch-preview/" ]]; then
             echo "Suspicious delete path: $PREVIEW_DIR"
             exit 1
           fi
 
+          # If the preview folder doesn't exist, we do nothing (and we won't open a PR)
           if [[ ! -d "$PREVIEW_DIR" ]]; then
-            echo "No preview folder found for ${{ steps.vars.outputs.branch }}; nothing to do."
+            echo "No preview folder for ${{ steps.vars.outputs.branch }}; nothing to delete."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
+          echo "Deleting preview folder: $PREVIEW_DIR"
           rm -rf "$PREVIEW_DIR"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
 
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+      # ------------------------------------------------------------
+      # 4) Create a PR into gh-pages with the deletion
+      #
+      # Why PR?
+      # - Your gh-pages ruleset blocks direct pushes ("changes must be made through a pull request").
+      #
+      # create-pull-request will:
+      # - create/update a branch named cleanup/branch-preview-<branch>
+      # - commit the deletion
+      # - open (or update) a PR into gh-pages
+      # ------------------------------------------------------------
+      - name: Create PR to delete branch preview
+        if: steps.vars.outputs.skip != 'true' && steps.delete.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          # PR merges into gh-pages
+          base: gh-pages
 
-          git add -A
-          git commit -m "Remove branch preview for ${{ steps.vars.outputs.branch }}"
-          git push
+          # Stable branch name so reruns update the same PR instead of creating many
+          branch: cleanup/branch-preview-${{ steps.vars.outputs.branch }}
+
+          title: "Remove branch preview for ${{ steps.vars.outputs.branch }}"
+          commit-message: "Remove branch preview for ${{ steps.vars.outputs.branch }}"
+          body: |
+            Automated cleanup of GitHub Pages branch preview.
+
+            Deleted:
+            - branch-preview/${{ steps.vars.outputs.branch }}/
+          labels: automation
