@@ -27,6 +27,8 @@ on:
       - "src/mermaid_to_clickthrough.py"
       - "src/mermaid_to_hypothesis_filtering.py"
       - ".github/workflows/branch-preview.yml"
+      - "classification-guide-hypothesis-filtering.html"
+      - "classification-guide.html"
 
 permissions:
   contents: write
