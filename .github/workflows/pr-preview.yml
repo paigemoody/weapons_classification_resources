@@ -60,14 +60,14 @@ jobs:
           python src/mermaid_to_clickthrough.py \
             --input-mmd weapons-classification-flowchart.mmd \
             --output-html classification-guide.html \
-            --app-name "[BRANCH PREVIEW] Weapons Classification Guide"
+            --app-name "[DEMO] Weapons Classification Guide"
 
       - name: Regenerate classification-guide-hypothesis-filtering.html at repo root
         run: |
           python src/mermaid_to_hypothesis_filtering.py \
             --input-mmd weapons-classification-flowchart.mmd \
             --output-html classification-guide-hypothesis-filtering.html \
-            --app-name "[BRANCH PREVIEW] Weapons Classification Guide (Hypothesis Filtering)"
+            --app-name "[DEMO] Weapons Classification Guide (Hypothesis Filtering)"
 
       # Commit BOTH regenerated HTML files back to the SAME branch
       - name: Commit regenerated HTML back to the same branch
