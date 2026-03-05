@@ -4,15 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>[DEMO] Weapons Classification Guide (Hypothesis Filtering)</title>
-
-  <!-- React (no build step) -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-
-  <!-- Babel for JSX in-browser (fine for a static demo; you can remove later if you build) -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-  <!-- Tailwind via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-50">
@@ -24,292 +18,301 @@
     const APP_NAME = "[DEMO] Weapons Classification Guide (Hypothesis Filtering)";
     const MODEL = {
   "roots": [
-    "small_arms"
+    "SmallArms"
   ],
   "questions": [
     {
-      "nodeId": "small_arms",
-      "questionHtml": "Small Arms",
-      "questionText": "Small Arms",
+      "nodeId": "SmallArms",
+      "questionHtml": "Which Small Arms group best fits?",
+      "questionText": "Which Small Arms group best fits?",
+      "imageSrc": "",
       "options": [
         {
-          "optionId": "small_arms__TO__small_arms_handgun",
-          "dstNodeId": "small_arms_handgun",
-          "titleHtml": "Handgun",
-          "contextHtml": "",
-          "plainLabel": "Handgun",
-          "imageSrc": ""
+          "optionId": "SmallArms__TO__Handguns",
+          "dstNodeId": "Handguns",
+          "titleHtml": "Handguns",
+          "contextHtml": "<p>A firearm which is grasped by placing both the control hand and support hand around the pistol grip and which may be readily fired with one hand (ARES p37)</p>",
+          "plainLabel": "Handguns",
+          "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.8_2.9_2.10_Handguns.png?raw=true"
         },
         {
-          "optionId": "small_arms__TO__small_arms_long_gun",
-          "dstNodeId": "small_arms_long_gun",
-          "titleHtml": "Long Gun",
-          "contextHtml": "",
-          "plainLabel": "Long Gun",
+          "optionId": "SmallArms__TO__LongGuns",
+          "dstNodeId": "LongGuns",
+          "titleHtml": "Long Guns",
+          "contextHtml": "<p>A firearm which is grasped by placing the control hand and support hand in different locations and which is typically fitted with a buttstock intended to be braced against the user's shoulder when fired.</p>",
+          "plainLabel": "Long Guns",
           "imageSrc": ""
         }
       ]
     },
     {
-      "nodeId": "small_arms_handgun",
-      "questionHtml": "Handgun",
-      "questionText": "Handgun",
+      "nodeId": "Handguns",
+      "questionHtml": "Which type of handgun best matches?",
+      "questionText": "Which type of handgun best matches?",
+      "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/small_arms_survey/visuals/Figure_3.4_Rifled_and_smooth-bore_barrels.png?raw=true",
       "options": [
         {
-          "optionId": "small_arms_handgun__TO__small_arms_handgun_rifled",
-          "dstNodeId": "small_arms_handgun_rifled",
-          "titleHtml": "Rifled",
+          "optionId": "Handguns__TO__SelfLoadingPistols",
+          "dstNodeId": "SelfLoadingPistols",
+          "titleHtml": "Self-loading Pistols",
           "contextHtml": "",
-          "plainLabel": "Rifled",
+          "plainLabel": "Self-loading Pistols",
           "imageSrc": ""
         },
         {
-          "optionId": "small_arms_handgun__TO__small_arms_handgun_smooth_bore",
-          "dstNodeId": "small_arms_handgun_smooth_bore",
-          "titleHtml": "Smooth Bore",
+          "optionId": "Handguns__TO__Revolvers",
+          "dstNodeId": "Revolvers",
+          "titleHtml": "Revolvers",
           "contextHtml": "",
-          "plainLabel": "Smooth Bore",
+          "plainLabel": "Revolvers",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "Handguns__TO__OtherHandguns",
+          "dstNodeId": "OtherHandguns",
+          "titleHtml": "Other Handguns",
+          "contextHtml": "",
+          "plainLabel": "Other Handguns",
           "imageSrc": ""
         }
       ]
     },
     {
-      "nodeId": "small_arms_handgun_rifled",
-      "questionHtml": "Rifled",
-      "questionText": "Rifled",
+      "nodeId": "LongGuns",
+      "questionHtml": "Which type of long gun best matches?",
+      "questionText": "Which type of long gun best matches?",
+      "imageSrc": "",
       "options": [
         {
-          "optionId": "small_arms_handgun_rifled__TO__small_arms_handgun_rifled_revolver",
-          "dstNodeId": "small_arms_handgun_rifled_revolver",
-          "titleHtml": "Revolver",
+          "optionId": "LongGuns__TO__SubMachineGuns",
+          "dstNodeId": "SubMachineGuns",
+          "titleHtml": "Sub-machine Guns",
           "contextHtml": "",
-          "plainLabel": "Revolver",
+          "plainLabel": "Sub-machine Guns",
           "imageSrc": ""
         },
         {
-          "optionId": "small_arms_handgun_rifled__TO__small_arms_handgun_rifled_self_loading_pistol",
-          "dstNodeId": "small_arms_handgun_rifled_self_loading_pistol",
-          "titleHtml": "Self-Loading Pistol",
+          "optionId": "LongGuns__TO__ManPortableMachineGuns",
+          "dstNodeId": "ManPortableMachineGuns",
+          "titleHtml": "Man-portable Machine Guns",
           "contextHtml": "",
-          "plainLabel": "Self-Loading Pistol",
+          "plainLabel": "Man-portable Machine Guns",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "LongGuns__TO__Rifles",
+          "dstNodeId": "Rifles",
+          "titleHtml": "Rifles",
+          "contextHtml": "",
+          "plainLabel": "Rifles",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "LongGuns__TO__Shotguns",
+          "dstNodeId": "Shotguns",
+          "titleHtml": "Shotguns",
+          "contextHtml": "",
+          "plainLabel": "Shotguns",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "LongGuns__TO__OtherLongGuns",
+          "dstNodeId": "OtherLongGuns",
+          "titleHtml": "Other Long Guns",
+          "contextHtml": "",
+          "plainLabel": "Other Long Guns",
           "imageSrc": ""
         }
       ]
     },
     {
-      "nodeId": "small_arms_handgun_smooth_bore",
-      "questionHtml": "Smooth Bore",
-      "questionText": "Smooth Bore",
+      "nodeId": "Rifles",
+      "questionHtml": "Which sub-type of rifle best matches?",
+      "questionText": "Which sub-type of rifle best matches?",
+      "imageSrc": "",
       "options": [
         {
-          "optionId": "small_arms_handgun_smooth_bore__TO__small_arms_handgun_smooth_bore_other",
-          "dstNodeId": "small_arms_handgun_smooth_bore_other",
-          "titleHtml": "Other",
+          "optionId": "Rifles__TO__SelfLoadingRifles",
+          "dstNodeId": "SelfLoadingRifles",
+          "titleHtml": "Self-loading Rifles",
           "contextHtml": "",
-          "plainLabel": "Other",
+          "plainLabel": "Self-loading Rifles",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "Rifles__TO__ManuallyOperatedRifles",
+          "dstNodeId": "ManuallyOperatedRifles",
+          "titleHtml": "Manually Operated Rifles",
+          "contextHtml": "",
+          "plainLabel": "Manually Operated Rifles",
           "imageSrc": ""
         }
       ]
     },
     {
-      "nodeId": "small_arms_long_gun",
-      "questionHtml": "Long Gun",
-      "questionText": "Long Gun",
+      "nodeId": "Shotguns",
+      "questionHtml": "How is ammunition loaded into the shotgun?",
+      "questionText": "How is ammunition loaded into the shotgun?",
+      "imageSrc": "",
       "options": [
         {
-          "optionId": "small_arms_long_gun__TO__small_arms_long_gun_rifle",
-          "dstNodeId": "small_arms_long_gun_rifle",
-          "titleHtml": "Rifle",
+          "optionId": "Shotguns__TO__SelfLoadingShotguns",
+          "dstNodeId": "SelfLoadingShotguns",
+          "titleHtml": "Self-loading Shotguns",
           "contextHtml": "",
-          "plainLabel": "Rifle",
+          "plainLabel": "Self-loading Shotguns",
           "imageSrc": ""
         },
         {
-          "optionId": "small_arms_long_gun__TO__small_arms_long_gun_rifled",
-          "dstNodeId": "small_arms_long_gun_rifled",
-          "titleHtml": "Rifled",
+          "optionId": "Shotguns__TO__ManuallyOperatedShotguns",
+          "dstNodeId": "ManuallyOperatedShotguns",
+          "titleHtml": "Manually Operated Shotguns",
           "contextHtml": "",
-          "plainLabel": "Rifled",
-          "imageSrc": ""
-        },
-        {
-          "optionId": "small_arms_long_gun__TO__small_arms_long_gun_shotgun",
-          "dstNodeId": "small_arms_long_gun_shotgun",
-          "titleHtml": "Shotgun",
-          "contextHtml": "",
-          "plainLabel": "Shotgun",
-          "imageSrc": ""
-        },
-        {
-          "optionId": "small_arms_long_gun__TO__small_arms_long_gun_smooth_bore",
-          "dstNodeId": "small_arms_long_gun_smooth_bore",
-          "titleHtml": "Smooth Bore",
-          "contextHtml": "",
-          "plainLabel": "Smooth Bore",
+          "plainLabel": "Manually Operated Shotguns",
           "imageSrc": ""
         }
       ]
     },
     {
-      "nodeId": "small_arms_long_gun_rifled",
-      "questionHtml": "Rifled",
-      "questionText": "Rifled",
+      "nodeId": "SelfLoadingRifles",
+      "questionHtml": "Which method of operation best fits for this self-loading rifle?",
+      "questionText": "Which method of operation best fits for this self-loading rifle?",
+      "imageSrc": "",
       "options": [
         {
-          "optionId": "small_arms_long_gun_rifled__TO__small_arms_long_gun_rifled_man_portable_machine_gun",
-          "dstNodeId": "small_arms_long_gun_rifled_man_portable_machine_gun",
-          "titleHtml": "Man-Portable Machine Gun",
+          "optionId": "SelfLoadingRifles__TO__AutomaticRifles",
+          "dstNodeId": "AutomaticRifles",
+          "titleHtml": "Automatic Rifles",
           "contextHtml": "",
-          "plainLabel": "Man-Portable Machine Gun",
+          "plainLabel": "Automatic Rifles",
           "imageSrc": ""
         },
         {
-          "optionId": "small_arms_long_gun_rifled__TO__small_arms_long_gun_rifled_sub_machine_gun",
-          "dstNodeId": "small_arms_long_gun_rifled_sub_machine_gun",
-          "titleHtml": "Sub-Machine Gun",
+          "optionId": "SelfLoadingRifles__TO__SemiAutomaticRifles",
+          "dstNodeId": "SemiAutomaticRifles",
+          "titleHtml": "Semi-automatic Rifles",
           "contextHtml": "",
-          "plainLabel": "Sub-Machine Gun",
+          "plainLabel": "Semi-automatic Rifles",
           "imageSrc": ""
         }
       ]
     },
     {
-      "nodeId": "small_arms_long_gun_rifle",
-      "questionHtml": "Rifle",
-      "questionText": "Rifle",
+      "nodeId": "ManuallyOperatedRifles",
+      "questionHtml": "Which method of operation best fits for this manually operated rifle?",
+      "questionText": "Which method of operation best fits for this manually operated rifle?",
+      "imageSrc": "",
       "options": [
         {
-          "optionId": "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_automatic_rifle",
-          "dstNodeId": "small_arms_long_gun_rifle_automatic_rifle",
-          "titleHtml": "Automatic Rifle",
+          "optionId": "ManuallyOperatedRifles__TO__BreakActionRifles",
+          "dstNodeId": "BreakActionRifles",
+          "titleHtml": "Break-action Rifles",
           "contextHtml": "",
-          "plainLabel": "Automatic Rifle",
+          "plainLabel": "Break-action Rifles",
           "imageSrc": ""
         },
         {
-          "optionId": "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_bolt_action_rifle",
-          "dstNodeId": "small_arms_long_gun_rifle_bolt_action_rifle",
-          "titleHtml": "Bolt-Action Rifle",
+          "optionId": "ManuallyOperatedRifles__TO__BoltActionRifles",
+          "dstNodeId": "BoltActionRifles",
+          "titleHtml": "Bolt-action Rifles",
           "contextHtml": "",
-          "plainLabel": "Bolt-Action Rifle",
+          "plainLabel": "Bolt-action Rifles",
           "imageSrc": ""
         },
         {
-          "optionId": "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_break_action_rifle",
-          "dstNodeId": "small_arms_long_gun_rifle_break_action_rifle",
-          "titleHtml": "Break-Action Rifle",
+          "optionId": "ManuallyOperatedRifles__TO__LeverActionRifles",
+          "dstNodeId": "LeverActionRifles",
+          "titleHtml": "Lever-action Rifles",
           "contextHtml": "",
-          "plainLabel": "Break-Action Rifle",
+          "plainLabel": "Lever-action Rifles",
           "imageSrc": ""
         },
         {
-          "optionId": "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_lever_action_rifle",
-          "dstNodeId": "small_arms_long_gun_rifle_lever_action_rifle",
-          "titleHtml": "Lever-Action Rifle",
+          "optionId": "ManuallyOperatedRifles__TO__PumpActionRifles",
+          "dstNodeId": "PumpActionRifles",
+          "titleHtml": "Pump-action Rifles",
           "contextHtml": "",
-          "plainLabel": "Lever-Action Rifle",
+          "plainLabel": "Pump-action Rifles",
           "imageSrc": ""
         },
         {
-          "optionId": "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_other_manually_operated_rifle",
-          "dstNodeId": "small_arms_long_gun_rifle_other_manually_operated_rifle",
-          "titleHtml": "Other Manually Operated Rifle",
+          "optionId": "ManuallyOperatedRifles__TO__OtherManuallyOperatedRifles",
+          "dstNodeId": "OtherManuallyOperatedRifles",
+          "titleHtml": "Other Manually Operated Rifles",
           "contextHtml": "",
-          "plainLabel": "Other Manually Operated Rifle",
-          "imageSrc": ""
-        },
-        {
-          "optionId": "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_pump_action_rifle",
-          "dstNodeId": "small_arms_long_gun_rifle_pump_action_rifle",
-          "titleHtml": "Pump-Action Rifle",
-          "contextHtml": "",
-          "plainLabel": "Pump-Action Rifle",
-          "imageSrc": ""
-        },
-        {
-          "optionId": "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_semi_automatic_rifle",
-          "dstNodeId": "small_arms_long_gun_rifle_semi_automatic_rifle",
-          "titleHtml": "Semi-Automatic Rifle",
-          "contextHtml": "",
-          "plainLabel": "Semi-Automatic Rifle",
+          "plainLabel": "Other Manually Operated Rifles",
           "imageSrc": ""
         }
       ]
     },
     {
-      "nodeId": "small_arms_long_gun_shotgun",
-      "questionHtml": "Shotgun",
-      "questionText": "Shotgun",
+      "nodeId": "SelfLoadingShotguns",
+      "questionHtml": "Which self-loading shotgun best matches?",
+      "questionText": "Which self-loading shotgun best matches?",
+      "imageSrc": "",
       "options": [
         {
-          "optionId": "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_automatic_shotgun",
-          "dstNodeId": "small_arms_long_gun_shotgun_automatic_shotgun",
-          "titleHtml": "Automatic Shotgun",
+          "optionId": "SelfLoadingShotguns__TO__AutomaticShotguns",
+          "dstNodeId": "AutomaticShotguns",
+          "titleHtml": "Automatic Shotguns",
           "contextHtml": "",
-          "plainLabel": "Automatic Shotgun",
+          "plainLabel": "Automatic Shotguns",
           "imageSrc": ""
         },
         {
-          "optionId": "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_bolt_action_shotgun",
-          "dstNodeId": "small_arms_long_gun_shotgun_bolt_action_shotgun",
-          "titleHtml": "Bolt-Action Shotgun",
+          "optionId": "SelfLoadingShotguns__TO__SemiAutomaticShotguns",
+          "dstNodeId": "SemiAutomaticShotguns",
+          "titleHtml": "Semi-automatic Shotguns",
           "contextHtml": "",
-          "plainLabel": "Bolt-Action Shotgun",
-          "imageSrc": ""
-        },
-        {
-          "optionId": "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_break_action_shotgun",
-          "dstNodeId": "small_arms_long_gun_shotgun_break_action_shotgun",
-          "titleHtml": "Break-Action Shotgun",
-          "contextHtml": "",
-          "plainLabel": "Break-Action Shotgun",
-          "imageSrc": ""
-        },
-        {
-          "optionId": "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_lever_action_shotgun",
-          "dstNodeId": "small_arms_long_gun_shotgun_lever_action_shotgun",
-          "titleHtml": "Lever-Action Shotgun",
-          "contextHtml": "",
-          "plainLabel": "Lever-Action Shotgun",
-          "imageSrc": ""
-        },
-        {
-          "optionId": "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_other_manually_operated_shotgun",
-          "dstNodeId": "small_arms_long_gun_shotgun_other_manually_operated_shotgun",
-          "titleHtml": "Other Manually Operated Shotgun",
-          "contextHtml": "",
-          "plainLabel": "Other Manually Operated Shotgun",
-          "imageSrc": ""
-        },
-        {
-          "optionId": "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_pump_action_shotgun",
-          "dstNodeId": "small_arms_long_gun_shotgun_pump_action_shotgun",
-          "titleHtml": "Pump-Action Shotgun",
-          "contextHtml": "",
-          "plainLabel": "Pump-Action Shotgun",
-          "imageSrc": ""
-        },
-        {
-          "optionId": "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_semi_automatic_shotgun",
-          "dstNodeId": "small_arms_long_gun_shotgun_semi_automatic_shotgun",
-          "titleHtml": "Semi-Automatic Shotgun",
-          "contextHtml": "",
-          "plainLabel": "Semi-Automatic Shotgun",
+          "plainLabel": "Semi-automatic Shotguns",
           "imageSrc": ""
         }
       ]
     },
     {
-      "nodeId": "small_arms_long_gun_smooth_bore",
-      "questionHtml": "Smooth Bore",
-      "questionText": "Smooth Bore",
+      "nodeId": "ManuallyOperatedShotguns",
+      "questionHtml": "Which manually operated shotgun best matches?",
+      "questionText": "Which manually operated shotgun best matches?",
+      "imageSrc": "",
       "options": [
         {
-          "optionId": "small_arms_long_gun_smooth_bore__TO__small_arms_long_gun_smooth_bore_other",
-          "dstNodeId": "small_arms_long_gun_smooth_bore_other",
-          "titleHtml": "Other",
+          "optionId": "ManuallyOperatedShotguns__TO__BreakActionShotguns",
+          "dstNodeId": "BreakActionShotguns",
+          "titleHtml": "Break-action Shotguns",
           "contextHtml": "",
-          "plainLabel": "Other",
+          "plainLabel": "Break-action Shotguns",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "ManuallyOperatedShotguns__TO__BoltActionShotguns",
+          "dstNodeId": "BoltActionShotguns",
+          "titleHtml": "Bolt-action Shotguns",
+          "contextHtml": "",
+          "plainLabel": "Bolt-action Shotguns",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "ManuallyOperatedShotguns__TO__LeverActionShotguns",
+          "dstNodeId": "LeverActionShotguns",
+          "titleHtml": "Lever-action Shotguns",
+          "contextHtml": "",
+          "plainLabel": "Lever-action Shotguns",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "ManuallyOperatedShotguns__TO__PumpActionShotguns",
+          "dstNodeId": "PumpActionShotguns",
+          "titleHtml": "Pump-action Shotguns",
+          "contextHtml": "",
+          "plainLabel": "Pump-action Shotguns",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "ManuallyOperatedShotguns__TO__OtherManuallyOperatedShotguns",
+          "dstNodeId": "OtherManuallyOperatedShotguns",
+          "titleHtml": "Other Manually Operated Shotguns",
+          "contextHtml": "",
+          "plainLabel": "Other Manually Operated Shotguns",
           "imageSrc": ""
         }
       ]
@@ -317,357 +320,471 @@
   ],
   "leaves": [
     {
-      "leafId": "small_arms_handgun_rifled_self_loading_pistol",
-      "leafHtml": "Self-Loading Pistol",
-      "leafText": "Self-Loading Pistol",
-      "depth": 3
+      "leafId": "AutomaticRifles",
+      "leafText": "Automatic Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Self-loading Rifles"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_handgun_rifled_revolver",
-      "leafHtml": "Revolver",
-      "leafText": "Revolver",
-      "depth": 3
+      "leafId": "AutomaticShotguns",
+      "leafText": "Automatic Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Self-loading Shotguns"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_handgun_smooth_bore_other",
-      "leafHtml": "Other",
-      "leafText": "Other",
-      "depth": 3
+      "leafId": "BoltActionRifles",
+      "leafText": "Bolt-action Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_long_gun_rifled_sub_machine_gun",
-      "leafHtml": "Sub-Machine Gun",
-      "leafText": "Sub-Machine Gun",
-      "depth": 3
+      "leafId": "BoltActionShotguns",
+      "leafText": "Bolt-action Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_long_gun_rifled_man_portable_machine_gun",
-      "leafHtml": "Man-Portable Machine Gun",
-      "leafText": "Man-Portable Machine Gun",
-      "depth": 3
+      "leafId": "BreakActionRifles",
+      "leafText": "Break-action Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_long_gun_rifle_automatic_rifle",
-      "leafHtml": "Automatic Rifle",
-      "leafText": "Automatic Rifle",
-      "depth": 3
+      "leafId": "BreakActionShotguns",
+      "leafText": "Break-action Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_long_gun_rifle_semi_automatic_rifle",
-      "leafHtml": "Semi-Automatic Rifle",
-      "leafText": "Semi-Automatic Rifle",
-      "depth": 3
+      "leafId": "LeverActionRifles",
+      "leafText": "Lever-action Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_long_gun_rifle_break_action_rifle",
-      "leafHtml": "Break-Action Rifle",
-      "leafText": "Break-Action Rifle",
-      "depth": 3
+      "leafId": "LeverActionShotguns",
+      "leafText": "Lever-action Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_long_gun_rifle_bolt_action_rifle",
-      "leafHtml": "Bolt-Action Rifle",
-      "leafText": "Bolt-Action Rifle",
-      "depth": 3
+      "leafId": "ManPortableMachineGuns",
+      "leafText": "Man-portable Machine Guns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Man-portable Machine Guns"
+      ],
+      "depth": 2
     },
     {
-      "leafId": "small_arms_long_gun_rifle_lever_action_rifle",
-      "leafHtml": "Lever-Action Rifle",
-      "leafText": "Lever-Action Rifle",
-      "depth": 3
+      "leafId": "OtherHandguns",
+      "leafText": "Other Handguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Handguns",
+        "Other Handguns"
+      ],
+      "depth": 2
     },
     {
-      "leafId": "small_arms_long_gun_rifle_pump_action_rifle",
-      "leafHtml": "Pump-Action Rifle",
-      "leafText": "Pump-Action Rifle",
-      "depth": 3
+      "leafId": "OtherLongGuns",
+      "leafText": "Other Long Guns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Other Long Guns"
+      ],
+      "depth": 2
     },
     {
-      "leafId": "small_arms_long_gun_rifle_other_manually_operated_rifle",
-      "leafHtml": "Other Manually Operated Rifle",
-      "leafText": "Other Manually Operated Rifle",
-      "depth": 3
+      "leafId": "OtherManuallyOperatedRifles",
+      "leafText": "Other Manually Operated Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_long_gun_shotgun_automatic_shotgun",
-      "leafHtml": "Automatic Shotgun",
-      "leafText": "Automatic Shotgun",
-      "depth": 3
+      "leafId": "OtherManuallyOperatedShotguns",
+      "leafText": "Other Manually Operated Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_long_gun_shotgun_semi_automatic_shotgun",
-      "leafHtml": "Semi-Automatic Shotgun",
-      "leafText": "Semi-Automatic Shotgun",
-      "depth": 3
+      "leafId": "PumpActionRifles",
+      "leafText": "Pump-action Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_long_gun_shotgun_break_action_shotgun",
-      "leafHtml": "Break-Action Shotgun",
-      "leafText": "Break-Action Shotgun",
-      "depth": 3
+      "leafId": "PumpActionShotguns",
+      "leafText": "Pump-action Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_long_gun_shotgun_bolt_action_shotgun",
-      "leafHtml": "Bolt-Action Shotgun",
-      "leafText": "Bolt-Action Shotgun",
-      "depth": 3
+      "leafId": "Revolvers",
+      "leafText": "Revolvers",
+      "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.12_Revolvers.png?raw=true",
+      "description": "A handgun with a rifled barrel and a rotating cylinder that holds multiple cartridges.",
+      "arcsParts": [
+        "Small Arms",
+        "Handguns",
+        "Revolvers"
+      ],
+      "depth": 2
     },
     {
-      "leafId": "small_arms_long_gun_shotgun_lever_action_shotgun",
-      "leafHtml": "Lever-Action Shotgun",
-      "leafText": "Lever-Action Shotgun",
-      "depth": 3
+      "leafId": "SelfLoadingPistols",
+      "leafText": "Self-loading Pistols",
+      "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.13_SelfLoading_Pistols.png?raw=true",
+      "description": "A self-loading pistol with a rifled barrel that fires one round per trigger pull and automatically cycles the action.",
+      "arcsParts": [
+        "Small Arms",
+        "Handguns",
+        "Self-loading Pistols"
+      ],
+      "depth": 2
     },
     {
-      "leafId": "small_arms_long_gun_shotgun_pump_action_shotgun",
-      "leafHtml": "Pump-Action Shotgun",
-      "leafText": "Pump-Action Shotgun",
-      "depth": 3
+      "leafId": "SemiAutomaticRifles",
+      "leafText": "Semi-automatic Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Self-loading Rifles"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_long_gun_shotgun_other_manually_operated_shotgun",
-      "leafHtml": "Other Manually Operated Shotgun",
-      "leafText": "Other Manually Operated Shotgun",
-      "depth": 3
+      "leafId": "SemiAutomaticShotguns",
+      "leafText": "Semi-automatic Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Self-loading Shotguns"
+      ],
+      "depth": 4
     },
     {
-      "leafId": "small_arms_long_gun_smooth_bore_other",
-      "leafHtml": "Other",
-      "leafText": "Other",
-      "depth": 3
+      "leafId": "SubMachineGuns",
+      "leafText": "Sub-machine Guns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Sub-machine Guns"
+      ],
+      "depth": 2
     }
   ],
   "optionToLeafIds": {
-    "small_arms__TO__small_arms_handgun": [
-      "small_arms_handgun_rifled_revolver",
-      "small_arms_handgun_rifled_self_loading_pistol",
-      "small_arms_handgun_smooth_bore_other"
+    "SmallArms__TO__Handguns": [
+      "OtherHandguns",
+      "Revolvers",
+      "SelfLoadingPistols"
     ],
-    "small_arms__TO__small_arms_long_gun": [
-      "small_arms_long_gun_rifle_automatic_rifle",
-      "small_arms_long_gun_rifle_bolt_action_rifle",
-      "small_arms_long_gun_rifle_break_action_rifle",
-      "small_arms_long_gun_rifle_lever_action_rifle",
-      "small_arms_long_gun_rifle_other_manually_operated_rifle",
-      "small_arms_long_gun_rifle_pump_action_rifle",
-      "small_arms_long_gun_rifle_semi_automatic_rifle",
-      "small_arms_long_gun_rifled_man_portable_machine_gun",
-      "small_arms_long_gun_rifled_sub_machine_gun",
-      "small_arms_long_gun_shotgun_automatic_shotgun",
-      "small_arms_long_gun_shotgun_bolt_action_shotgun",
-      "small_arms_long_gun_shotgun_break_action_shotgun",
-      "small_arms_long_gun_shotgun_lever_action_shotgun",
-      "small_arms_long_gun_shotgun_other_manually_operated_shotgun",
-      "small_arms_long_gun_shotgun_pump_action_shotgun",
-      "small_arms_long_gun_shotgun_semi_automatic_shotgun",
-      "small_arms_long_gun_smooth_bore_other"
+    "SmallArms__TO__LongGuns": [
+      "AutomaticRifles",
+      "AutomaticShotguns",
+      "BoltActionRifles",
+      "BoltActionShotguns",
+      "BreakActionRifles",
+      "BreakActionShotguns",
+      "LeverActionRifles",
+      "LeverActionShotguns",
+      "ManPortableMachineGuns",
+      "OtherLongGuns",
+      "OtherManuallyOperatedRifles",
+      "OtherManuallyOperatedShotguns",
+      "PumpActionRifles",
+      "PumpActionShotguns",
+      "SemiAutomaticRifles",
+      "SemiAutomaticShotguns",
+      "SubMachineGuns"
     ],
-    "small_arms_handgun__TO__small_arms_handgun_rifled": [
-      "small_arms_handgun_rifled_revolver",
-      "small_arms_handgun_rifled_self_loading_pistol"
+    "Handguns__TO__SelfLoadingPistols": [
+      "SelfLoadingPistols"
     ],
-    "small_arms_handgun__TO__small_arms_handgun_smooth_bore": [
-      "small_arms_handgun_smooth_bore_other"
+    "Handguns__TO__Revolvers": [
+      "Revolvers"
     ],
-    "small_arms_handgun_rifled__TO__small_arms_handgun_rifled_revolver": [
-      "small_arms_handgun_rifled_revolver"
+    "Handguns__TO__OtherHandguns": [
+      "OtherHandguns"
     ],
-    "small_arms_handgun_rifled__TO__small_arms_handgun_rifled_self_loading_pistol": [
-      "small_arms_handgun_rifled_self_loading_pistol"
+    "LongGuns__TO__SubMachineGuns": [
+      "SubMachineGuns"
     ],
-    "small_arms_handgun_smooth_bore__TO__small_arms_handgun_smooth_bore_other": [
-      "small_arms_handgun_smooth_bore_other"
+    "LongGuns__TO__ManPortableMachineGuns": [
+      "ManPortableMachineGuns"
     ],
-    "small_arms_long_gun__TO__small_arms_long_gun_rifle": [
-      "small_arms_long_gun_rifle_automatic_rifle",
-      "small_arms_long_gun_rifle_bolt_action_rifle",
-      "small_arms_long_gun_rifle_break_action_rifle",
-      "small_arms_long_gun_rifle_lever_action_rifle",
-      "small_arms_long_gun_rifle_other_manually_operated_rifle",
-      "small_arms_long_gun_rifle_pump_action_rifle",
-      "small_arms_long_gun_rifle_semi_automatic_rifle"
+    "LongGuns__TO__Rifles": [
+      "AutomaticRifles",
+      "BoltActionRifles",
+      "BreakActionRifles",
+      "LeverActionRifles",
+      "OtherManuallyOperatedRifles",
+      "PumpActionRifles",
+      "SemiAutomaticRifles"
     ],
-    "small_arms_long_gun__TO__small_arms_long_gun_rifled": [
-      "small_arms_long_gun_rifled_man_portable_machine_gun",
-      "small_arms_long_gun_rifled_sub_machine_gun"
+    "LongGuns__TO__Shotguns": [
+      "AutomaticShotguns",
+      "BoltActionShotguns",
+      "BreakActionShotguns",
+      "LeverActionShotguns",
+      "OtherManuallyOperatedShotguns",
+      "PumpActionShotguns",
+      "SemiAutomaticShotguns"
     ],
-    "small_arms_long_gun__TO__small_arms_long_gun_shotgun": [
-      "small_arms_long_gun_shotgun_automatic_shotgun",
-      "small_arms_long_gun_shotgun_bolt_action_shotgun",
-      "small_arms_long_gun_shotgun_break_action_shotgun",
-      "small_arms_long_gun_shotgun_lever_action_shotgun",
-      "small_arms_long_gun_shotgun_other_manually_operated_shotgun",
-      "small_arms_long_gun_shotgun_pump_action_shotgun",
-      "small_arms_long_gun_shotgun_semi_automatic_shotgun"
+    "LongGuns__TO__OtherLongGuns": [
+      "OtherLongGuns"
     ],
-    "small_arms_long_gun__TO__small_arms_long_gun_smooth_bore": [
-      "small_arms_long_gun_smooth_bore_other"
+    "Rifles__TO__SelfLoadingRifles": [
+      "AutomaticRifles",
+      "SemiAutomaticRifles"
     ],
-    "small_arms_long_gun_rifled__TO__small_arms_long_gun_rifled_man_portable_machine_gun": [
-      "small_arms_long_gun_rifled_man_portable_machine_gun"
+    "Rifles__TO__ManuallyOperatedRifles": [
+      "BoltActionRifles",
+      "BreakActionRifles",
+      "LeverActionRifles",
+      "OtherManuallyOperatedRifles",
+      "PumpActionRifles"
     ],
-    "small_arms_long_gun_rifled__TO__small_arms_long_gun_rifled_sub_machine_gun": [
-      "small_arms_long_gun_rifled_sub_machine_gun"
+    "Shotguns__TO__SelfLoadingShotguns": [
+      "AutomaticShotguns",
+      "SemiAutomaticShotguns"
     ],
-    "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_automatic_rifle": [
-      "small_arms_long_gun_rifle_automatic_rifle"
+    "Shotguns__TO__ManuallyOperatedShotguns": [
+      "BoltActionShotguns",
+      "BreakActionShotguns",
+      "LeverActionShotguns",
+      "OtherManuallyOperatedShotguns",
+      "PumpActionShotguns"
     ],
-    "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_bolt_action_rifle": [
-      "small_arms_long_gun_rifle_bolt_action_rifle"
+    "SelfLoadingRifles__TO__AutomaticRifles": [
+      "AutomaticRifles"
     ],
-    "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_break_action_rifle": [
-      "small_arms_long_gun_rifle_break_action_rifle"
+    "SelfLoadingRifles__TO__SemiAutomaticRifles": [
+      "SemiAutomaticRifles"
     ],
-    "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_lever_action_rifle": [
-      "small_arms_long_gun_rifle_lever_action_rifle"
+    "ManuallyOperatedRifles__TO__BreakActionRifles": [
+      "BreakActionRifles"
     ],
-    "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_other_manually_operated_rifle": [
-      "small_arms_long_gun_rifle_other_manually_operated_rifle"
+    "ManuallyOperatedRifles__TO__BoltActionRifles": [
+      "BoltActionRifles"
     ],
-    "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_pump_action_rifle": [
-      "small_arms_long_gun_rifle_pump_action_rifle"
+    "ManuallyOperatedRifles__TO__LeverActionRifles": [
+      "LeverActionRifles"
     ],
-    "small_arms_long_gun_rifle__TO__small_arms_long_gun_rifle_semi_automatic_rifle": [
-      "small_arms_long_gun_rifle_semi_automatic_rifle"
+    "ManuallyOperatedRifles__TO__PumpActionRifles": [
+      "PumpActionRifles"
     ],
-    "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_automatic_shotgun": [
-      "small_arms_long_gun_shotgun_automatic_shotgun"
+    "ManuallyOperatedRifles__TO__OtherManuallyOperatedRifles": [
+      "OtherManuallyOperatedRifles"
     ],
-    "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_bolt_action_shotgun": [
-      "small_arms_long_gun_shotgun_bolt_action_shotgun"
+    "SelfLoadingShotguns__TO__AutomaticShotguns": [
+      "AutomaticShotguns"
     ],
-    "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_break_action_shotgun": [
-      "small_arms_long_gun_shotgun_break_action_shotgun"
+    "SelfLoadingShotguns__TO__SemiAutomaticShotguns": [
+      "SemiAutomaticShotguns"
     ],
-    "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_lever_action_shotgun": [
-      "small_arms_long_gun_shotgun_lever_action_shotgun"
+    "ManuallyOperatedShotguns__TO__BreakActionShotguns": [
+      "BreakActionShotguns"
     ],
-    "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_other_manually_operated_shotgun": [
-      "small_arms_long_gun_shotgun_other_manually_operated_shotgun"
+    "ManuallyOperatedShotguns__TO__BoltActionShotguns": [
+      "BoltActionShotguns"
     ],
-    "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_pump_action_shotgun": [
-      "small_arms_long_gun_shotgun_pump_action_shotgun"
+    "ManuallyOperatedShotguns__TO__LeverActionShotguns": [
+      "LeverActionShotguns"
     ],
-    "small_arms_long_gun_shotgun__TO__small_arms_long_gun_shotgun_semi_automatic_shotgun": [
-      "small_arms_long_gun_shotgun_semi_automatic_shotgun"
+    "ManuallyOperatedShotguns__TO__PumpActionShotguns": [
+      "PumpActionShotguns"
     ],
-    "small_arms_long_gun_smooth_bore__TO__small_arms_long_gun_smooth_bore_other": [
-      "small_arms_long_gun_smooth_bore_other"
+    "ManuallyOperatedShotguns__TO__OtherManuallyOperatedShotguns": [
+      "OtherManuallyOperatedShotguns"
     ]
   },
   "initialCandidates": [
-    "small_arms_handgun_rifled_revolver",
-    "small_arms_handgun_rifled_self_loading_pistol",
-    "small_arms_handgun_smooth_bore_other",
-    "small_arms_long_gun_rifle_automatic_rifle",
-    "small_arms_long_gun_rifle_bolt_action_rifle",
-    "small_arms_long_gun_rifle_break_action_rifle",
-    "small_arms_long_gun_rifle_lever_action_rifle",
-    "small_arms_long_gun_rifle_other_manually_operated_rifle",
-    "small_arms_long_gun_rifle_pump_action_rifle",
-    "small_arms_long_gun_rifle_semi_automatic_rifle",
-    "small_arms_long_gun_rifled_man_portable_machine_gun",
-    "small_arms_long_gun_rifled_sub_machine_gun",
-    "small_arms_long_gun_shotgun_automatic_shotgun",
-    "small_arms_long_gun_shotgun_bolt_action_shotgun",
-    "small_arms_long_gun_shotgun_break_action_shotgun",
-    "small_arms_long_gun_shotgun_lever_action_shotgun",
-    "small_arms_long_gun_shotgun_other_manually_operated_shotgun",
-    "small_arms_long_gun_shotgun_pump_action_shotgun",
-    "small_arms_long_gun_shotgun_semi_automatic_shotgun",
-    "small_arms_long_gun_smooth_bore_other"
+    "AutomaticRifles",
+    "AutomaticShotguns",
+    "BoltActionRifles",
+    "BoltActionShotguns",
+    "BreakActionRifles",
+    "BreakActionShotguns",
+    "LeverActionRifles",
+    "LeverActionShotguns",
+    "ManPortableMachineGuns",
+    "OtherHandguns",
+    "OtherLongGuns",
+    "OtherManuallyOperatedRifles",
+    "OtherManuallyOperatedShotguns",
+    "PumpActionRifles",
+    "PumpActionShotguns",
+    "Revolvers",
+    "SelfLoadingPistols",
+    "SemiAutomaticRifles",
+    "SemiAutomaticShotguns",
+    "SubMachineGuns"
   ]
 };
 
-    // Utility: intersection of two arrays of strings (small sizes; keep simple)
     function intersect(a, b) {
       const setB = new Set(b);
       return a.filter(x => setB.has(x));
     }
 
-    // Utility: stable sorting by depth desc, then label asc
     function sortHypotheses(hyps) {
       return [...hyps].sort((x, y) => {
-        if (y.depth !== x.depth) return y.depth - x.depth; // deeper = more specific
+        if (y.depth !== x.depth) return y.depth - x.depth;
         return (x.leafText || "").localeCompare(y.leafText || "");
       });
     }
 
     function App() {
-      // Which menu item (question) is currently open
       const [activeQuestionId, setActiveQuestionId] = useState(MODEL.questions[0]?.nodeId || null);
-
-      // Selections: nodeId -> optionId
-      // (Skipping a question = no entry for that nodeId.)
       const [answers, setAnswers] = useState({});
-
-      // For polite UI: if the user tries a contradictory choice, show an explanation
       const [errorMsg, setErrorMsg] = useState("");
 
-      // Derived: current candidate leaves after applying all answers as hard constraints
       const candidates = useMemo(() => {
         let cur = MODEL.initialCandidates;
-        for (const [nodeId, optionId] of Object.entries(answers)) {
-          const allowed = MODEL.optionToLeafIds[optionId] || [];
-          cur = intersect(cur, allowed);
+        for (const [, optionId] of Object.entries(answers)) {
+          cur = intersect(cur, MODEL.optionToLeafIds[optionId] || []);
         }
         return cur;
       }, [answers]);
 
-      // Derived: map leafId -> leaf object for display
       const leafById = useMemo(() => {
         const m = new Map();
         for (const lf of MODEL.leaves) m.set(lf.leafId, lf);
         return m;
       }, []);
 
-      // Derived: ranked hypotheses
       const rankedHypotheses = useMemo(() => {
-        const hyps = candidates
-          .map(id => leafById.get(id))
-          .filter(Boolean);
-        return sortHypotheses(hyps);
+        return sortHypotheses(candidates.map(id => leafById.get(id)).filter(Boolean));
       }, [candidates, leafById]);
 
-      // Derived: show only top N hypotheses (your "short ranked list")
       const TOP_N = 5;
       const topHypotheses = rankedHypotheses.slice(0, TOP_N);
 
-      // Derived: for each question, is it still "compatible" with current candidates?
-      // We use this to:
-      // - gray out questions that cannot affect the result anymore (optional)
-      // - or show a small badge ("already implied" etc.) later if you want
       const questionMeta = useMemo(() => {
         const meta = new Map();
-
         for (const q of MODEL.questions) {
-          // Union of candidates that match ANY option for this question:
-          // if union == candidates, then the question doesn't narrow anything right now.
-          let union = [];
           const seen = new Set();
           for (const opt of q.options) {
-            const allowed = MODEL.optionToLeafIds[opt.optionId] || [];
-            for (const id of intersect(candidates, allowed)) {
-              if (!seen.has(id)) {
-                seen.add(id);
-                union.push(id);
-              }
+            for (const id of intersect(candidates, MODEL.optionToLeafIds[opt.optionId] || [])) {
+              seen.add(id);
             }
           }
-          const canNarrow = union.length > 0 && union.length < candidates.length;
-          const isRelevant = union.length > 0; // if 0, the question is fully incompatible with current candidates
-          meta.set(q.nodeId, { canNarrow, isRelevant });
+          const union = [...seen];
+          meta.set(q.nodeId, {
+            canNarrow: union.length > 0 && union.length < candidates.length,
+            isRelevant: union.length > 0,
+          });
         }
         return meta;
       }, [candidates]);
 
-      // When the active question becomes irrelevant (due to answers), auto-jump to the next relevant one
       useEffect(() => {
         if (!activeQuestionId) return;
         const meta = questionMeta.get(activeQuestionId);
         if (meta && meta.isRelevant) return;
-
-        const next = MODEL.questions.find(q => (questionMeta.get(q.nodeId)?.isRelevant));
+        const next = MODEL.questions.find(q => questionMeta.get(q.nodeId)?.isRelevant);
         if (next) setActiveQuestionId(next.nodeId);
       }, [activeQuestionId, questionMeta]);
 
@@ -677,37 +794,22 @@
         setActiveQuestionId(MODEL.questions[0]?.nodeId || null);
       };
 
-      const skipQuestion = (nodeId) => {
-        setErrorMsg("");
-        setAnswers(prev => {
-          const next = { ...prev };
-          delete next[nodeId];
-          return next;
-        });
-      };
-
-      // Try to set an answer; refuse if it would eliminate all candidates
       const chooseOption = (nodeId, optionId) => {
         setErrorMsg("");
-
-        // Compute what candidates would be if we applied this answer
         let cur = MODEL.initialCandidates;
-
         for (const [nid, oid] of Object.entries({ ...answers, [nodeId]: optionId })) {
-          const allowed = MODEL.optionToLeafIds[oid] || [];
-          cur = intersect(cur, allowed);
+          cur = intersect(cur, MODEL.optionToLeafIds[oid] || []);
         }
-
         if (cur.length === 0) {
           setErrorMsg("That choice conflicts with earlier answers. Try a different option, or remove a previous answer.");
           return;
         }
-
         setAnswers(prev => ({ ...prev, [nodeId]: optionId }));
       };
 
       const removeAnswer = (nodeId) => {
-        skipQuestion(nodeId);
+        setErrorMsg("");
+        setAnswers(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
       };
 
       const activeQuestion = useMemo(
@@ -715,35 +817,26 @@
         [activeQuestionId]
       );
 
-      // For the "Your answers" panel: show question + selected option label
       const answerChips = useMemo(() => {
-        const chips = [];
-        for (const q of MODEL.questions) {
+        return MODEL.questions.flatMap(q => {
           const optId = answers[q.nodeId];
-          if (!optId) continue;
+          if (!optId) return [];
           const opt = q.options.find(o => o.optionId === optId);
-          chips.push({
-            nodeId: q.nodeId,
-            questionText: q.questionText,
-            optionLabel: opt?.plainLabel || "Selected",
-          });
-        }
-        return chips;
+          return [{ nodeId: q.nodeId, questionText: q.questionText, optionLabel: opt?.plainLabel || "Selected" }];
+        });
       }, [answers]);
 
       return (
         <div className="min-h-screen p-5 md:p-8">
           <div className="max-w-6xl mx-auto">
 
-            {/* Header */}
             <div className="mb-6">
               <h1 className="text-2xl md:text-3xl font-bold text-slate-900">{APP_NAME}</h1>
               <p className="text-slate-600 mt-2 max-w-3xl">
-                Start anywhere. Answer only what you can tell. Each answer narrows down a ranked list of likely classifications.
+                Start anywhere. Answer only what you can observe. Each answer narrows the list of possible classifications.
               </p>
             </div>
 
-            {/* Error banner (for contradiction attempts) */}
             {errorMsg && (
               <div className="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-800">
                 {errorMsg}
@@ -757,33 +850,21 @@
                 <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                   <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between">
                     <div className="font-semibold text-slate-800">Questions</div>
-                    <button
-                      onClick={resetAll}
-                      className="text-sm text-slate-600 hover:text-slate-900"
-                      title="Clear all answers"
-                    >
-                      Reset
-                    </button>
+                    <button onClick={resetAll} className="text-sm text-slate-600 hover:text-slate-900">Reset</button>
                   </div>
-
                   <div className="max-h-[70vh] overflow-auto">
                     {MODEL.questions.map((q) => {
                       const selected = !!answers[q.nodeId];
                       const meta = questionMeta.get(q.nodeId) || { canNarrow: true, isRelevant: true };
                       const isActive = q.nodeId === activeQuestionId;
-
-                      // We don't hard-disable irrelevant questions (people might want to explore),
-                      // but we visually deemphasize them.
-                      const rowClass = [
-                        "px-4 py-3 border-b border-slate-100 cursor-pointer",
-                        isActive ? "bg-blue-50" : "bg-white hover:bg-slate-50",
-                        !meta.isRelevant ? "opacity-50" : "",
-                      ].join(" ");
-
                       return (
                         <div
                           key={q.nodeId}
-                          className={rowClass}
+                          className={[
+                            "px-4 py-3 border-b border-slate-100 cursor-pointer",
+                            isActive ? "bg-blue-50" : "bg-white hover:bg-slate-50",
+                            !meta.isRelevant ? "opacity-50" : "",
+                          ].join(" ")}
                           onClick={() => setActiveQuestionId(q.nodeId)}
                         >
                           <div className="flex items-start justify-between gap-3">
@@ -791,35 +872,19 @@
                               <div className="text-sm font-medium text-slate-900 truncate">
                                 {q.questionText || q.nodeId}
                               </div>
-
                               <div className="mt-1 flex items-center gap-2">
-                                {selected ? (
-                                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
-                                    Answered
-                                  </span>
-                                ) : (
-                                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">
-                                    Unanswered
-                                  </span>
-                                )}
-
-                                {meta.canNarrow ? (
-                                  <span className="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
-                                    Can narrow
-                                  </span>
-                                ) : (
-                                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
-                                    Won't narrow
-                                  </span>
-                                )}
+                                <span className={`text-xs px-2 py-0.5 rounded-full ${selected ? "bg-emerald-100 text-emerald-800" : "bg-slate-100 text-slate-700"}`}>
+                                  {selected ? "Answered" : "Unanswered"}
+                                </span>
+                                <span className={`text-xs px-2 py-0.5 rounded-full ${meta.canNarrow ? "bg-blue-100 text-blue-800" : "bg-slate-100 text-slate-600"}`}>
+                                  {meta.canNarrow ? "Can narrow" : "Won't narrow"}
+                                </span>
                               </div>
                             </div>
-
                             {selected && (
                               <button
                                 className="text-xs text-slate-600 hover:text-slate-900"
                                 onClick={(e) => { e.stopPropagation(); removeAnswer(q.nodeId); }}
-                                title="Remove this answer"
                               >
                                 Remove
                               </button>
@@ -831,10 +896,8 @@
                   </div>
                 </div>
 
-                {/* Answers summary */}
                 <div className="mt-4 bg-white rounded-xl shadow-sm border border-slate-200 p-4">
                   <div className="font-semibold text-slate-800 mb-2">Your answers</div>
-
                   {answerChips.length === 0 ? (
                     <div className="text-sm text-slate-600">No answers yet. Pick any question to start.</div>
                   ) : (
@@ -844,7 +907,6 @@
                           key={a.nodeId}
                           onClick={() => setActiveQuestionId(a.nodeId)}
                           className="text-left text-xs px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800"
-                          title={a.questionText}
                         >
                           <div className="font-semibold">{a.optionLabel}</div>
                           <div className="text-slate-600 truncate max-w-[14rem]">{a.questionText}</div>
@@ -862,15 +924,19 @@
                     <div className="text-slate-700">No question selected.</div>
                   ) : (
                     <div>
-                      <div
-                        className="prose max-w-none"
-                        dangerouslySetInnerHTML={{ __html: activeQuestion.questionHtml }}
-                      />
-
-                      <div className="mt-5 space-y-3">
+                      {activeQuestion.imageSrc && (
+                        <img
+                          src={activeQuestion.imageSrc}
+                          alt={activeQuestion.questionText}
+                          className="w-full max-h-48 object-contain rounded-lg mb-4 bg-slate-50"
+                        />
+                      )}
+                      <div className="text-lg font-semibold text-slate-900 mb-5">
+                        {activeQuestion.questionText}
+                      </div>
+                      <div className="space-y-3">
                         {activeQuestion.options.map((opt) => {
                           const isSelected = answers[activeQuestion.nodeId] === opt.optionId;
-
                           return (
                             <button
                               key={opt.optionId}
@@ -879,30 +945,25 @@
                                 "w-full text-left rounded-xl border p-4 transition",
                                 isSelected
                                   ? "border-blue-500 bg-blue-50"
-                                  : "border-slate-200 hover:border-blue-400 hover:bg-slate-50"
+                                  : "border-slate-200 hover:border-blue-400 hover:bg-slate-50",
                               ].join(" ")}
                             >
                               <div className="flex gap-4 items-start">
-                                <div className="w-24 h-24 bg-slate-100 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
-                                  {opt.imageSrc ? (
+                                {opt.imageSrc && (
+                                  <div className="w-20 h-20 bg-slate-100 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
                                     <img
                                       src={opt.imageSrc}
-                                      alt={opt.plainLabel || "Option image"}
+                                      alt={opt.plainLabel}
                                       className="w-full h-full object-contain"
                                     />
-                                  ) : (
-                                    <span className="text-xs text-slate-400 px-2 text-center">No image</span>
-                                  )}
-                                </div>
-
+                                  </div>
+                                )}
                                 <div className="min-w-0">
-                                  <div
-                                    className="text-lg font-semibold text-slate-900"
-                                    dangerouslySetInnerHTML={{ __html: opt.titleHtml || opt.plainLabel || "Option" }}
+                                  <div className="text-base font-semibold text-slate-900"
+                                    dangerouslySetInnerHTML={{ __html: opt.titleHtml || opt.plainLabel }}
                                   />
                                   {opt.contextHtml && (
-                                    <div
-                                      className="mt-1 text-sm text-slate-700"
+                                    <div className="mt-1 text-sm text-slate-600"
                                       dangerouslySetInnerHTML={{ __html: opt.contextHtml }}
                                     />
                                   )}
@@ -912,21 +973,13 @@
                           );
                         })}
                       </div>
-
-                      {/* Skip control: remove answer for this question */}
-                      <div className="mt-5 flex items-center gap-3">
+                      <div className="mt-5">
                         <button
-                          onClick={() => skipQuestion(activeQuestion.nodeId)}
+                          onClick={() => removeAnswer(activeQuestion.nodeId)}
                           className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800"
                         >
                           I don't know / skip
                         </button>
-
-                        {answers[activeQuestion.nodeId] && (
-                          <span className="text-sm text-slate-600">
-                            You can also remove your answer from the menu on the left.
-                          </span>
-                        )}
                       </div>
                     </div>
                   )}
@@ -937,50 +990,43 @@
               <div className="lg:col-span-3">
                 <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                   <div className="px-4 py-3 border-b border-slate-200">
-                    <div className="font-semibold text-slate-800">Hypotheses</div>
+                    <div className="font-semibold text-slate-800">Possible Classifications</div>
                     <div className="text-sm text-slate-600 mt-1">
-                      {candidates.length} possible outcome{candidates.length === 1 ? "" : "s"} remaining
+                      {candidates.length} remaining
                     </div>
                   </div>
-
                   <div className="p-4 space-y-3">
                     {topHypotheses.length === 0 ? (
-                      <div className="text-sm text-slate-700">
-                        No hypotheses remain. (This shouldn't happen because we block contradictions.)
-                      </div>
+                      <div className="text-sm text-slate-700">No classifications remain.</div>
                     ) : (
                       topHypotheses.map((h, idx) => (
-                        <div
-                          key={h.leafId}
-                          className="rounded-xl border border-slate-200 bg-slate-50 p-3"
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="text-xs font-semibold text-slate-600">
-                              Rank #{idx + 1}
+                        <div key={h.leafId} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                          <div className="text-xs font-semibold text-slate-500 mb-1">#{idx + 1}</div>
+                          {h.imageSrc && (
+                            <img
+                              src={h.imageSrc}
+                              alt={h.leafText}
+                              className="w-full max-h-24 object-contain rounded mb-2 bg-white"
+                            />
+                          )}
+                          <div className="text-sm font-semibold text-slate-900">{h.leafText}</div>
+                          {h.arcsParts.length > 0 && (
+                            <div className="mt-1 text-xs text-slate-500">
+                              {h.arcsParts.join(" \u203a ")}
                             </div>
-                            <div className="text-xs text-slate-500">
-                              Specificity: {h.depth}
-                            </div>
-                          </div>
-                          <div
-                            className="mt-2 text-sm font-semibold text-slate-900"
-                            dangerouslySetInnerHTML={{ __html: h.leafHtml }}
-                          />
+                          )}
+                          {h.description && (
+                            <div className="mt-1 text-xs text-slate-600">{h.description}</div>
+                          )}
                         </div>
                       ))
                     )}
-
                     {rankedHypotheses.length > TOP_N && (
-                      <div className="text-xs text-slate-600">
-                        Showing top {TOP_N} of {rankedHypotheses.length}.
+                      <div className="text-xs text-slate-500">
+                        Showing top {TOP_N} of {rankedHypotheses.length}
                       </div>
                     )}
                   </div>
-                </div>
-
-                <div className="mt-4 text-xs text-slate-500">
-                  Ranking currently prefers more specific (deeper) leaf categories.
-                  If you want a different ranking later (e.g., likelihood weights), we can add it.
                 </div>
               </div>
 

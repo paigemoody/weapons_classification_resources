@@ -1,16 +1,19 @@
-# Branch Preview + Regenerate root HTML files when the Mermaid source or taxonomy changes
+# Regenerate HTML outputs when source files change, and publish branch previews
 # -------------------------------------------------------------------------
 # Repo layout (repo root):
-# - taxonomy.json                                                (source)
-# - weapons-classification-flowchart.mmd                         (generated from taxonomy.json)
-# - classification-guide.html                                    (generated output #1)
-# - classification-guide-hypothesis-filtering.html               (generated output #2)
+# - taxonomy-structure.mmd                                               (source — developer)
+# - content/questions.csv                                                (source — content editor)
+# - content/options.csv                                                  (source — content editor)
+# - content/classifications.csv                                          (source — content editor)
+# - weapons-classification-flowchart.mmd                                 (generated from above)
+# - classification-guide.html                                            (generated output #1)
+# - classification-guide-hypothesis-filtering.html                       (generated output #2)
 #
 # Goals:
-# 1) Any time taxonomy.json OR weapons-classification-flowchart.mmd changes on ANY branch:
-#    - validate taxonomy.json
-#    - regenerate weapons-classification-flowchart.mmd from taxonomy.json
-#    - regenerate BOTH HTML files at the repo root
+# 1) Any time source files change on ANY branch:
+#    - regenerate weapons-classification-flowchart.mmd via build_content_mmd.py
+#    - regenerate classification-guide.html via mermaid_to_clickthrough.py
+#    - regenerate classification-guide-hypothesis-filtering.html via csv_to_hypothesis_filtering.py
 #    - commit the regenerated files back to that SAME branch
 # 2) For non-gh-pages branches:
 #    - also publish a branch preview to gh-pages under:
@@ -23,17 +26,15 @@ name: Branch Preview
 
 on:
   push:
-    # Run when taxonomy.json or Mermaid source changes (plus generator/workflow changes).
     paths:
-      - "taxonomy.json"
-      - "weapons-classification-flowchart.mmd"
+      - "taxonomy-structure.mmd"
+      - "content/questions.csv"
+      - "content/options.csv"
+      - "content/classifications.csv"
+      - "src/build_content_mmd.py"
       - "src/mermaid_to_clickthrough.py"
-      - "src/mermaid_to_hypothesis_filtering.py"
-      - "src/taxonomy_to_mermaid.py"
-      - "src/taxonomy_validator.py"
+      - "src/csv_to_hypothesis_filtering.py"
       - ".github/workflows/pr-preview.yml"
-      - "classification-guide-hypothesis-filtering.html"
-      - "classification-guide.html"
 
 permissions:
   contents: write
@@ -61,46 +62,31 @@ jobs:
         with:
           python-version: "3.13"
 
-      # NEW: Validate taxonomy.json
-      - name: Validate taxonomy.json
+      - name: Generate weapons-classification-flowchart.mmd from structure + CSVs
         run: |
-          echo "🔍 Validating taxonomy.json..."
-          python3 src/taxonomy_validator.py validate taxonomy.json
-          if [ $? -ne 0 ]; then
-            echo "❌ Taxonomy validation failed"
-            exit 1
-          fi
-          echo "✅ Taxonomy is valid"
+          python3 src/build_content_mmd.py \
+            --structure taxonomy-structure.mmd \
+            --questions content/questions.csv \
+            --options content/options.csv \
+            --classifications content/classifications.csv \
+            --output weapons-classification-flowchart.mmd
 
-      # NEW: Generate Mermaid from taxonomy.json
-      - name: Generate weapons-classification-flowchart.mmd from taxonomy.json
+      - name: Regenerate classification-guide.html
         run: |
-          echo "📊 Generating Mermaid from taxonomy..."
-          python3 src/taxonomy_to_mermaid.py \
-            --input-json taxonomy.json \
-            --output-mmd weapons-classification-flowchart.mmd
-          if [ $? -ne 0 ]; then
-            echo "❌ Mermaid generation failed"
-            exit 1
-          fi
-          echo "✅ Mermaid generated successfully"
-
-      # Generate BOTH HTML outputs at the repo root
-      - name: Regenerate classification-guide.html at repo root
-        run: |
-          python src/mermaid_to_clickthrough.py \
+          python3 src/mermaid_to_clickthrough.py \
             --input-mmd weapons-classification-flowchart.mmd \
             --output-html classification-guide.html \
             --app-name "[DEMO] Weapons Classification Guide"
 
-      - name: Regenerate classification-guide-hypothesis-filtering.html at repo root
+      - name: Regenerate classification-guide-hypothesis-filtering.html
         run: |
-          python src/mermaid_to_hypothesis_filtering.py \
-            --input-mmd weapons-classification-flowchart.mmd \
-            --output-html classification-guide-hypothesis-filtering.html \
+          python3 src/csv_to_hypothesis_filtering.py \
+            --questions content/questions.csv \
+            --options content/options.csv \
+            --classifications content/classifications.csv \
+            --output classification-guide-hypothesis-filtering.html \
             --app-name "[DEMO] Weapons Classification Guide (Hypothesis Filtering)"
 
-      # Commit ALL regenerated files back to the SAME branch
       - name: Commit regenerated files back to the same branch
         env:
           BRANCH_NAME: ${{ github.ref_name }}
@@ -108,33 +94,25 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Stage the generated Mermaid and HTML files
           git add weapons-classification-flowchart.mmd \
                   classification-guide.html \
                   classification-guide-hypothesis-filtering.html
 
-          # If nothing changed, skip committing
           if git diff --cached --quiet; then
             echo "No generated file changes to commit."
             exit 0
           fi
 
-          git commit -m "Auto-regenerate taxonomy, Mermaid, and HTML outputs [skip ci]"
+          git commit -m "Auto-regenerate Mermaid and HTML outputs [skip ci]"
           git push origin "HEAD:${BRANCH_NAME}"
 
       # Everything below is ONLY for preview branches (not gh-pages itself)
       - name: Prepare dist/ payload for branch preview publish
         if: ${{ github.ref_name != 'gh-pages' }}
         run: |
-          # dist/ is just a publish payload directory (NOT a source-of-truth).
-          # Your source + generated files remain at the repo root.
           mkdir -p dist
-
-          # Copy both HTML files into the preview payload
           cp classification-guide.html dist/classification-guide.html
           cp classification-guide-hypothesis-filtering.html dist/classification-guide-hypothesis-filtering.html
-
-          # Disable Jekyll processing so GitHub Pages serves files as-is.
           touch dist/.nojekyll
 
       - name: Publish preview to gh-pages under branch-preview/<branch-name>/

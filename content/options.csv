@@ -1,29 +1,29 @@
-id,Option Name,Description,Image URL,Image Caption
-Handguns,Handguns,A firearm which is grasped by placing both the control hand and support hand around the pistol grip and which may be readily fired with one hand (ARES p37),https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.8_2.9_2.10_Handguns.png?raw=true,Handgun examples
-LongGuns,Long Guns,A firearm which is grasped by placing the control hand and support hand in different locations and which is typically fitted with a buttstock intended to be braced against the user's shoulder when fired.,,
-SelfLoadingPistols,Self-loading Pistols,,,
-Revolvers,Revolvers,,,
-OtherHandguns,Other Handguns,,,
-SubMachineGuns,Sub-machine Guns,,,
-ManPortableMachineGuns,Man-portable Machine Guns,,,
-Rifles,Rifles,,,
-Shotguns,Shotguns,,,
-OtherLongGuns,Other Long Guns,,,
-SelfLoadingRifles,Self-loading Rifles,,,
-ManuallyOperatedRifles,Manually Operated Rifles,,,
-SelfLoadingShotguns,Self-loading Shotguns,,,
-ManuallyOperatedShotguns,Manually Operated Shotguns,,,
-AutomaticRifles,Automatic Rifles,,,
-SemiAutomaticRifles,Semi-automatic Rifles,,,
-BreakActionRifles,Break-action Rifles,,,
-BoltActionRifles,Bolt-action Rifles,,,
-LeverActionRifles,Lever-action Rifles,,,
-PumpActionRifles,Pump-action Rifles,,,
-OtherManuallyOperatedRifles,Other Manually Operated Rifles,,,
-AutomaticShotguns,Automatic Shotguns,,,
-SemiAutomaticShotguns,Semi-automatic Shotguns,,,
-BreakActionShotguns,Break-action Shotguns,,,
-BoltActionShotguns,Bolt-action Shotguns,,,
-LeverActionShotguns,Lever-action Shotguns,,,
-PumpActionShotguns,Pump-action Shotguns,,,
-OtherManuallyOperatedShotguns,Other Manually Operated Shotguns,,,
+id,Option Name,Description,Image URL,Image Caption,Defining Characteristic,Characteristic Value
+Handguns,Handguns,A firearm which is grasped by placing both the control hand and support hand around the pistol grip and which may be readily fired with one hand (ARES p37),https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.8_2.9_2.10_Handguns.png?raw=true,Handgun examples,How held,One hand (no shoulder stock)
+LongGuns,Long Guns,A firearm which is grasped by placing the control hand and support hand in different locations and which is typically fitted with a buttstock intended to be braced against the user's shoulder when fired.,,,,How held,Two hands with shoulder stock
+SelfLoadingPistols,Self-loading Pistols,,,,,
+Revolvers,Revolvers,,,,Action type,Rotating cylinder
+OtherHandguns,Other Handguns,,,,,
+SubMachineGuns,Sub-machine Guns,,,,Loading,Self-loading
+ManPortableMachineGuns,Man-portable Machine Guns,,,,,
+Rifles,Rifles,,,,,
+Shotguns,Shotguns,,,,Bore type,Smooth bore
+OtherLongGuns,Other Long Guns,,,,,
+SelfLoadingRifles,Self-loading Rifles,,,,Loading,Self-loading (cycles automatically after each shot)
+ManuallyOperatedRifles,Manually Operated Rifles,,,,Loading,Manual (must be cycled by hand between shots)
+SelfLoadingShotguns,Self-loading Shotguns,,,,Loading,Self-loading (cycles automatically after each shot)
+ManuallyOperatedShotguns,Manually Operated Shotguns,,,,Loading,Manual (must be cycled by hand between shots)
+AutomaticRifles,Automatic Rifles,,,,Fires per trigger pull,Multiple rounds (fully automatic)
+SemiAutomaticRifles,Semi-automatic Rifles,,,,Fires per trigger pull,One round (semi-automatic)
+BreakActionRifles,Break-action Rifles,,,,Action type,Break-action (barrel hinges open to load)
+BoltActionRifles,Bolt-action Rifles,,,,Action type,Bolt-action (handle on side of receiver)
+LeverActionRifles,Lever-action Rifles,,,,Action type,Lever-action (lever below the receiver)
+PumpActionRifles,Pump-action Rifles,,,,Action type,Pump-action (fore-end slides back and forth)
+OtherManuallyOperatedRifles,Other Manually Operated Rifles,,,,,
+AutomaticShotguns,Automatic Shotguns,,,,Fires per trigger pull,Multiple rounds (fully automatic)
+SemiAutomaticShotguns,Semi-automatic Shotguns,,,,Fires per trigger pull,One round (semi-automatic)
+BreakActionShotguns,Break-action Shotguns,,,,Action type,Break-action (barrel hinges open to load)
+BoltActionShotguns,Bolt-action Shotguns,,,,Action type,Bolt-action (handle on side of receiver)
+LeverActionShotguns,Lever-action Shotguns,,,,Action type,Lever-action (lever below the receiver)
+PumpActionShotguns,Pump-action Shotguns,,,,Action type,Pump-action (fore-end slides back and forth)
+OtherManuallyOperatedShotguns,Other Manually Operated Shotguns,,,,,
