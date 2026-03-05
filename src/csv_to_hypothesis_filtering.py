@@ -43,11 +43,11 @@ def load_questions(path: Path) -> Tuple[Dict[str, dict], Dict[str, List[str]]]:
             qid = row.get('id', '').strip()
             if not qid:
                 continue
-            questions[qid] = {k: (v.strip() if v else '') for k, v in row.items()}
+            questions[qid] = {k: (v.strip() if isinstance(v, str) else '') for k, v in row.items() if k is not None}
             kids = [
                 v.strip()
                 for k, v in row.items()
-                if k.startswith('Option') and v and v.strip()
+                if k and k.startswith('Option') and isinstance(v, str) and v.strip()
             ]
             children[qid] = kids
 
@@ -60,7 +60,7 @@ def load_csv(path: Path, key_col: str) -> Dict[str, dict]:
         for row in csv.DictReader(f):
             key = row.get(key_col, '').strip()
             if key:
-                result[key] = {k: (v.strip() if v else '') for k, v in row.items()}
+                result[key] = {k: (v.strip() if isinstance(v, str) else '') for k, v in row.items() if k is not None}
     return result
 
 
@@ -173,11 +173,20 @@ def build_model(
             opt = options.get(child_id, {})
             option_id = f"{qid}__TO__{child_id}"
 
+            arcs_level = opt.get('ARCS Level', '')
+            arcs_name = opt.get('ARCS Name', '')
+            context_parts = []
+            if opt.get('Description'):
+                context_parts.append(f"<p>{opt['Description']}</p>")
+            if arcs_level and arcs_name:
+                context_parts.append(
+                    f'<p class="text-xs text-slate-400 mt-1">Points toward ARCS {arcs_level}: {arcs_name}</p>'
+                )
             opt_objs.append({
                 'optionId': option_id,
                 'dstNodeId': child_id,
                 'titleHtml': opt.get('Option Name', child_id),
-                'contextHtml': f"<p>{opt['Description']}</p>" if opt.get('Description') else '',
+                'contextHtml': ''.join(context_parts),
                 'plainLabel': opt.get('Option Name', child_id),
                 'imageSrc': opt.get('Image URL', ''),
             })
@@ -268,6 +277,7 @@ def make_html(model: dict, app_name: str) -> str:
     function App() {
       const [activeQuestionId, setActiveQuestionId] = useState(MODEL.questions[0]?.nodeId || null);
       const [answers, setAnswers] = useState({});
+      const [unknowns, setUnknowns] = useState({});
       const [errorMsg, setErrorMsg] = useState("");
 
       const candidates = useMemo(() => {
@@ -288,8 +298,6 @@ def make_html(model: dict, app_name: str) -> str:
         return sortHypotheses(candidates.map(id => leafById.get(id)).filter(Boolean));
       }, [candidates, leafById]);
 
-      const TOP_N = 5;
-      const topHypotheses = rankedHypotheses.slice(0, TOP_N);
 
       const questionMeta = useMemo(() => {
         const meta = new Map();
@@ -319,6 +327,7 @@ def make_html(model: dict, app_name: str) -> str:
 
       const resetAll = () => {
         setAnswers({});
+        setUnknowns({});
         setErrorMsg("");
         setActiveQuestionId(MODEL.questions[0]?.nodeId || null);
       };
@@ -334,11 +343,19 @@ def make_html(model: dict, app_name: str) -> str:
           return;
         }
         setAnswers(prev => ({ ...prev, [nodeId]: optionId }));
+        setUnknowns(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
+      };
+
+      const markUnknown = (nodeId) => {
+        setErrorMsg("");
+        setAnswers(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
+        setUnknowns(prev => ({ ...prev, [nodeId]: true }));
       };
 
       const removeAnswer = (nodeId) => {
         setErrorMsg("");
         setAnswers(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
+        setUnknowns(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
       };
 
       const activeQuestion = useMemo(
@@ -383,9 +400,13 @@ def make_html(model: dict, app_name: str) -> str:
                   </div>
                   <div className="max-h-[70vh] overflow-auto">
                     {MODEL.questions.map((q) => {
-                      const selected = !!answers[q.nodeId];
+                      const isAnswered = !!answers[q.nodeId];
+                      const isUnknown = !!unknowns[q.nodeId];
                       const meta = questionMeta.get(q.nodeId) || { canNarrow: true, isRelevant: true };
                       const isActive = q.nodeId === activeQuestionId;
+                      const selectedOption = isAnswered
+                        ? q.options.find(o => o.optionId === answers[q.nodeId])
+                        : null;
                       return (
                         <div
                           key={q.nodeId}
@@ -402,15 +423,23 @@ def make_html(model: dict, app_name: str) -> str:
                                 {q.questionText || q.nodeId}
                               </div>
                               <div className="mt-1 flex items-center gap-2">
-                                <span className={`text-xs px-2 py-0.5 rounded-full ${selected ? "bg-emerald-100 text-emerald-800" : "bg-slate-100 text-slate-700"}`}>
-                                  {selected ? "Answered" : "Unanswered"}
-                                </span>
-                                <span className={`text-xs px-2 py-0.5 rounded-full ${meta.canNarrow ? "bg-blue-100 text-blue-800" : "bg-slate-100 text-slate-600"}`}>
-                                  {meta.canNarrow ? "Can narrow" : "Won't narrow"}
-                                </span>
+                                {isAnswered ? (
+                                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 truncate max-w-[16rem]">
+                                    {selectedOption?.plainLabel || "Answered"}
+                                  </span>
+                                ) : (
+                                  <>
+                                    <span className={`text-xs px-2 py-0.5 rounded-full ${isUnknown ? "bg-amber-100 text-amber-800" : "bg-slate-100 text-slate-700"}`}>
+                                      {isUnknown ? "Unknown" : "Unanswered"}
+                                    </span>
+                                    <span className={`text-xs px-2 py-0.5 rounded-full ${meta.canNarrow ? "bg-blue-100 text-blue-800" : "bg-slate-100 text-slate-600"}`}>
+                                      {meta.canNarrow ? "Can narrow" : "Won't narrow"}
+                                    </span>
+                                  </>
+                                )}
                               </div>
                             </div>
-                            {selected && (
+                            {(isAnswered || isUnknown) && (
                               <button
                                 className="text-xs text-slate-600 hover:text-slate-900"
                                 onClick={(e) => { e.stopPropagation(); removeAnswer(q.nodeId); }}
@@ -504,10 +533,10 @@ def make_html(model: dict, app_name: str) -> str:
                       </div>
                       <div className="mt-5">
                         <button
-                          onClick={() => removeAnswer(activeQuestion.nodeId)}
+                          onClick={() => markUnknown(activeQuestion.nodeId)}
                           className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800"
                         >
-                          I don't know / skip
+                          I don't know
                         </button>
                       </div>
                     </div>
@@ -525,12 +554,11 @@ def make_html(model: dict, app_name: str) -> str:
                     </div>
                   </div>
                   <div className="p-4 space-y-3">
-                    {topHypotheses.length === 0 ? (
+                    {rankedHypotheses.length === 0 ? (
                       <div className="text-sm text-slate-700">No classifications remain.</div>
                     ) : (
-                      topHypotheses.map((h, idx) => (
+                      rankedHypotheses.map((h) => (
                         <div key={h.leafId} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                          <div className="text-xs font-semibold text-slate-500 mb-1">#{idx + 1}</div>
                           {h.imageSrc && (
                             <img
                               src={h.imageSrc}
@@ -559,11 +587,6 @@ def make_html(model: dict, app_name: str) -> str:
                           )}
                         </div>
                       ))
-                    )}
-                    {rankedHypotheses.length > TOP_N && (
-                      <div className="text-xs text-slate-500">
-                        Showing top {TOP_N} of {rankedHypotheses.length}
-                      </div>
                     )}
                   </div>
                 </div>

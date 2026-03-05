@@ -1,0 +1,275 @@
+pdf_page,kind,id,filename,caption,description
+31,Figure,Figure 1.1,Figure1.1_TheDifferentLevelsOfARCSClassificationFidelity.png,The different levels of ARCS classification fidelity,Figure illustrating the concept described in the caption.
+32,Figure,Figure 1.2,Figure1.2_DescriptionOfAWeaponUsingARCS.png,Description of a weapon using ARCS,Figure illustrating the concept described in the caption.
+33,Table,Table 1.1,Table1.1_CommonSmallArmsGroupsAndSubgroups.png,Common small arms groups and subgroups,Table presenting structured data or a comparison relevant to the caption.
+34,Table,Table 1.2,Table1.2_CommonMunitionsGroupsAndSubgroups.png,Common munitions groups and subgroups (land),Table presenting structured data or a comparison relevant to the caption.
+37,Box,Box 1.1,Box1.1_DevelopingArmsAndAmmunitionBaselineAssessments.png,Developing arms and ammunition baseline assessments,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+38,Box,Box 1.2,Box1.2_ArmsTracing.png,Arms tracing,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+39,Figure,Figure 1.3,Figure1.3_SelectedMarkingsOnAHecklerKochHK417.png,Selected markings on a Heckler & Koch HK417 self-loading rifle,Annotated photo/diagram showing selected markings described in the caption.
+41,Table,Table 1.3,Table1.3_UsingThisHandbookToIdentifyArmsAndTrack.png,Using this Handbook to identify arms and track arms flows,Table presenting structured data or a comparison relevant to the caption.
+48,Figure,Figure 2.1,Figure2.1_ExampleOfAnArmsTransferChain.png,Example of an arms transfer chain,Process diagram illustrating a transfer chain and/or diversion points.
+49,Box,Box 2.1,Box2.1_InternationalEffortsToCurbIllicitArmsFlows.png,International efforts to curb illicit arms flows,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+50,Figure,Figure 2.2,Figure2.2_PointsOfPotentialDiversionInATypicalTransfer.png,Points of potential diversion in a typical transfer chain,Process diagram illustrating a transfer chain and/or diversion points.
+52,Box,Box 2.2,Box2.2_DiversionOfArmsAndAmmunitionInPeaceOperations.png,Diversion of arms and ammunition in peace operations,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+54,Box,Box 2.3,Box2.3_FirearmsUsedInElephantAndRhinoPoachingIn.png,Firearms used in elephant and rhino poaching in Africa,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+63,Figure,Figure 3.1,Figure3.1_TypicalFeaturesOfAModernMilitaryRifle.png,Typical features of a modern military rifle,Figure illustrating the concept described in the caption.
+64,Figure,Figure 3.2,Figure3.2_TypicalFeaturesOfAModernHandgun.png,Typical features of a modern handgun,Figure illustrating the concept described in the caption.
+65,Figure,Figure 3.3,Figure3.3_TheBuildUpOfGasPressureBehindAProjectile.png,The build-up of gas pressure behind a projectile during the firing sequence of a firearm,Figure illustrating the concept described in the caption.
+65,Figure,Figure 3.4,Figure3.4_RifledAndSmoothBoreBarrels.png,Rifled and smooth-bore barrels,Illustration comparing rifling types described in the caption.
+65,Figure,Figure 3.5,Figure3.5_ConventionalGroovedRifling.png,Conventional grooved rifling (left) and octagonal polygonal rifling (right),Illustration comparing rifling types described in the caption.
+68,Figure,Figure 3.6,Figure3.6_TypicalArrangementOfAModernSelfLoadingPistolShowing.png,"Typical arrangement of a modern self-loading pistol, showing some internal components",Diagram illustrating the arrangement/composition described in the caption.
+68,Image,Image 3.1,Image3.1_ASovietBaikalPM918.png,A Soviet Baikal PM 9 × 18,Photograph/illustration of the item described in the caption.
+68,Image,Image 3.2,Image3.2_ABelgianC.png,A Belgian C.F. Galand 12 ×,Photograph/illustration of the item described in the caption.
+69,Image,Image 3.3,Image3.3_AnItalianBerettaModel12S919.png,An Italian Beretta Model 12S 9 × 19 mm SMG,Photograph/illustration of the item described in the caption.
+70,Image,Image 3.4,Image3.4_AGermanHecklerKochMP74.png,A German Heckler & Koch MP7 4.6 × 30 mm SMG,Photograph/illustration of the item described in the caption.
+71,Figure,Figure 3.7,Figure3.7_TypicalFeaturesOfABreakActionShotgun.png,Typical features of a break-action shotgun,Figure illustrating the concept described in the caption.
+71,Figure,Figure 3.8,Figure3.8_TypicalFeaturesOfAPumpActionShotgun.png,Typical features of a pump-action shotgun,Figure illustrating the concept described in the caption.
+72,Image,Image 3.5,Image3.5_AnAmericanRemingtonModel870Wingmaster12GaugePumpAction.png,An American Remington Model 870 Wingmaster 12-gauge pump-action,Photograph/illustration of the item described in the caption.
+72,Image,Image 3.6,Image3.6_AnItalianBenelliM1Super9012GaugeSelfLoading.png,An Italian Benelli M1 Super 90 12-gauge self-loading shotgun,Photograph/illustration of the item described in the caption.
+73,Image,Image 3.7,Image3.7_ATurkishConversionOfAFrenchBerthierModLe.png,A Turkish conversion of a French Berthier Modèle 1907-15 8 × 50R mm,Photograph/illustration of the item described in the caption.
+73,Image,Image 3.8,Image3.8_ACanadianPGWDefenceTechnologiesTimberwolf.png,A Canadian PGW Defence Technologies Timberwolf .338 Lapua Magnum,Photograph/illustration of the item described in the caption.
+74,Image,Image 3.9,Image3.9_AFrenchManufactureDarmesDeChTelleraultCarabineDe.png,A French Manufacture d’armes de Châtellerault Carabine de Cuirassier,Photograph/illustration of the item described in the caption.
+75,Image,Image 3.10,Image3.10_AnImperialGermanMauserTankgewehr1813.png,An Imperial German Mauser Tankgewehr 18 13 × 92SR mm anti-tank rifle,Photograph/illustration of the item described in the caption.
+75,Image,Image 3.11,Image3.11_AnAmericanBarrettM82A1.png,An American Barrett M82A1 .50 BMG (12.7 × 99 mm) anti-materiel rifle,Photograph/illustration of the item described in the caption.
+76,Image,Image 3.12,Image3.12_ABritishImperialDefenceServicesMG4A55.png,A British Imperial Defence Services MG4A5 5.56 × 45 mm self-loading rifle,Photograph/illustration of the item described in the caption.
+77,Box,Box 3.1,Box3.1_MythsAndMisconceptionsAK47.png,Myths and misconceptions: ‘AK-47’,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+78,Image,Image 3.13,Image3.13_AnEgyptianMaadiCompanyForEngineeringIndustriesMisr.png,An Egyptian Maadi Company for Engineering Industries Misr 7.62 × 39,Photograph/illustration of the item described in the caption.
+79,Image,Image 3.14,Image3.14_ABelgianFNHerstalMinimiPara5.png,A Belgian FN Herstal Minimi Para 5.56 × 45 mm LMG,Photograph/illustration of the item described in the caption.
+79,Image,Image 3.15,Image3.15_ABritishL86A25.png,A British L86A2 5.56 × 45 mm LMG,Photograph/illustration of the item described in the caption.
+80,Image,Image 3.16,Image3.16_AHungarianCopyOfTheSovietPKM7.png,A Hungarian copy of the Soviet PKM 7.62 × 54R mm GPMG,Photograph/illustration of the item described in the caption.
+81,Box,Box 3.2,Box3.2_MythsAndMisconceptionsAssaultWeapon.png,Myths and misconceptions: ‘assault weapon’,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+81,Image,Image 3.17,Image3.17_AUSMarineTestFiringAnAmericanNammoTalleyMK.png,A US Marine test-firing an American Nammo-Talley MK 153 Mod 2,Photograph/illustration of the item described in the caption.
+82,Figure,Figure 3.9,Figure3.9_TypicalFeaturesOfAModernMilitaryRifle.png,Typical features of a modern military rifle,Figure illustrating the concept described in the caption.
+83,Image,Image 3.18,Image3.18_AGermanMauserKar98KBoltActionRifle.png,A German Mauser Kar98K bolt-action rifle (top) and its component parts,Photograph/illustration of the item described in the caption.
+84,Image,Image 3.19,Image3.19_ExamplesOfButtStocks.png,Examples of butt-stocks,Photograph/illustration of the item described in the caption.
+85,Image,Image 3.20,Image3.20_ExamplesOfForeEnds.png,Examples of fore-ends,Photograph/illustration of the item described in the caption.
+86,Image,Image 3.21,Image3.21_AUSMilitaryM4SelfLoadingRifleWithVarious.png,A US military M4 self-loading rifle with various upgrades,Photograph/illustration of the item described in the caption.
+87,Image,Image 3.22,Image3.22_BarrelsOfDifferentLengthsOnIsraeliIMIGalil.png,Barrels of different lengths on Israeli IMI Galil family weapons,Photograph/illustration of the item described in the caption.
+88,Image,Image 3.23,Image3.23_ExamplesOfMuzzleAttachments.png,Examples of muzzle attachments,Photograph/illustration of the item described in the caption.
+90,Box,Box 3.3,Box3.3_MythsAndMisconceptionsSilencers.png,Myths and misconceptions: ‘silencers’,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+90,Image,Image 3.24,Image3.24_AFinnishAseUtraSuppressorFittedToAn.png,A Finnish Ase Utra suppressor fitted to an early model Australian,Photograph/illustration of the item described in the caption.
+91,Image,Image 3.25,Image3.25_ExamplesOfDetachableBoxMagazines.png,Examples of detachable box magazines,Photograph/illustration of the item described in the caption.
+92,Image,Image 3.26,Image3.26_DetachableDrum.png,Detachable drum (left) and helical drum (right) magazines,Photograph/illustration of the item described in the caption.
+92,Image,Image 3.27,Image3.27_ANonDisintegratingBeltOf.png,A non-disintegrating belt of,Photograph/illustration of the item described in the caption.
+93,Image,Image 3.28,Image3.28_NonDisintegratingAndDisintegratingMachineGunBelts.png,Non-disintegrating and disintegrating machine gun belts,Photograph/illustration of the item described in the caption.
+93,Image,Image 3.29,Image3.29_LeftAndRightSideViewsOfATypicalBelt.png,"Left- and right-side views of a typical belt feed mechanism, including top",Photograph/illustration of the item described in the caption.
+94,Image,Image 3.30,Image3.30_TheBeltFeedMechanismsOfDShK.png,The belt feed mechanisms of DShK (left) and DShKM (right) HMGs,Photograph/illustration of the item described in the caption.
+95,Image,Image 3.31,Image3.31_AR15Type.png,AR-15-type (left) and AK-type (right) magazines,Photograph/illustration of the item described in the caption.
+96,Box,Box 3.4,Box3.4_MythsAndMisconceptionsClipOrMagazine.png,Myths and misconceptions: ‘clip’ or ‘magazine’?,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+96,Image,Image 3.32,Image3.32_ClipsVersusMagazines.png,Clips versus magazines,Photograph/illustration of the item described in the caption.
+97,Image,Image 3.33,Image3.33_ExamplesOfFirearmFinishes.png,Examples of firearm finishes,Photograph/illustration of the item described in the caption.
+98,Image,Image 3.34,Image3.34_ARangeOfFirearmsSpecificPaintFinishes.png,A range of firearms-specific paint finishes,Photograph/illustration of the item described in the caption.
+99,Box,Box 3.5,Box3.5_MythsAndMisconceptionsGoldenGuns.png,Myths and misconceptions: ‘golden guns’,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+99,Image,Image 3.35,Image3.35_AnFNHerstalHighPowerRenaissanceGradeHandgunDocumented.png,"An FN Herstal High-Power ‘Renaissance’ grade handgun, documented",Photograph/illustration of the item described in the caption.
+100,Image,Image 3.36,Image3.36_FactoryMarkingsReflectingManufacturePriorToAndAfter.png,Factory markings reflecting manufacture prior to and after November–,Photograph/illustration of the item described in the caption.
+101,Box,Box 3.6,Box3.6_CounterfeitAndReproductionFirearms.png,Counterfeit and reproduction firearms,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+101,Image,Image 3.37,Image3.37_MarkingsOnAChineseMadeCounterfeitPistolPurportingTo.png,"Markings on a Chinese-made counterfeit pistol, purporting to have",Photograph/illustration of the item described in the caption.
+102,Image,Image 3.38,Image3.38_SpuriousMarkingsOnASelfLoadingRifleFalselyClaimed.png,Spurious markings on a self-loading rifle falsely claimed to be an,Photograph/illustration of the item described in the caption.
+102,Image,Image 3.39,Image3.39_TheTroyIndustriesGAU5AAAModernReproductionOf.png,"The Troy Industries GAU-5/A/A, a modern reproduction of the Vietnam",Photograph/illustration of the item described in the caption.
+103,Image,Image 3.40,Image3.40_ExamplesOfFactoryMarkings.png,Examples of factory markings,Photograph/illustration of the item described in the caption.
+104,Image,Image 3.41,Image3.41_MakeManufacturerAndCountryOfOriginMarkingsOn.png,"Make, manufacturer, and country of origin markings on a German Heckler",Photograph/illustration of the item described in the caption.
+105,Image,Image 3.42,Image3.42_MakeMarkingOnARussianMP155SelfLoadingShotgun.png,Make marking on a Russian MP-155 self-loading shotgun,Photograph/illustration of the item described in the caption.
+105,Image,Image 3.43,Image3.43_MakeAndManufacturer.png,Make and manufacturer,Photograph/illustration of the item described in the caption.
+106,Image,Image 3.44,Image3.44_CountryMarkingOnAYugoslavianZastavaArmsM48A.png,Country marking on a Yugoslavian Zastava Arms M48A bolt-action rifle,Photograph/illustration of the item described in the caption.
+106,Image,Image 3.45,Image3.45_ARussianMosinNagantRifleMarkedOnThe.png,A Russian Mosin Nagant rifle marked on the top of the receiver in Russian,Photograph/illustration of the item described in the caption.
+107,Box,Box 3.7,Box3.7_StateParticipationInTheSmallArmsAndLight.png,State participation in the small arms and light weapons supply chain,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+108,Image,Image 3.46,Image3.46_ModelAndCalibreMarkings.png,Model and calibre markings,Photograph/illustration of the item described in the caption.
+109,Image,Image 3.47,Image3.47_ExamplesOfModelAndCalibreMarkings.png,Examples of model and calibre markings,Photograph/illustration of the item described in the caption.
+110,Image,Image 3.48,Image3.48_ARifleWithACalibreMarkingOnThe.png,A rifle with a calibre marking on the top surface of the receiver,Photograph/illustration of the item described in the caption.
+111,Image,Image 3.49,Image3.49_SerialNumberMarkingOnARussianAK1032SelfLoading.png,Serial number marking on a Russian AK-103-2 self-loading rifle,Photograph/illustration of the item described in the caption.
+112,Image,Image 3.50,Image3.50_PartSerialNumber.png,Part-serial number (3042) stamped on a recoil spring guide assembly from,Photograph/illustration of the item described in the caption.
+113,Image,Image 3.51,Image3.51_SerialNumber.png,Serial number (88-003391),Photograph/illustration of the item described in the caption.
+113,Image,Image 3.52,Image3.52_SerialNumber.png,Serial number (BI1229) and,Photograph/illustration of the item described in the caption.
+114,Image,Image 3.53,Image3.53_PostProductionSerialNumber.png,Post-production serial number (B-252) on a German Heckler & Koch,Photograph/illustration of the item described in the caption.
+115,Image,Image 3.54,Image3.54_ExamplesOfDateMarkings.png,Examples of date markings,Photograph/illustration of the item described in the caption.
+117,Image,Image 3.55,Image3.55_ExamplesOfSafetySelectorMarkings.png,Examples of safety/selector markings,Photograph/illustration of the item described in the caption.
+118,Image,Image 3.56,Image3.56_ExamplesOfSightMarkings.png,Examples of sight markings,Photograph/illustration of the item described in the caption.
+119,Image,Image 3.57,Image3.57_ExamplesOfProofAndInspectionMarkings.png,Examples of proof and inspection markings,Photograph/illustration of the item described in the caption.
+120,Image,Image 3.58,Image3.58_InspectionMarkingOnAnM16Barrel.png,Inspection marking on an M16 barrel,Photograph/illustration of the item described in the caption.
+121,Image,Image 3.59,Image3.59_ExamplesOfGovernmentPropertyAndArsenalMarkings.png,Examples of government property and arsenal markings,Photograph/illustration of the item described in the caption.
+122,Image,Image 3.60,Image3.60_ImportMarkingsOnAPolishKbkAKMSelfLoading.png,Import markings on a Polish kbk AKM self-loading rifle imported into the,Photograph/illustration of the item described in the caption.
+123,Image,Image 3.61,Image3.61_ExamplesOfInventoryMarkings.png,Examples of inventory markings,Photograph/illustration of the item described in the caption.
+123,Image,Image 3.62,Image3.62_PatentMarkingsOnGerman.png,Patent markings on German,Photograph/illustration of the item described in the caption.
+124,Image,Image 3.63,Image3.63_ManufacturerMarkingsOnMagazines.png,Manufacturer markings on magazines,Photograph/illustration of the item described in the caption.
+124,Image,Image 3.64,Image3.64_PartialSerialNumber.png,Partial serial number,Photograph/illustration of the item described in the caption.
+124,Image,Image 3.65,Image3.65_DifferentManufacturer.png,Different manufacturer,Photograph/illustration of the item described in the caption.
+125,Image,Image 3.66,Image3.66_MarkingsOnAnExternalPackaging.png,Markings on an external packaging,Photograph/illustration of the item described in the caption.
+126,Image,Image 3.67,Image3.67_PackagingCrateFromBelgianWeaponsDocumentedInLibya.png,Packaging crate from Belgian weapons documented in Libya,Photograph/illustration of the item described in the caption.
+126,Image,Image 3.68,Image3.68_MarkingsOnACrateDeliveredToQaddafiEraLibya.png,Markings on a crate delivered to Qaddafi-era Libya from North Korea,Photograph/illustration of the item described in the caption.
+128,Image,Image 3.69,Image3.69_DeliveryDocumentation.png,Delivery documentation (packing list) for Russian AK-103-2 self-loading,Photograph/illustration of the item described in the caption.
+129,Image,Image 3.70,Image3.70_MarkingsOnAGermanHecklerKochAG.png,Markings on a German Heckler & Koch AG SA 80 (L17A2) 40 × 46 SR,Photograph/illustration of the item described in the caption.
+133,Figure,Figure 4.1,Figure4.1_CrossSectionOfA7.png,Cross-section of a 7.62 × 51 mm cartridge,Diagram showing internal components in cross-section.
+134,Table,Table 4.1,Table4.1_DominantRifleAndMachineGunCartridgesInGlobal.png,Dominant rifle and machine gun cartridges in global military service,Table presenting structured data or a comparison relevant to the caption.
+135,Image,Image 4.1,Image4.1_CommonRifleAndMachineGunCartridges.png,Common rifle and machine gun cartridges,Photograph/illustration of the item described in the caption.
+136,Image,Image 4.2,Image4.2_CommonPistolCartridges.png,Common pistol cartridges,Photograph/illustration of the item described in the caption.
+136,Table,Table 4.2,Table4.2_SelectedCommonPistolCartridgesWorldwide.png,Selected common pistol cartridges worldwide,Table presenting structured data or a comparison relevant to the caption.
+138,Figure,Figure 4.2,Figure4.2_BasicCompositionOfA7.png,Basic composition of a 7.62 × 39 mm cartridge,Diagram illustrating the arrangement/composition described in the caption.
+139,Figure,Figure 4.3,Figure4.3_DistanceMeasuredBetweenTheLands.png,Distance measured between the lands (X) or grooves (Y) of a rifled barrel,Illustration comparing rifling types described in the caption.
+139,Image,Image 4.3,Image4.3_AFiredProjectileShowing.png,"A fired projectile, showing",Photograph/illustration of the item described in the caption.
+140,Image,Image 4.4,Image4.4_HeadstampMarkingsOnA7.png,Headstamp markings on a 7.62 × 39 mm cartridge case,Photograph/illustration of the item described in the caption.
+142,Table,Table 4.3,Table4.3_PurposesAndUsersOfAmmunitionByFunctionalType.png,Purposes and users of ammunition by functional type,Table presenting structured data or a comparison relevant to the caption.
+143,Image,Image 4.5,Image4.5_VariousTypesOf7.png,Various types of 7.62 × 51 mm cartridges,Photograph/illustration of the item described in the caption.
+144,Image,Image 4.6,Image4.6_TypicalCartridgeCaseRimConfigurations.png,Typical cartridge case rim configurations,Photograph/illustration of the item described in the caption.
+145,Image,Image 4.7,Image4.7_CommonCartridgeCaseConfigurations.png,Common cartridge case configurations,Photograph/illustration of the item described in the caption.
+147,Image,Image 4.8,Image4.8_CartridgesWithCasesMadeOfVariousMaterials.png,Cartridges with cases made of various materials,Photograph/illustration of the item described in the caption.
+148,Image,Image 4.9,Image4.9_TwoCartridgesOfTheSameCalibre.png,Two cartridges of the same calibre (.264 USA),Photograph/illustration of the item described in the caption.
+150,Figure,Figure 4.4,Figure4.4_ExamplesOfCommonProjectileJacketConfigurations.png,Examples of common projectile jacket configurations,Figure illustrating the concept described in the caption.
+150,Image,Image 4.10,Image4.10_DifferentProjectilesForThe5.png,Different projectiles for the 5.56 × 45 mm cartridge,Photograph/illustration of the item described in the caption.
+152,Image,Image 4.11,Image4.11_ExamplesOfVariousCrimpingFlutingAndCannelures.png,"Examples of various crimping, fluting, and cannelures",Photograph/illustration of the item described in the caption.
+154,Image,Image 4.12,Image4.12_SampleHeadstamps.png,Sample headstamps,Photograph/illustration of the item described in the caption.
+155,Image,Image 4.13,Image4.13_FurtherSampleHeadstamps.png,Further sample headstamps,Photograph/illustration of the item described in the caption.
+156,Box,Box 4.1,Box4.1_UnmarkedMismarkedAndCounterfeitHeadstamps.png,"Unmarked, mismarked, and counterfeit headstamps","Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+156,Image,Image 4.14,Image4.14_ACounterfeit7.png,"A counterfeit 7.62 × 51 mm cartridge produced in China, marked so",Photograph/illustration of the item described in the caption.
+157,Image,Image 4.15,Image4.15_Sudanese7.png,Sudanese 7.62 × 39 mm cartridges,Photograph/illustration of the item described in the caption.
+158,Image,Image 4.16,Image4.16_Various7.png,Various 7.62 × 39 mm cartridge projectiles from a range of countries and,Photograph/illustration of the item described in the caption.
+159,Table,Table 4.4,Table4.4_SelectedWarsawPactProjectileColourCodes.png,Selected Warsaw Pact projectile colour codes,Table presenting structured data or a comparison relevant to the caption.
+160,Figure,Figure 4.6,Figure4.6_SelectedNATOAndAssociatedMilitaryProjectileColourCodes.png,Selected NATO and associated military projectile colour codes,Figure illustrating the concept described in the caption.
+160,Table,Table 4.5,Table4.5_SelectedNATOAndAssociatedMilitaryProjectileColourCodes.png,Selected NATO and associated military projectile colour codes,Table presenting structured data or a comparison relevant to the caption.
+161,Figure,Figure 4.7,Figure4.7_ExamplesOfTheDifferentColoursTypesAndApplication.png,"Examples of the different colours, types, and application locations of sealants",Figure illustrating the concept described in the caption.
+162,Box,Box 4.2,Box4.2_MythsAndMisconceptionsPoisonedBullets.png,Myths and misconceptions: ‘poisoned bullets’,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+163,Image,Image 4.17,Image4.17_CommonMarkingsOnEasternBlocOuterPackaging.png,Common markings on Eastern Bloc outer packaging (wooden crate),Photograph/illustration of the item described in the caption.
+164,Figure,Figure 4.8,Figure4.8_TypicalMarkingFormatOnEasternBlocInnerPackaging.png,Typical marking format on Eastern Bloc inner packaging (metal tin) containing Soviet 7.62 × 54R mm light ball cartridges,Figure illustrating the concept described in the caption.
+164,Image,Image 4.18,Image4.18_ARepresentativeSoviet7.png,A representative Soviet 7.62 × 54R mm B-32 cartridge,Photograph/illustration of the item described in the caption.
+164,Image,Image 4.19,Image4.19_AmericanArmscorUSA.png,American Armscor USA .22 TCM cartridges in cardboard packaging with,Photograph/illustration of the item described in the caption.
+165,Image,Image 4.20,Image4.20_ExamplesOfCardboardInnerPackagingAssociatedWithCartridgeBased.png,Examples of cardboard inner packaging associated with cartridge-based,Photograph/illustration of the item described in the caption.
+169,Image,Image 5.1,Image5.1_ARussianDShKMHMG.png,A Russian DShKM HMG,Photograph/illustration of the item described in the caption.
+169,Image,Image 5.2,Image5.2_AnAmericanBrowningM2HBHMG.png,An American Browning M2 HB HMG,Photograph/illustration of the item described in the caption.
+170,Image,Image 5.3,Image5.3_ASouthAfricanDenelNTW202082.png,"A South African Denel NTW20 20 × 82 mm2 light cannon, considered by",Photograph/illustration of the item described in the caption.
+171,Image,Image 5.4,Image5.4_ASolothurnS18110020.png,A Solothurn S18-1100 20 ×,Photograph/illustration of the item described in the caption.
+172,Image,Image 5.5,Image5.5_AnAmericanM79BreakAction4046SRMm.png,An American M79 break-action 40 × 46SR mm grenade launcher,Photograph/illustration of the item described in the caption.
+172,Image,Image 5.6,Image5.6_ABulgarianArsenalMSGLRevolverType4046SR.png,A Bulgarian Arsenal MSGL revolver-type 40 × 46SR mm grenade launcher,Photograph/illustration of the item described in the caption.
+173,Image,Image 5.7,Image5.7_ASerbianZastavaArmsBGP40SemiCaseless40Mm.png,A Serbian Zastava Arms BGP40 semi-caseless 40 mm under-barrel grenade,Photograph/illustration of the item described in the caption.
+174,Image,Image 5.8,Image5.8_AUSM203A2ManuallyOperated4046SRMm.png,A US M203A2 manually-operated 40 × 46SR mm under-barrel grenade,Photograph/illustration of the item described in the caption.
+174,Image,Image 5.9,Image5.9_ABelgianFNHerstalFN40GLManuallyOperated40.png,A Belgian FN Herstal FN40GL manually-operated 40 × 46SR mm under-,Photograph/illustration of the item described in the caption.
+175,Image,Image 5.10,Image5.10_ARussianAGS30AGLWithASimpleOptical.png,A Russian AGS-30 AGL with a simple optical sight,Photograph/illustration of the item described in the caption.
+176,Box,Box 5.1,Box5.1_FCSsAndAirburstMunitionsForAGLs.png,FCSs and airburst munitions for AGLs,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+176,Image,Image 5.11,Image5.11_AUSGeneralDynamicsOrdnanceAndTacticalSystems.png,A US General Dynamics Ordnance and Tactical Systems MK 47 Mod 0,Photograph/illustration of the item described in the caption.
+177,Image,Image 5.12,Image5.12_NammoMK285.png,Nammo MK 285,Photograph/illustration of the item described in the caption.
+178,Image,Image 5.13,Image5.13_ABritishStokes3InchLight.png,A British Stokes 3-inch ‘light,Photograph/illustration of the item described in the caption.
+178,Image,Image 5.14,Image5.14_SerbianM6982MmMortar.png,Serbian M69 82 mm mortar,Photograph/illustration of the item described in the caption.
+180,Image,Image 5.15,Image5.15_ASwedishSaabAT4ShoulderFiredRecoillessWeapon.png,A Swedish Saab AT4 shoulder-fired recoilless weapon,Photograph/illustration of the item described in the caption.
+180,Image,Image 5.16,Image5.16_ARussianSPG9CrewServedRecoillessGun.png,A Russian SPG-9 crew-served recoilless gun,Photograph/illustration of the item described in the caption.
+181,Image,Image 5.17,Image5.17_AmericanTalleyDefenseSystemsM72LightAntiTankWeapon.png,American Talley Defense Systems M72 light anti-tank weapon (LAW),Photograph/illustration of the item described in the caption.
+182,Box,Box 5.2,Box5.2_MythsAndMisconceptionsRocketLaunchersVersusRecoillessWeapons.png,Myths and misconceptions: ‘rocket launchers’ versus ‘recoilless weapons’,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+182,Image,Image 5.18,Image5.18_ARussianRPG7VShoulderFiredRecoillessWeapon.png,A Russian RPG-7V shoulder-fired recoilless weapon,Photograph/illustration of the item described in the caption.
+184,Image,Image 5.19,Image5.19_ARussian9K135KornetE.png,A Russian 9K135 Kornet-E,Photograph/illustration of the item described in the caption.
+185,Image,Image 5.20,Image5.20_A9K32MStrela2MMANPADSAndIts9M32MSAM.png,A 9K32M Strela-2M MANPADS and its 9M32M SAM,Photograph/illustration of the item described in the caption.
+186,Image,Image 5.21,Image5.21_ASwedishSaabRBS70NGCREWPADSFiring.png,A Swedish Saab RBS 70 NG CREWPADS firing BOLIDE ‘all-target’ SAM,Photograph/illustration of the item described in the caption.
+187,Image,Image 5.22,Image5.22_ABrowning.png,A Browning,Photograph/illustration of the item described in the caption.
+187,Image,Image 5.23,Image5.23_TheRearOfTheReceiverOfARomanian.png,The rear of the receiver of a Romanian copy of a KPV HMG,Photograph/illustration of the item described in the caption.
+188,Image,Image 5.24,Image5.24_TheCircularBaseplateOfABritishL1681.png,The circular baseplate of a British L16 81 mm mortar,Photograph/illustration of the item described in the caption.
+189,Image,Image 5.25,Image5.25_ExamplesOfBeltedAmmunition.png,Examples of belted ammunition,Photograph/illustration of the item described in the caption.
+190,Image,Image 5.26,Image5.26_AnM2TypeHMGFittedWithVariousOptical.png,An M2 type HMG fitted with various optical sight systems,Photograph/illustration of the item described in the caption.
+191,Image,Image 5.27,Image5.27_MarkingsOnAPolishDShKM.png,Markings on a Polish DShKM,Photograph/illustration of the item described in the caption.
+191,Image,Image 5.28,Image5.28_MarkingsOnARussianRPG7VLauncher.png,Markings on a Russian RPG-7V launcher,Photograph/illustration of the item described in the caption.
+192,Image,Image 5.29,Image5.29_MarkingsOnTheRearOfAnM40A1PatternRecoilless.png,Markings on the rear of an M40A1-pattern recoilless gun,Photograph/illustration of the item described in the caption.
+192,Image,Image 5.30,Image5.30_ASafety.png,A safety/,Photograph/illustration of the item described in the caption.
+193,Image,Image 5.31,Image5.31_MarkingPlate.png,Marking plate,Photograph/illustration of the item described in the caption.
+193,Image,Image 5.32,Image5.32_MarkingPlateOnAnAmericanHughesAircraftCo.png,Marking plate on an American Hughes Aircraft Co. TOW ATGM launch unit,Photograph/illustration of the item described in the caption.
+194,Image,Image 5.33,Image5.33_MarkingsOnTheMuzzleEndOfABritish.png,Markings on the muzzle end of a British L16A2 81 mm mortar barrel,Photograph/illustration of the item described in the caption.
+194,Image,Image 5.34,Image5.34_FireSelector.png,Fire selector,Photograph/illustration of the item described in the caption.
+195,Table,Table 5.1,Table5.1_SelectedHMGCartridgesInMilitaryService.png,Selected HMG cartridges in military service,Table presenting structured data or a comparison relevant to the caption.
+196,Image,Image 5.35,Image5.35_SomeSampleCartridgesUsedWithHMGsATRsAndOr.png,"Some sample cartridges used with HMGs, ATRs, and/or AMRs",Photograph/illustration of the item described in the caption.
+197,Table,Table 5.2,Table5.2_DominantLightCannonCartridgesInGlobalMilitaryService.png,Dominant light cannon cartridges in global military service,Table presenting structured data or a comparison relevant to the caption.
+198,Image,Image 5.36,Image5.36_ExamplesOfCartridgesUsedWithLightCannon.png,Examples of cartridges used with light cannon,Photograph/illustration of the item described in the caption.
+199,Image,Image 5.37,Image5.37_SelectedLightCannonAmmunition.png,Selected light cannon ammunition,Photograph/illustration of the item described in the caption.
+200,Image,Image 5.38,Image5.38_ASoviet23152BMmCannonCartridge.png,A Soviet 23 × 152B mm cannon cartridge,Photograph/illustration of the item described in the caption.
+202,Image,Image 5.39,Image5.39_SomeSampleCartridgesUsedWithGrenadeLaunchers.png,Some sample cartridges used with grenade launchers,Photograph/illustration of the item described in the caption.
+203,Table,Table 5.3,Table5.3_SelectedGrenadeLauncherCartridgesInGlobalMilitaryService.png,Selected grenade launcher cartridges in global military service,Table presenting structured data or a comparison relevant to the caption.
+204,Image,Image 5.40,Image5.40_ExamplesOfRecentGrenadeLauncherCartridges.png,Examples of recent grenade launcher cartridges,Photograph/illustration of the item described in the caption.
+204,Image,Image 5.41,Image5.41_TheRaytheonPike40MmGuidedMissile.png,The Raytheon Pike 40 mm guided missile,Photograph/illustration of the item described in the caption.
+205,Box,Box 5.3,Box5.3_CommonTypesOfExplosiveWarheadsUsedInLight.png,Common types of explosive warheads used in light weapons ammunition,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+206,Figure,Figure 5.1,Figure5.1_SomeOfTheKeyPhysicalFeaturesOfGrenade.png,Some of the key physical features of grenade launcher ammunition,Annotated diagram highlighting key physical features described in the caption.
+207,Image,Image 5.42,Image5.42_TwoUSM3854053SRMmPractice.png,"Two US M385 40 × 53SR mm practice cartridges in links, as used with",Photograph/illustration of the item described in the caption.
+208,Figure,Figure 5.2,Figure5.2_SampleMarkingsOnABulgarianArsenalRLVHEF140.png,Sample markings on a Bulgarian Arsenal RLV-HEF-1 40 × 46SR mm HE-FRAG cartridge,Annotated photo/diagram showing selected markings described in the caption.
+209,Figure,Figure 5.3,Figure5.3_ArrangementOfATypicalMortarProjectile.png,Arrangement of a typical mortar projectile,Diagram illustrating the arrangement/composition described in the caption.
+210,Image,Image 5.43,Image5.43_XM395PrecisionGuided.png,XM395 precision guided,Photograph/illustration of the item described in the caption.
+211,Image,Image 5.44,Image5.44_ARangeOf60Mm81Mm.png,"A range of 60 mm, 81 mm,",Photograph/illustration of the item described in the caption.
+212,Image,Image 5.45,Image5.45_MarkingsOnABritish.png,Markings on a British,Photograph/illustration of the item described in the caption.
+212,Image,Image 5.46,Image5.46_MarkingsOnVariousIgnition.png,Markings on various ignition,Photograph/illustration of the item described in the caption.
+213,Box,Box 5.4,Box5.4_USAmmunitionMarkingColourScheme.png,US ammunition marking colour scheme,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+213,Table,Table 5.4,Table5.4_SelectedMarkingColoursOnUSAmmunition.png,Selected marking colours on US ammunition,Table presenting structured data or a comparison relevant to the caption.
+215,Image,Image 5.47,Image5.47_ARangeOfCartridgesProducedForUseWith.png,A range of cartridges produced for use with the Carl-Gustaf shoulder-fired,Photograph/illustration of the item described in the caption.
+215,Image,Image 5.48,Image5.48_BulgarianPG7ProjectilesInTheProcessOfBeing.png,Bulgarian PG-7 projectiles in the process of being assembled,Photograph/illustration of the item described in the caption.
+217,Image,Image 5.49,Image5.49_SovietBK881MType82MmRecoillessHEATProjectile.png,Soviet BK-881M type 82 mm recoilless HEAT projectile,Photograph/illustration of the item described in the caption.
+217,Image,Image 5.50,Image5.50_AnEarlySovietRPOAShoulderFired93MmRecoilless.png,An early Soviet RPO-A shoulder-fired 93 mm recoilless weapon showing,Photograph/illustration of the item described in the caption.
+218,Image,Image 5.51,Image5.51_MarkingsOnABulgarianPG7MProjectileForThe.png,Markings on a Bulgarian PG-7M projectile for the RPG-7 series of,Photograph/illustration of the item described in the caption.
+218,Image,Image 5.52,Image5.52_MarkingsOnTheBaseOfA106Mm.png,Markings on the base of a 106 mm,Photograph/illustration of the item described in the caption.
+219,Box,Box 5.5,Box5.5_RPG7ProjectileDesignations.png,RPG-7 projectile designations,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+219,Image,Image 5.53,Image5.53_PG7PExpellingChargesForTheRPG7ShoulderFiredRecoilless.png,PG-7P expelling charges for the RPG-7 shoulder-fired recoilless weapon,Photograph/illustration of the item described in the caption.
+220,Figure,Figure 5.4,Figure5.4_ArrangementOfATypicalFinStabilizedRocket.png,Arrangement of a typical fin-stabilized rocket,Diagram illustrating the arrangement/composition described in the caption.
+221,Image,Image 5.54,Image5.54_MarkingsOnAnIranian107MmRocketAnd.png,Markings on an Iranian 107 mm rocket and another rocket’s inner packaging,Photograph/illustration of the item described in the caption.
+223,Figure,Figure 5.5,Figure5.5_MarkingsOnARussian9M113KonkursATGM.png,Markings on a Russian 9M113 Konkurs ATGM,Annotated photo/diagram showing selected markings described in the caption.
+223,Image,Image 5.55,Image5.55_ExamplesOf.png,Examples of,Photograph/illustration of the item described in the caption.
+224,Image,Image 5.56,Image5.56_External.png,External,Photograph/illustration of the item described in the caption.
+225,Figure,Figure 5.6,Figure5.6_MarkingsOnOuterPackagingForARussian9M113.png,Markings on outer packaging for a Russian 9M113 Konkurs ATGM,Annotated photo/diagram showing selected markings described in the caption.
+226,Image,Image 5.57,Image5.57_ExternalPackagingContainingYugoslavianM7281MmMortar.png,External packaging containing Yugoslavian M72 81 mm mortar projectiles,Photograph/illustration of the item described in the caption.
+226,Image,Image 5.58,Image5.58_PackingListAttachedToTheInsideOfA.png,Packing list attached to the inside of a wooden crate containing Russian,Photograph/illustration of the item described in the caption.
+227,Image,Image 5.59,Image5.59_DeliberatelyMislabelledCrateMarkedPartsOfBulldozerActually.png,"Deliberately mislabelled crate marked ‘Parts of bulldozer’, actually",Photograph/illustration of the item described in the caption.
+228,Image,Image 5.60,Image5.60_WoodenOuterPackaging.png,Wooden outer packaging (shipping crate) containing two 9M32M type,Photograph/illustration of the item described in the caption.
+228,Image,Image 5.61,Image5.61_MarkingsOnABulgarian.png,Markings on a Bulgarian,Photograph/illustration of the item described in the caption.
+229,Figure,Figure 5.7,Figure5.7_DeliveryDocumentation.png,Delivery documentation (packing list) for 9P135M-1 ATGW launchers delivered to Libya in the late 1980s,Figure illustrating the concept described in the caption.
+233,Image,Image 6.1,Image6.1_ACrudeImprovisedZipGunWithABarrel.png,A crude improvised ‘zip gun’ with a barrel fashioned from a length of car,Photograph/illustration of the item described in the caption.
+236,Image,Image 6.2,Image6.2_AnEspeciallyCrudeImprovisedMuzzleLoadingHandgunFeaturingA.png,"An especially crude improvised muzzle-loading handgun, featuring a barrel",Photograph/illustration of the item described in the caption.
+236,Image,Image 6.3,Image6.3_SlamFireShotgunsSeizedFromAMakeshiftWorkshopUsed.png,Slam-fire shotguns seized from a makeshift workshop used by a gang in,Photograph/illustration of the item described in the caption.
+237,Image,Image 6.4,Image6.4_ACrude.png,A crude,Photograph/illustration of the item described in the caption.
+238,Image,Image 6.5,Image6.5_AConventionallyProducedM3SubMachineGun.png,A conventionally-produced M3 sub-machine gun (top) and a Luty style,Photograph/illustration of the item described in the caption.
+239,Box,Box 6.1,Box6.1_3DPrintingAndImprovisedFirearms.png,3D printing and improvised firearms,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+240,Image,Image 6.6,Image6.6_ACopyOfThe1911A1SelfLoadingPistolProduced.png,A copy of the 1911A1 self-loading pistol produced using the direct,Photograph/illustration of the item described in the caption.
+241,Image,Image 6.7,Image6.7_AStillFromAnIslamicStatePropagandaVideo.png,A still from an Islamic State propaganda video showing a craft-produced,Photograph/illustration of the item described in the caption.
+241,Image,Image 6.8,Image6.8_ASovietS5Rocket.png,A Soviet S-5 rocket (top) and an improvised shoulder-fired rocket launcher,Photograph/illustration of the item described in the caption.
+242,Box,Box 6.2,Box6.2_ArtisanProduction.png,‘Artisan’ production,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+243,Image,Image 6.9,Image6.9_APakistaniCraftProducedBoltActionRifleChamberedForThe.png,A Pakistani craft-produced bolt-action rifle chambered for the 7 × 57 mm,Photograph/illustration of the item described in the caption.
+244,Image,Image 6.10,Image6.10_MarkingsOnAnAKTypeSelfLoadingRifleCraftProduced.png,Markings on an AK-type self-loading rifle craft produced in Pakistan,Photograph/illustration of the item described in the caption.
+245,Image,Image 6.11,Image6.11_AnAKTypeSelfLoadingRifleCraftProducedInPakistan.png,"An AK-type self-loading rifle craft produced in Pakistan, without the",Photograph/illustration of the item described in the caption.
+246,Box,Box 6.3,Box6.3_CounterfeitWeapons.png,Counterfeit weapons,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+246,Image,Image 6.12,Image6.12_ExposedSlidePortionOfACraftProducedCopyOf.png,Exposed slide portion of a craft-produced copy of the Colt 1911,Photograph/illustration of the item described in the caption.
+247,Image,Image 6.13,Image6.13_AnExampleOfTheIllicitCroatianDesignTypically.png,An example of the illicit Croatian design typically marked ‘Intratec,Photograph/illustration of the item described in the caption.
+249,Image,Image 6.14,Image6.14_A6P42SeriesTraumaticPistolItselfADesign.png,"A 6P42 series traumatic pistol, itself a design originally based on the",Photograph/illustration of the item described in the caption.
+254,Image,Image 6.15,Image6.15_ThreeVersionsOfAPMTypeSelfLoadingHandgun.png,Three versions of a PM-type self-loading handgun,Photograph/illustration of the item described in the caption.
+255,Box,Box 6.4,Box6.4_Capability.png,Capability,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+255,Image,Image 6.16,Image6.16_ATypicalPenTypeZipGun.png,A typical pen-type zip gun,Photograph/illustration of the item described in the caption.
+257,Image,Image 6.17,Image6.17_ImprovisedMortarProjectilesConvertedFromGasCylindersSyria.png,"Improvised mortar projectiles converted from gas cylinders, Syria, 2013",Photograph/illustration of the item described in the caption.
+259,Image,Image 6.18,Image6.18_ImprovisedAmmunition.png,Improvised ammunition,Photograph/illustration of the item described in the caption.
+260,Image,Image 6.19,Image6.19_AnAmericanMichiganArmsWolverineInLineMuzzleLoadingRifle.png,An American Michigan Arms Wolverine in-line muzzle-loading rifle,Photograph/illustration of the item described in the caption.
+262,Image,Image 6.20,Image6.20_AProducersWorkshopWithSelectedHandToolsNigeria.png,"A producer’s workshop with selected hand tools, Nigeria",Photograph/illustration of the item described in the caption.
+267,Box,Box 7.1,Box7.1_UnloadAndClearProcedures.png,Unload and clear procedures,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+274,Image,Image 7.1,Image7.1_AHandDrawnSiteExploitationSketch.png,A hand-drawn site exploitation sketch,Photograph/illustration of the item described in the caption.
+280,Figure,Figure 7.1,Figure7.1_MarkingsOnAKTypeRifles.png,Markings on AK-type rifles,Annotated photo/diagram showing selected markings described in the caption.
+282,Image,Image 7.2,Image7.2_PalestinianIslamicJihadAlQudsBrigadesMemberWithBelgian.png,Palestinian Islamic Jihad al-Quds Brigades member with Belgian FN Herstal,Photograph/illustration of the item described in the caption.
+283,Image,Image 7.3,Image7.3_ComparativeStudyOfAK101.png,"Comparative study of AK-101 (top) with magazine profile marked in purple,",Photograph/illustration of the item described in the caption.
+285,Image,Image 7.4,Image7.4_AliAndHisFellowFightersDuringThe2011.png,Ali and his fellow fighters during the 2011 Libyan Civil War,Photograph/illustration of the item described in the caption.
+287,Image,Image 7.5,Image7.5_AnAK103RifleInTheHandsOfA.png,An AK-103 rifle in the hands of a militant from the National Resistance,Photograph/illustration of the item described in the caption.
+287,Image,Image 7.6,Image7.6_TheSameModelOfRifleWithMilitantsFrom.png,The same model of rifle with militants from the ‘naval commando’ unit of,Photograph/illustration of the item described in the caption.
+288,Image,Image 7.7,Image7.7_AK103RiflesInTheHandsOfIslamicState.png,"AK-103 rifles in the hands of Islamic State fighters in Libya, 2015188",Photograph/illustration of the item described in the caption.
+288,Image,Image 7.8,Image7.8_AK1032RifleDocumentedForSaleViaSocialMedia.png,"AK-103-2 rifle documented for sale via social media in Iraq, 2016",Photograph/illustration of the item described in the caption.
+289,Map,Map 7.1,Map7.1_MappingTheProliferationOfAK103TypeRiflesConnected.png,Mapping the proliferation of AK-103 type rifles connected to Libya,"Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+293,Table,Table 8.1,Table8.1_SourcesOfDataOnAuthorizedTransfers.png,Sources of data on authorized transfers,Table presenting structured data or a comparison relevant to the caption.
+295,Map,Map 8.1,Map8.1_ExcerptFromAlbaniasNationalReportOnExportsOf.png,"Excerpt from Albania’s national report on exports of military goods, 2014","Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+296,Map,Map 8.2,Map8.2_ExcerptFromTheEUsAnnualReportOnImports.png,"Excerpt from the EU’s annual report on imports and exports of military goods and technologies, 2015 (exports to Iraq)","Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+296,Table,Table 8.2,Table8.2_EUCommonMilitaryListCategories1To4.png,"EU Common Military List, categories 1 to 4",Table presenting structured data or a comparison relevant to the caption.
+297,Table,Table 8.3,Table8.3_StrengthsAndLimitationsOfNationalReports.png,Strengths and limitations of national reports,Table presenting structured data or a comparison relevant to the caption.
+298,Map,Map 8.4,Map8.4_SelectHarmonizedSystem.png,"Select Harmonized system (HS) commodity categories that include small arms, light weapons, ammunition, parts, and accessories","Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+301,Map,Map 8.3,Map8.3_GlobalTrendsInSmallArmsImportsByRegion.png,"Global trends in small arms imports by region, as reported to UN Comtrade (USD million), 2001–14","Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+302,Map,Map 8.5,Map8.5_ValueOfSmallArmsSuppliedToTheAmericas.png,"Value of small arms supplied to the Americas, by subregion, as reported to UN Comtrade (USD million), 2001–14","Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+303,Map,Map 8.6,Map8.6_ExportsOfMilitaryFirearmsAndOtherItemsFrom.png,"Exports of military firearms and other items from the United States as recorded under HS code 930190, 2006–15","Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+304,Map,Map 8.7,Map8.7_DataOnWeaponSightsImportedByChilePeru.png,"Data on weapon sights imported by Chile, Peru, and Uruguay, 2007–10","Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+306,Map,Map 8.4,Map8.4_DataOnSmallArmsExportsReportedByChina.png,"Data on small arms exports reported by China (top) and by four trade partners in Africa (bottom), 2010–14","Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+307,Map,Map 8.8,Map8.8_StrengthsAndLimitationsOfUNComtrade.png,Strengths and limitations of UN Comtrade,"Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+309,Map,Map 8.5,Map8.5_ExcerptsFromTheRussianFederationsSubmissionToThe.png,Excerpts from the Russian Federation’s submission to the UN Register regarding conventional arms exported in 2009 (top) and 2012 (bottom),"Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+310,Map,Map 8.6,Map8.6_ExcerptFromTheCzechRepublicsSubmissionToThe.png,Excerpt from the Czech Republic’s submission to the UN Register regarding small arms exported in 2010,"Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+311,Map,Map 8.9,Map8.9_StrengthsAndLimitationsOfTheUNRegisterOf.png,Strengths and limitations of the UN Register of Conventional Arms,"Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+314,Image,Image 8.1,Image8.1_ScreenshotsFromVideoOfVenezuelanMilitaryParade2009.png,"Screenshots from video of Venezuelan military parade, 2009",Photograph/illustration of the item described in the caption.
+315,Map,Map 8.10,Map8.10_StrengthsAndLimitationsOfUsingSocialMediaTo.png,Strengths and limitations of using social media to research arms flows,"Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+317,Map,Map 8.7,Map8.7_USDefenseDepartmentContractAwardNoticeRegardingThe.png,"US Defense Department contract award notice regarding the procurement of 40 mm grenade launchers for Iraq, 2016","Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+318,Box,Box 8.1,Box8.1_TipsForResearchersAnalysingDataOnAuthorizedArms.png,Tips for researchers: analysing data on authorized arms flows,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+324,Map,Map 9.1,Map9.1_SmallArmsTakenIntoCustodyByUSCBP.png,"Small arms taken into custody by US CBP, 2009–11","Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+326,Image,Image 9.1,Image9.1_WeaponsSeizedInAnArmsCacheAfghanistan2011.png,"Weapons seized in an arms cache, Afghanistan, 2011",Photograph/illustration of the item described in the caption.
+328,Map,Map 9.2,Map9.2_FirearmsTakenIntoCustodyByTheLAPD2009.png,"Firearms taken into custody by the LAPD, 2009","Map visualization illustrating locations, flows, or geographic distribution described in the caption."
+329,Image,Image 9.2,Image9.2_RedactedIntelligenceReportsObtainedFromTheUSGovernment.png,Redacted intelligence reports obtained from the US government (left) and,Photograph/illustration of the item described in the caption.
+331,Image,Image 9.3,Image9.3_ShipManifestFoundOnThe.png,Ship manifest found on the,Photograph/illustration of the item described in the caption.
+331,Image,Image 9.4,Image9.4_PackingListFoundInACrateOf.png,Packing list found in a crate of,Photograph/illustration of the item described in the caption.
+332,Image,Image 9.5,Image9.5_SocialMediaImagesOfMANPADSAcquiredByArmed.png,"Social media images of MANPADS acquired by armed groups in Syria,",Photograph/illustration of the item described in the caption.
+333,Box,Box 9.1,Box9.1_MANPADSAndSocialMedia.png,MANPADS and social media,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."
+334,Image,Image 9.6,Image9.6_FakeStingerMissileFeaturedInAVideoReportedly.png,Fake ‘Stinger missile’ featured in a video reportedly taken in Ukraine,Photograph/illustration of the item described in the caption.
+335,Box,Box 9.2,Box9.2_TipsForAnalysingDataOnIllicitSmallArms.png,Tips for analysing data on illicit small arms and light weapons,"Boxed sidebar containing focused explanatory text, definitions, or a case example described in the caption."

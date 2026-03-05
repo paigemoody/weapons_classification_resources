@@ -1,10 +1,11 @@
 id,Prompt,Image URL,Image Caption,Option 1,Option 2,Option 3,Option 4,Option 5
-SmallArms,Which Small Arms group best fits?,,, Handguns,LongGuns,,,
-Handguns,Which barrel type best fits what you see?,https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/small_arms_survey/visuals/Figure_3.4_Rifled_and_smooth-bore_barrels.png?raw=true,Rifled and smooth-bore barrels,SelfLoadingPistols,Revolvers,OtherHandguns,,
-LongGuns,Which type of long gun best matches?,,, SubMachineGuns,ManPortableMachineGuns,Rifles,Shotguns,OtherLongGuns
-Rifles,Rifles: Which sub-type of rifled long guns matches best?,,, SelfLoadingRifles,ManuallyOperatedRifles,,,
-Shotguns,How is ammunition loaded into the shotgun?,,, SelfLoadingShotguns,ManuallyOperatedShotguns,,,
-SelfLoadingRifles,Which operation method of self-loading rifled long gun best fits?,,, AutomaticRifles,SemiAutomaticRifles,,,
-ManuallyOperatedRifles,Which operation method of manually-loaded rifled long gun best fits?,,, BreakActionRifles,BoltActionRifles,LeverActionRifles,PumpActionRifles,OtherManuallyOperatedRifles
-SelfLoadingShotguns,Which self-loading shotgun matches best?,,, AutomaticShotguns,SemiAutomaticShotguns,,,
-ManuallyOperatedShotguns,Which manually operated shotgun matches best?,,, BreakActionShotguns,BoltActionShotguns,LeverActionShotguns,PumpActionShotguns,OtherManuallyOperatedShotguns
+SmallArms,How would you hold this weapon to operate it?,,,Handguns,LongGuns,,,
+Handguns,Does the handgun have a rotating cylinder?,https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/small_arms_survey/visuals/Figure_3.4_Rifled_and_smooth-bore_barrels.png?raw=true,Rifled and smooth-bore barrels,SelfLoadingPistols,Revolvers,OtherHandguns,,
+LongGuns,What is the bore type of the long gun?,https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/small_arms_survey/visuals/Figure_3.4_Rifled_and_smooth-bore_barrels.png?raw=true,Rifled and smooth-bore barrels,Shotguns,RifledLongGuns,,,
+RifledLongGuns,What type of rifled long gun best matches?,,,SubMachineGuns,ManPortableMachineGuns,Rifles,OtherLongGuns,
+Rifles,How does the rifle load the next round after firing?,,,SelfLoadingRifles,ManuallyOperatedRifles,,,
+Shotguns,How does the shotgun load the next round after firing?,,,SelfLoadingShotguns,ManuallyOperatedShotguns,,,
+SelfLoadingRifles,How many rounds does the rifle fire per trigger pull?,,,AutomaticRifles,SemiAutomaticRifles,,,
+ManuallyOperatedRifles,What action mechanism does the rifle use?,,,BreakActionRifles,BoltActionRifles,LeverActionRifles,PumpActionRifles,OtherManuallyOperatedRifles
+SelfLoadingShotguns,How many rounds does the shotgun fire per trigger pull?,,,AutomaticShotguns,SemiAutomaticShotguns,,,
+ManuallyOperatedShotguns,What action mechanism does the shotgun use?,,,BreakActionShotguns,BoltActionShotguns,LeverActionShotguns,PumpActionShotguns,OtherManuallyOperatedShotguns

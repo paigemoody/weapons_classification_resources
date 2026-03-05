@@ -68,7 +68,7 @@ def load_csv(path: Path, key_col: str) -> Dict[str, dict]:
         for row in csv.DictReader(f):
             key = row.get(key_col, '').strip()
             if key:
-                result[key] = {k: (v.strip() if v else '') for k, v in row.items()}
+                result[key] = {k: (v.strip() if isinstance(v, str) else '') for k, v in row.items() if k is not None}
     return result
 
 
@@ -118,9 +118,12 @@ def build_mmd(
         if not opt:
             print(f"  warning: no option content for edge {src} -> {dst}", file=sys.stderr)
         opt = opt or {}
+        arcs_level = opt.get('ARCS Level', '')
+        arcs_name = opt.get('ARCS Name', '')
+        arcs_ref = f' (ARCS {arcs_level}: {arcs_name})' if arcs_level and arcs_name else ''
         edge_label = html_label(
             title=opt.get('Option Name', dst),
-            description=opt.get('Description', ''),
+            description=opt.get('Description', '') + arcs_ref,
             image_url=opt.get('Image URL', ''),
         )
         lines.append(f'  {src} --> |"{edge_label}"| {dst}')

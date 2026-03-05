@@ -12,12 +12,15 @@ flowchart TB
   Handguns --> Revolvers
   Handguns --> OtherHandguns
 
-  %% Type - under Long Guns
-  LongGuns --> SubMachineGuns
-  LongGuns --> ManPortableMachineGuns
-  LongGuns --> Rifles
+  %% Bore type split under Long Guns (navigation node — not an ARCS level)
   LongGuns --> Shotguns
-  LongGuns --> OtherLongGuns
+  LongGuns --> RifledLongGuns
+
+  %% Type - under Rifled Long Guns
+  RifledLongGuns --> SubMachineGuns
+  RifledLongGuns --> ManPortableMachineGuns
+  RifledLongGuns --> Rifles
+  RifledLongGuns --> OtherLongGuns
 
   %% Sub-type - under Rifles
   Rifles --> SelfLoadingRifles
