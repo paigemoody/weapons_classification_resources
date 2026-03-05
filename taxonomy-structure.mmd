@@ -1,0 +1,50 @@
+flowchart TB
+
+  %% Class
+  SmallArms
+
+  %% Group
+  SmallArms --> Handguns
+  SmallArms --> LongGuns
+
+  %% Type - under Handguns
+  Handguns --> SelfLoadingPistols
+  Handguns --> Revolvers
+  Handguns --> OtherHandguns
+
+  %% Type - under Long Guns
+  LongGuns --> SubMachineGuns
+  LongGuns --> ManPortableMachineGuns
+  LongGuns --> Rifles
+  LongGuns --> Shotguns
+  LongGuns --> OtherLongGuns
+
+  %% Sub-type - under Rifles
+  Rifles --> SelfLoadingRifles
+  Rifles --> ManuallyOperatedRifles
+
+  %% Sub-type - under Shotguns
+  Shotguns --> SelfLoadingShotguns
+  Shotguns --> ManuallyOperatedShotguns
+
+  %% Method of operation - under Self-loading Rifles
+  SelfLoadingRifles --> AutomaticRifles
+  SelfLoadingRifles --> SemiAutomaticRifles
+
+  %% Method of operation - under Manually Operated Rifles
+  ManuallyOperatedRifles --> BreakActionRifles
+  ManuallyOperatedRifles --> BoltActionRifles
+  ManuallyOperatedRifles --> LeverActionRifles
+  ManuallyOperatedRifles --> PumpActionRifles
+  ManuallyOperatedRifles --> OtherManuallyOperatedRifles
+
+  %% Method of operation - under Self-loading Shotguns
+  SelfLoadingShotguns --> AutomaticShotguns
+  SelfLoadingShotguns --> SemiAutomaticShotguns
+
+  %% Method of operation - under Manually Operated Shotguns
+  ManuallyOperatedShotguns --> BreakActionShotguns
+  ManuallyOperatedShotguns --> BoltActionShotguns
+  ManuallyOperatedShotguns --> LeverActionShotguns
+  ManuallyOperatedShotguns --> PumpActionShotguns
+  ManuallyOperatedShotguns --> OtherManuallyOperatedShotguns

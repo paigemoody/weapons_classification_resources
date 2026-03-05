@@ -1,0 +1,21 @@
+id,Name,Class,Group,Type,Sub-type,Description,Image URL,Image Caption
+SelfLoadingPistols,Self-loading Pistols,Small Arms,Handguns,Self-loading Pistols,,A self-loading pistol with a rifled barrel that fires one round per trigger pull and automatically cycles the action.,https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.13_SelfLoading_Pistols.png?raw=true,Self-loading pistol examples
+Revolvers,Revolvers,Small Arms,Handguns,Revolvers,,A handgun with a rifled barrel and a rotating cylinder that holds multiple cartridges.,https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.12_Revolvers.png?raw=true,Revolver examples
+OtherHandguns,Other Handguns,Small Arms,Handguns,Other Handguns,,,,
+SubMachineGuns,Sub-machine Guns,Small Arms,Long Guns,Sub-machine Guns,,,,
+ManPortableMachineGuns,Man-portable Machine Guns,Small Arms,Long Guns,Man-portable Machine Guns,,,,
+OtherLongGuns,Other Long Guns,Small Arms,Long Guns,Other Long Guns,,,,
+AutomaticRifles,Automatic Rifles,Small Arms,Long Guns,Rifles,Self-loading Rifles,,,
+SemiAutomaticRifles,Semi-automatic Rifles,Small Arms,Long Guns,Rifles,Self-loading Rifles,,,
+BreakActionRifles,Break-action Rifles,Small Arms,Long Guns,Rifles,Manually Operated Rifles,,,
+BoltActionRifles,Bolt-action Rifles,Small Arms,Long Guns,Rifles,Manually Operated Rifles,,,
+LeverActionRifles,Lever-action Rifles,Small Arms,Long Guns,Rifles,Manually Operated Rifles,,,
+PumpActionRifles,Pump-action Rifles,Small Arms,Long Guns,Rifles,Manually Operated Rifles,,,
+OtherManuallyOperatedRifles,Other Manually Operated Rifles,Small Arms,Long Guns,Rifles,Manually Operated Rifles,,,
+AutomaticShotguns,Automatic Shotguns,Small Arms,Long Guns,Shotguns,Self-loading Shotguns,,,
+SemiAutomaticShotguns,Semi-automatic Shotguns,Small Arms,Long Guns,Shotguns,Self-loading Shotguns,,,
+BreakActionShotguns,Break-action Shotguns,Small Arms,Long Guns,Shotguns,Manually Operated Shotguns,,,
+BoltActionShotguns,Bolt-action Shotguns,Small Arms,Long Guns,Shotguns,Manually Operated Shotguns,,,
+LeverActionShotguns,Lever-action Shotguns,Small Arms,Long Guns,Shotguns,Manually Operated Shotguns,,,
+PumpActionShotguns,Pump-action Shotguns,Small Arms,Long Guns,Shotguns,Manually Operated Shotguns,,,
+OtherManuallyOperatedShotguns,Other Manually Operated Shotguns,Small Arms,Long Guns,Shotguns,Manually Operated Shotguns,,,

@@ -1,42 +1,15 @@
 {
-	"name": "Python 3",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/python:3-3.13-bookworm",
-	"metadata": {
-		"version": "1.0",
-		"last_updated": "2026-03-04",
-		"description": "Weapons classification taxonomy based on ARES (Arms & Munitions Classification System) and SAS (Weapons Identification Guide)",
-		"sources": [
-			"ARES Arms & Munitions Classification System",
-			"SAS Weapons Identification Guide"
-		]
-	},
-	"classifications": [
-		{
-			"id": "handgun_semi_automatic_pistol",
-			"name": "Semi-Automatic Pistol",
-			"arcs_levels": {
-				"level_1": "Firearms",
-				"level_2": "Handguns",
-				"level_3": "Pistols",
-				"level_4": "Semi-Automatic"
-			},
-			"attributes": {
-				"action_type": "Semi-Automatic",
-				"firing_mechanism": "Recoil-Operated",
-				"magazine_fed": true,
-				"barrel_type": "Rifled",
-				"intended_use": "Self-Defense"
-			},
-			"description": "A semi-automatic pistol fires one round per trigger pull and automatically cycles the action.",
-			"images": [
-				{
-					"source_name": "sas_guide",
-					"filename": "m1911.png",
-					"caption": "M1911 Semi-Automatic Pistol Example",
-					"alt_text": "Side view of M1911 pistol"
-				}
-			]
-		}
-	]
+  "name": "weapons_classification",
+  "image": "mcr.microsoft.com/devcontainers/python:3.13-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/stu-bell/devcontainer-features/claude-code:0": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Anthropic.claude-code"
+      ]
+    }
+  }
 }

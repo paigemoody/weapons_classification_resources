@@ -1,0 +1,10 @@
+id,Prompt,Image URL,Image Caption,Option 1,Option 2,Option 3,Option 4,Option 5
+SmallArms,Which Small Arms group best fits?,,, Handguns,LongGuns,,,
+Handguns,Which type of handgun best matches?,https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/small_arms_survey/visuals/Figure_3.4_Rifled_and_smooth-bore_barrels.png?raw=true,Rifled and smooth-bore barrels,SelfLoadingPistols,Revolvers,OtherHandguns,,
+LongGuns,Which type of long gun best matches?,,, SubMachineGuns,ManPortableMachineGuns,Rifles,Shotguns,OtherLongGuns
+Rifles,Which sub-type of rifle best matches?,,, SelfLoadingRifles,ManuallyOperatedRifles,,,
+Shotguns,How is ammunition loaded into the shotgun?,,, SelfLoadingShotguns,ManuallyOperatedShotguns,,,
+SelfLoadingRifles,Which method of operation best fits for this self-loading rifle?,,, AutomaticRifles,SemiAutomaticRifles,,,
+ManuallyOperatedRifles,Which method of operation best fits for this manually operated rifle?,,, BreakActionRifles,BoltActionRifles,LeverActionRifles,PumpActionRifles,OtherManuallyOperatedRifles
+SelfLoadingShotguns,Which self-loading shotgun best matches?,,, AutomaticShotguns,SemiAutomaticShotguns,,,
+ManuallyOperatedShotguns,Which manually operated shotgun best matches?,,, BreakActionShotguns,BoltActionShotguns,LeverActionShotguns,PumpActionShotguns,OtherManuallyOperatedShotguns
