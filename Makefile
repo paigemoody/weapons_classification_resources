@@ -5,10 +5,11 @@ STRUCTURE    = taxonomy-structure.mmd
 MMD          = weapons-classification-flowchart.mmd
 CLICKTHROUGH = classification-guide.html
 HYPOTHESIS   = classification-guide-hypothesis-filtering.html
+FACETED      = classification-guide-faceted.html
 
 .PHONY: all clean
 
-all: $(CLICKTHROUGH) $(HYPOTHESIS)
+all: $(CLICKTHROUGH) $(HYPOTHESIS) $(FACETED)
 
 # Intermediate enriched Mermaid (needed only for click-through)
 $(MMD): $(STRUCTURE) $(QUESTIONS) content/options.csv $(CLASSIFICATIONS)
@@ -33,5 +34,11 @@ $(HYPOTHESIS): $(QUESTIONS) content/options.csv $(CLASSIFICATIONS)
 		--output $(HYPOTHESIS) \
 		--app-name "[DEMO] Weapons Classification Guide (Hypothesis Filtering)"
 
+$(FACETED): $(CLASSIFICATIONS)
+	python3 src/csv_to_faceted_filtering.py \
+		--classifications $(CLASSIFICATIONS) \
+		--output $(FACETED) \
+		--app-name "[DEMO] Weapons Classification Guide (Faceted Filtering)"
+
 clean:
-	rm -f $(MMD) $(CLICKTHROUGH) $(HYPOTHESIS)
+	rm -f $(MMD) $(CLICKTHROUGH) $(HYPOTHESIS) $(FACETED)

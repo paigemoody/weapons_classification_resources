@@ -8,12 +8,14 @@
 # - weapons-classification-flowchart.mmd                                 (generated from above)
 # - classification-guide.html                                            (generated output #1)
 # - classification-guide-hypothesis-filtering.html                       (generated output #2)
+# - classification-guide-faceted.html                                    (generated output #3)
 #
 # Goals:
 # 1) Any time source files change on ANY branch:
 #    - regenerate weapons-classification-flowchart.mmd via build_content_mmd.py
 #    - regenerate classification-guide.html via mermaid_to_clickthrough.py
 #    - regenerate classification-guide-hypothesis-filtering.html via csv_to_hypothesis_filtering.py
+#    - regenerate classification-guide-faceted.html via csv_to_faceted_filtering.py
 #    - commit the regenerated files back to that SAME branch
 # 2) For non-gh-pages branches:
 #    - also publish a branch preview to gh-pages under:
@@ -34,6 +36,7 @@ on:
       - "src/build_content_mmd.py"
       - "src/mermaid_to_clickthrough.py"
       - "src/csv_to_hypothesis_filtering.py"
+      - "src/csv_to_faceted_filtering.py"
       - ".github/workflows/pr-preview.yml"
 
 permissions:
@@ -101,6 +104,13 @@ jobs:
             --output classification-guide-hypothesis-filtering.html \
             --app-name "[DEMO] Weapons Classification Guide (Hypothesis Filtering)"
 
+      - name: Regenerate classification-guide-faceted.html
+        run: |
+          python3 src/csv_to_faceted_filtering.py \
+            --classifications content/classifications.csv \
+            --output classification-guide-faceted.html \
+            --app-name "[DEMO] Weapons Classification Guide (Faceted Filtering)"
+
       - name: Commit regenerated files back to the same branch
         env:
           BRANCH_NAME: ${{ github.ref_name }}
@@ -110,7 +120,8 @@ jobs:
 
           git add weapons-classification-flowchart.mmd \
                   classification-guide.html \
-                  classification-guide-hypothesis-filtering.html
+                  classification-guide-hypothesis-filtering.html \
+                  classification-guide-faceted.html
 
           if git diff --cached --quiet; then
             echo "No generated file changes to commit."
@@ -127,6 +138,7 @@ jobs:
           mkdir -p dist
           cp classification-guide.html dist/classification-guide.html
           cp classification-guide-hypothesis-filtering.html dist/classification-guide-hypothesis-filtering.html
+          cp classification-guide-faceted.html dist/classification-guide-faceted.html
           touch dist/.nojekyll
 
       - name: Publish preview to gh-pages under branch-preview/<branch-name>/

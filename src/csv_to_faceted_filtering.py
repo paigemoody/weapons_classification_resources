@@ -1,17 +1,16 @@
 """
-Generate a hypothesis-filtering HTML guide directly from content CSVs.
+Build a hypothesis-filtering HTML guide from characteristic columns in classifications.csv.
 
-No intermediate Mermaid file needed. The tree structure is derived from
-questions.csv (each question row lists its child option IDs), and content
-comes from options.csv and classifications.csv.
+Any column beyond the fixed set is treated as an observable characteristic group.
+Column header = question label, cell value = option label. This produces the same
+UI as csv_to_hypothesis_filtering.py but with fewer, cross-cutting questions
+(e.g., one "Action mechanism" question covers both rifles and shotguns).
 
 Usage:
-  python3 src/csv_to_hypothesis_filtering.py \
-    --questions content/questions.csv \
-    --options content/options.csv \
+  python3 src/csv_to_faceted_filtering.py \
     --classifications content/classifications.csv \
-    --output classification-guide-hypothesis-filtering.html \
-    --app-name "[DEMO] Weapons Classification Guide (Hypothesis Filtering)"
+    --output classification-guide-faceted.html \
+    --app-name "[DEMO] Weapons Classification Guide (Faceted Filtering)"
 """
 
 from __future__ import annotations
@@ -20,224 +19,106 @@ import argparse
 import csv
 import json
 import sys
-from collections import deque
 from pathlib import Path
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Tuple
+
+FIXED_COLS = {
+    'id', 'Name', 'Class', 'Group', 'Type', 'Sub-type',
+    'Description', 'Image URL', 'Image Caption',
+}
 
 
-# ---------------------------------------------------------------------------
-# CSV loading
-# ---------------------------------------------------------------------------
-
-def load_questions(path: Path) -> Tuple[Dict[str, dict], Dict[str, List[str]]]:
-    """
-    Returns:
-      questions: id -> row dict
-      children:  id -> [child option ids in order]
-    """
-    questions: Dict[str, dict] = {}
-    children: Dict[str, List[str]] = {}
+def load_classifications(path: Path) -> Tuple[List[dict], List[str]]:
+    """Return (rows, characteristic_columns)."""
+    rows = []
+    char_cols: List[str] = []
 
     with path.open(encoding='utf-8') as f:
-        for row in csv.DictReader(f):
-            qid = row.get('id', '').strip()
-            if not qid:
+        reader = csv.DictReader(f)
+        all_cols = [c for c in (reader.fieldnames or []) if c is not None]
+        char_cols = [c for c in all_cols if c.strip() and c not in FIXED_COLS]
+        for row in reader:
+            id_ = row.get('id', '').strip()
+            if not id_:
                 continue
-            questions[qid] = {k: (v.strip() if isinstance(v, str) else '') for k, v in row.items() if k is not None}
-            kids = [
-                v.strip()
-                for k, v in row.items()
-                if k and k.startswith('Option') and isinstance(v, str) and v.strip()
-            ]
-            children[qid] = kids
+            rows.append({k: (v.strip() if isinstance(v, str) else '') for k, v in row.items() if k is not None})
 
-    return questions, children
+    return rows, char_cols
 
 
-def load_csv(path: Path, key_col: str) -> Dict[str, dict]:
-    result: Dict[str, dict] = {}
-    with path.open(encoding='utf-8') as f:
-        for row in csv.DictReader(f):
-            key = row.get(key_col, '').strip()
-            if key:
-                result[key] = {k: (v.strip() if isinstance(v, str) else '') for k, v in row.items() if k is not None}
-    return result
+def build_model(rows: List[dict], char_cols: List[str]) -> dict:
+    all_leaf_ids = [r['id'] for r in rows]
 
-
-# ---------------------------------------------------------------------------
-# Graph helpers
-# ---------------------------------------------------------------------------
-
-def find_roots(questions: Dict[str, dict], children: Dict[str, List[str]]) -> List[str]:
-    all_children: Set[str] = {c for kids in children.values() for c in kids}
-    return [qid for qid in questions if qid not in all_children]
-
-
-def find_leaves(children: Dict[str, List[str]], question_ids: Set[str]) -> Set[str]:
-    return {c for kids in children.values() for c in kids if c not in question_ids}
-
-
-def compute_depths(roots: List[str], children: Dict[str, List[str]]) -> Dict[str, int]:
-    depths: Dict[str, int] = {}
-    queue: deque = deque((r, 0) for r in roots)
-    while queue:
-        nid, d = queue.popleft()
-        if nid in depths:
-            continue
-        depths[nid] = d
-        for child in children.get(nid, []):
-            queue.append((child, d + 1))
-    return depths
-
-
-def compute_leaf_sets(
-    roots: List[str],
-    children: Dict[str, List[str]],
-    leaves: Set[str],
-) -> Dict[str, Set[str]]:
-    memo: Dict[str, Set[str]] = {}
-
-    def leaf_set(nid: str) -> Set[str]:
-        if nid in memo:
-            return memo[nid]
-        if nid in leaves:
-            memo[nid] = {nid}
-            return memo[nid]
-        result: Set[str] = set()
-        for child in children.get(nid, []):
-            result |= leaf_set(child)
-        memo[nid] = result
-        return result
-
-    for r in roots:
-        leaf_set(r)
-    return memo
-
-
-def compute_leaf_characteristics(
-    roots: List[str],
-    children: Dict[str, List[str]],
-    leaves: Set[str],
-    options: Dict[str, dict],
-) -> Dict[str, List[dict]]:
-    """
-    For each leaf, collect the characteristics implied by every option
-    on its path from the root. Each characteristic is {key, value}.
-    Order follows the path from root to leaf.
-    """
-    result: Dict[str, List[dict]] = {}
-
-    def dfs(nid: str, path_options: List[str]) -> None:
-        if nid in leaves:
-            chars = []
-            for opt_id in path_options:
-                opt = options.get(opt_id, {})
-                key = opt.get('Defining Characteristic', '')
-                value = opt.get('Characteristic Value', '')
-                if key and value:
-                    chars.append({'key': key, 'value': value})
-            result[nid] = chars
-            return
-        for child in children.get(nid, []):
-            dfs(child, path_options + [child])
-
-    for root in roots:
-        dfs(root, [])
-
-    return result
-
-
-# ---------------------------------------------------------------------------
-# Model builder
-# ---------------------------------------------------------------------------
-
-def build_model(
-    questions: Dict[str, dict],
-    children: Dict[str, List[str]],
-    options: Dict[str, dict],
-    classifications: Dict[str, dict],
-) -> dict:
-    question_ids = set(questions.keys())
-    roots = find_roots(questions, children)
-    leaves = find_leaves(children, question_ids)
-    depths = compute_depths(roots, children)
-    leaf_sets = compute_leaf_sets(roots, children, leaves)
-    leaf_characteristics = compute_leaf_characteristics(roots, children, leaves, options)
-
-    q_objs: List[dict] = []
+    # Build optionToLeafIds and question objects from characteristic columns
     option_to_leaf_ids: Dict[str, List[str]] = {}
+    q_objs: List[dict] = []
 
-    for qid, q_row in questions.items():
-        opt_objs: List[dict] = []
-        for child_id in children.get(qid, []):
-            opt = options.get(child_id, {})
-            option_id = f"{qid}__TO__{child_id}"
+    for col in char_cols:
+        # Collect ordered unique values and their leaf IDs
+        value_order: List[str] = []
+        value_to_leaves: Dict[str, List[str]] = {}
+        for row in rows:
+            val = row.get(col, '')
+            if not val:
+                continue
+            if val not in value_to_leaves:
+                value_order.append(val)
+                value_to_leaves[val] = []
+            value_to_leaves[val].append(row['id'])
 
-            arcs_level = opt.get('ARCS Level', '')
-            arcs_name = opt.get('ARCS Name', '')
-            context_parts = []
-            if opt.get('Description'):
-                context_parts.append(f"<p>{opt['Description']}</p>")
-            if arcs_level and arcs_name:
-                context_parts.append(
-                    f'<p class="text-xs text-slate-400 mt-1">Points toward ARCS {arcs_level}: {arcs_name}</p>'
-                )
+        if not value_order:
+            continue
+
+        opt_objs = []
+        for val in value_order:
+            option_id = f"{col}|{val}"
+            option_to_leaf_ids[option_id] = value_to_leaves[val]
             opt_objs.append({
                 'optionId': option_id,
-                'dstNodeId': child_id,
-                'titleHtml': opt.get('Option Name', child_id),
-                'contextHtml': ''.join(context_parts),
-                'plainLabel': opt.get('Option Name', child_id),
-                'imageSrc': opt.get('Image URL', ''),
+                'titleHtml': val,
+                'contextHtml': '',
+                'plainLabel': val,
+                'imageSrc': '',
             })
 
-            option_to_leaf_ids[option_id] = sorted(leaf_sets.get(child_id, set()))
-
         q_objs.append({
-            'nodeId': qid,
-            'questionHtml': q_row.get('Prompt', qid),
-            'questionText': q_row.get('Prompt', qid),
-            'imageSrc': q_row.get('Image URL', ''),
+            'nodeId': col,
+            'questionHtml': col,
+            'questionText': col,
+            'imageSrc': '',
             'options': opt_objs,
         })
 
-    leaf_objs: List[dict] = []
-    for leaf_id in sorted(leaves):
-        c = classifications.get(leaf_id, {})
-        name = c.get('Name', leaf_id)
-
+    # Build leaf display objects
+    leaf_objs = []
+    for row in rows:
         arcs_parts = [
-            c[level]
+            row.get(level, '')
             for level in ('Class', 'Group', 'Type', 'Sub-type')
-            if c.get(level)
+            if row.get(level)
         ]
-
+        characteristics = [
+            {'key': col, 'value': row.get(col, '')}
+            for col in char_cols
+            if row.get(col)
+        ]
         leaf_objs.append({
-            'leafId': leaf_id,
-            'leafText': name,
-            'imageSrc': c.get('Image URL', ''),
-            'description': c.get('Description', ''),
+            'leafId': row['id'],
+            'leafText': row.get('Name', row['id']),
+            'imageSrc': row.get('Image URL', ''),
+            'description': row.get('Description', ''),
             'arcsParts': arcs_parts,
-            'characteristics': leaf_characteristics.get(leaf_id, []),
-            'depth': depths.get(leaf_id, 0),
+            'characteristics': characteristics,
+            'depth': 0,
         })
 
-    all_candidates: Set[str] = set()
-    for r in roots:
-        all_candidates |= leaf_sets.get(r, set())
-
     return {
-        'roots': roots,
         'questions': q_objs,
         'leaves': leaf_objs,
         'optionToLeafIds': option_to_leaf_ids,
-        'initialCandidates': sorted(all_candidates),
+        'initialCandidates': all_leaf_ids,
     }
 
-
-# ---------------------------------------------------------------------------
-# HTML
-# ---------------------------------------------------------------------------
 
 def make_html(model: dict, app_name: str) -> str:
     model_json = json.dumps(model, ensure_ascii=False, indent=2)
@@ -267,13 +148,6 @@ def make_html(model: dict, app_name: str) -> str:
       return a.filter(x => setB.has(x));
     }
 
-    function sortHypotheses(hyps) {
-      return [...hyps].sort((x, y) => {
-        if (y.depth !== x.depth) return y.depth - x.depth;
-        return (x.leafText || "").localeCompare(y.leafText || "");
-      });
-    }
-
     function App() {
       const [activeQuestionId, setActiveQuestionId] = useState(MODEL.questions[0]?.nodeId || null);
       const [answers, setAnswers] = useState({});
@@ -295,9 +169,9 @@ def make_html(model: dict, app_name: str) -> str:
       }, []);
 
       const rankedHypotheses = useMemo(() => {
-        return sortHypotheses(candidates.map(id => leafById.get(id)).filter(Boolean));
+        return candidates.map(id => leafById.get(id)).filter(Boolean)
+          .sort((a, b) => (a.leafText || "").localeCompare(b.leafText || ""));
       }, [candidates, leafById]);
-
 
       const questionMeta = useMemo(() => {
         const meta = new Map();
@@ -334,7 +208,7 @@ def make_html(model: dict, app_name: str) -> str:
           cur = intersect(cur, MODEL.optionToLeafIds[oid] || []);
         }
         if (cur.length === 0) {
-          setErrorMsg("That choice conflicts with earlier answers. Try a different option, or remove a previous answer.");
+          setErrorMsg("That choice conflicts with earlier answers. Try a different option, or reset a previous answer.");
           return;
         }
         setAnswers(prev => ({ ...prev, [nodeId]: optionId }));
@@ -358,8 +232,14 @@ def make_html(model: dict, app_name: str) -> str:
         [activeQuestionId]
       );
 
-      const firstQuestionId = MODEL.questions[0]?.nodeId;
-      const firstAnswered = !!answers[firstQuestionId];
+      const answerChips = useMemo(() => {
+        return MODEL.questions.flatMap(q => {
+          const optId = answers[q.nodeId];
+          if (!optId) return [];
+          const opt = q.options.find(o => o.optionId === optId);
+          return [{ nodeId: q.nodeId, questionText: q.questionText, optionLabel: opt?.plainLabel || "Selected" }];
+        });
+      }, [answers]);
 
       return (
         <div className="min-h-screen p-5 md:p-8">
@@ -368,9 +248,7 @@ def make_html(model: dict, app_name: str) -> str:
             <div className="mb-6">
               <h1 className="text-2xl md:text-3xl font-bold text-slate-900">{APP_NAME}</h1>
               <p className="text-slate-600 mt-2 max-w-3xl">
-                {firstAnswered
-                  ? "Answer only what you can observe. Each answer narrows the list of possible classifications."
-                  : "Start by answering the first question, then choose any remaining questions in any order."}
+                Start anywhere. Answer only what you can observe. Each answer narrows the list of possible classifications.
               </p>
             </div>
 
@@ -402,20 +280,15 @@ def make_html(model: dict, app_name: str) -> str:
                         <div
                           key={q.nodeId}
                           className={[
-                            "px-4 py-3 border-b border-slate-100",
-                            (!firstAnswered && q.nodeId !== firstQuestionId)
-                              ? "opacity-40 cursor-not-allowed"
-                              : "cursor-pointer " + (isActive ? "bg-blue-50" : "bg-white hover:bg-slate-50"),
-                            (firstAnswered && !meta.isRelevant) ? "opacity-50" : "",
+                            "px-4 py-3 border-b border-slate-100 cursor-pointer",
+                            isActive ? "bg-blue-50" : "bg-white hover:bg-slate-50",
+                            !meta.isRelevant ? "opacity-50" : "",
                           ].join(" ")}
-                          onClick={() => {
-                            if (!firstAnswered && q.nodeId !== firstQuestionId) return;
-                            setActiveQuestionId(q.nodeId);
-                          }}
+                          onClick={() => setActiveQuestionId(q.nodeId)}
                         >
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
-                              <div className="text-sm font-medium text-slate-900">
+                              <div className="text-sm font-medium text-slate-900 truncate">
                                 {q.questionText || q.nodeId}
                               </div>
                               <div className="mt-1 flex items-center gap-2">
@@ -450,6 +323,25 @@ def make_html(model: dict, app_name: str) -> str:
                   </div>
                 </div>
 
+                <div className="mt-4 bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+                  <div className="font-semibold text-slate-800 mb-2">Your answers</div>
+                  {answerChips.length === 0 ? (
+                    <div className="text-sm text-slate-600">No answers yet. Pick any question to start.</div>
+                  ) : (
+                    <div className="flex flex-wrap gap-2">
+                      {answerChips.map((a) => (
+                        <button
+                          key={a.nodeId}
+                          onClick={() => setActiveQuestionId(a.nodeId)}
+                          className="text-left text-xs px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800"
+                        >
+                          <div className="font-semibold">{a.optionLabel}</div>
+                          <div className="text-slate-600 truncate max-w-[14rem]">{a.questionText}</div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Center: Active question */}
@@ -459,13 +351,6 @@ def make_html(model: dict, app_name: str) -> str:
                     <div className="text-slate-700">No question selected.</div>
                   ) : (
                     <div>
-                      {activeQuestion.imageSrc && (
-                        <img
-                          src={activeQuestion.imageSrc}
-                          alt={activeQuestion.questionText}
-                          className="w-full max-h-48 object-contain rounded-lg mb-4 bg-slate-50"
-                        />
-                      )}
                       <div className="text-lg font-semibold text-slate-900 mb-5">
                         {activeQuestion.questionText}
                       </div>
@@ -483,26 +368,8 @@ def make_html(model: dict, app_name: str) -> str:
                                   : "border-slate-200 hover:border-blue-400 hover:bg-slate-50",
                               ].join(" ")}
                             >
-                              <div className="flex gap-4 items-start">
-                                {opt.imageSrc && (
-                                  <div className="w-20 h-20 bg-slate-100 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
-                                    <img
-                                      src={opt.imageSrc}
-                                      alt={opt.plainLabel}
-                                      className="w-full h-full object-contain"
-                                    />
-                                  </div>
-                                )}
-                                <div className="min-w-0">
-                                  <div className="text-base font-semibold text-slate-900"
-                                    dangerouslySetInnerHTML={{ __html: opt.titleHtml || opt.plainLabel }}
-                                  />
-                                  {opt.contextHtml && (
-                                    <div className="mt-1 text-sm text-slate-600"
-                                      dangerouslySetInnerHTML={{ __html: opt.contextHtml }}
-                                    />
-                                  )}
-                                </div>
+                              <div className="text-base font-semibold text-slate-900">
+                                {opt.plainLabel}
                               </div>
                             </button>
                           );
@@ -589,37 +456,34 @@ def make_html(model: dict, app_name: str) -> str:
     )
 
 
-# ---------------------------------------------------------------------------
-# CLI
-# ---------------------------------------------------------------------------
-
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Generate hypothesis-filtering HTML from content CSVs."
+        description="Build faceted hypothesis-filtering HTML from classifications.csv characteristic columns."
     )
-    parser.add_argument('--questions', required=True)
-    parser.add_argument('--options', required=True)
     parser.add_argument('--classifications', required=True)
     parser.add_argument('--output', required=True)
-    parser.add_argument('--app-name', default="Classification Guide (Hypothesis Filtering)")
+    parser.add_argument('--app-name', default="Classification Guide (Faceted Filtering)")
     args = parser.parse_args()
 
-    questions, children = load_questions(Path(args.questions))
-    options = load_csv(Path(args.options), 'id')
-    classifications = load_csv(Path(args.classifications), 'id')
-
-    if not questions:
-        print("error: no questions loaded", file=sys.stderr)
+    path = Path(args.classifications)
+    if not path.exists():
+        print(f"error: file not found: {path}", file=sys.stderr)
         sys.exit(1)
 
-    model = build_model(questions, children, options, classifications)
+    rows, char_cols = load_classifications(path)
+    if not rows:
+        print("error: no classification rows loaded", file=sys.stderr)
+        sys.exit(1)
+    if not char_cols:
+        print("error: no characteristic columns found in classifications.csv", file=sys.stderr)
+        sys.exit(1)
 
-    print(f"Questions: {len(model['questions'])}, Leaves: {len(model['leaves'])}")
+    model = build_model(rows, char_cols)
+    print(f"Classifications: {len(rows)}, Questions: {len(model['questions'])}")
 
     html = make_html(model, args.app_name)
-    out_path = Path(args.output)
-    out_path.write_text(html, encoding='utf-8')
-    print(f"Wrote: {out_path}")
+    Path(args.output).write_text(html, encoding='utf-8')
+    print(f"Wrote: {args.output}")
 
 
 if __name__ == '__main__':

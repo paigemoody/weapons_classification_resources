@@ -47,32 +47,32 @@
     },
     {
       "nodeId": "Handguns",
-      "questionHtml": "Does it have a rotating cylinder?",
-      "questionText": "Does it have a rotating cylinder?",
-      "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/small_arms_survey/visuals/Figure_3.4_Rifled_and_smooth-bore_barrels.png?raw=true",
+      "questionHtml": "How does the handgun chamber the next round?",
+      "questionText": "How does the handgun chamber the next round?",
+      "imageSrc": "",
       "options": [
         {
           "optionId": "Handguns__TO__SelfLoadingPistols",
           "dstNodeId": "SelfLoadingPistols",
-          "titleHtml": "No — magazine-fed with sliding action",
+          "titleHtml": "Slide cycles back and chambers from a magazine",
           "contextHtml": "<p>A pistol that automatically chambers the next round after firing using a sliding action.</p><p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Type: Self-loading Pistols</p>",
-          "plainLabel": "No — magazine-fed with sliding action",
+          "plainLabel": "Slide cycles back and chambers from a magazine",
           "imageSrc": ""
         },
         {
           "optionId": "Handguns__TO__Revolvers",
           "dstNodeId": "Revolvers",
-          "titleHtml": "Yes — rotating cylinder",
+          "titleHtml": "Rotating cylinder advances to the next chamber",
           "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Type: Revolvers</p>",
-          "plainLabel": "Yes — rotating cylinder",
+          "plainLabel": "Rotating cylinder advances to the next chamber",
           "imageSrc": ""
         },
         {
           "optionId": "Handguns__TO__OtherHandguns",
           "dstNodeId": "OtherHandguns",
-          "titleHtml": "A handgun — but not a self-loading pistol or revolver",
+          "titleHtml": "It must be manually loaded each shot",
           "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Type: Other Handguns</p>",
-          "plainLabel": "A handgun — but not a self-loading pistol or revolver",
+          "plainLabel": "It must be manually loaded each shot",
           "imageSrc": ""
         }
       ]
@@ -103,8 +103,8 @@
     },
     {
       "nodeId": "RifledLongGuns",
-      "questionHtml": "What type of rifled long gun best matches?",
-      "questionText": "What type of rifled long gun best matches?",
+      "questionHtml": "What kind of rifled long gun is it?",
+      "questionText": "What kind of rifled long gun is it?",
       "imageSrc": "",
       "options": [
         {
@@ -134,10 +134,10 @@
         {
           "optionId": "RifledLongGuns__TO__OtherLongGuns",
           "dstNodeId": "OtherLongGuns",
-          "titleHtml": "A long gun — but not a sub-machine gun",
-          "contextHtml": "<p>machine gun</p>",
-          "plainLabel": "A long gun — but not a sub-machine gun",
-          "imageSrc": "rifle"
+          "titleHtml": "A long gun — but none of the above types",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Type: Other Long Guns</p>",
+          "plainLabel": "A long gun — but none of the above types",
+          "imageSrc": ""
         }
       ]
     },
@@ -1148,14 +1148,8 @@
         [activeQuestionId]
       );
 
-      const answerChips = useMemo(() => {
-        return MODEL.questions.flatMap(q => {
-          const optId = answers[q.nodeId];
-          if (!optId) return [];
-          const opt = q.options.find(o => o.optionId === optId);
-          return [{ nodeId: q.nodeId, questionText: q.questionText, optionLabel: opt?.plainLabel || "Selected" }];
-        });
-      }, [answers]);
+      const firstQuestionId = MODEL.questions[0]?.nodeId;
+      const firstAnswered = !!answers[firstQuestionId];
 
       return (
         <div className="min-h-screen p-5 md:p-8">
@@ -1164,7 +1158,9 @@
             <div className="mb-6">
               <h1 className="text-2xl md:text-3xl font-bold text-slate-900">{APP_NAME}</h1>
               <p className="text-slate-600 mt-2 max-w-3xl">
-                Start anywhere. Answer only what you can observe. Each answer narrows the list of possible classifications.
+                {firstAnswered
+                  ? "Answer only what you can observe. Each answer narrows the list of possible classifications."
+                  : "Start by answering the first question, then choose any remaining questions in any order."}
               </p>
             </div>
 
@@ -1196,15 +1192,20 @@
                         <div
                           key={q.nodeId}
                           className={[
-                            "px-4 py-3 border-b border-slate-100 cursor-pointer",
-                            isActive ? "bg-blue-50" : "bg-white hover:bg-slate-50",
-                            !meta.isRelevant ? "opacity-50" : "",
+                            "px-4 py-3 border-b border-slate-100",
+                            (!firstAnswered && q.nodeId !== firstQuestionId)
+                              ? "opacity-40 cursor-not-allowed"
+                              : "cursor-pointer " + (isActive ? "bg-blue-50" : "bg-white hover:bg-slate-50"),
+                            (firstAnswered && !meta.isRelevant) ? "opacity-50" : "",
                           ].join(" ")}
-                          onClick={() => setActiveQuestionId(q.nodeId)}
+                          onClick={() => {
+                            if (!firstAnswered && q.nodeId !== firstQuestionId) return;
+                            setActiveQuestionId(q.nodeId);
+                          }}
                         >
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
-                              <div className="text-sm font-medium text-slate-900 truncate">
+                              <div className="text-sm font-medium text-slate-900">
                                 {q.questionText || q.nodeId}
                               </div>
                               <div className="mt-1 flex items-center gap-2">
@@ -1239,25 +1240,6 @@
                   </div>
                 </div>
 
-                <div className="mt-4 bg-white rounded-xl shadow-sm border border-slate-200 p-4">
-                  <div className="font-semibold text-slate-800 mb-2">Your answers</div>
-                  {answerChips.length === 0 ? (
-                    <div className="text-sm text-slate-600">No answers yet. Pick any question to start.</div>
-                  ) : (
-                    <div className="flex flex-wrap gap-2">
-                      {answerChips.map((a) => (
-                        <button
-                          key={a.nodeId}
-                          onClick={() => setActiveQuestionId(a.nodeId)}
-                          className="text-left text-xs px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800"
-                        >
-                          <div className="font-semibold">{a.optionLabel}</div>
-                          <div className="text-slate-600 truncate max-w-[14rem]">{a.questionText}</div>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
               </div>
 
               {/* Center: Active question */}

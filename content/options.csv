@@ -2,14 +2,14 @@ id,Option Name,Description,Image URL,Image Caption,ARCS Level,ARCS Name,Defining
 Handguns,One hand — no shoulder stock,A firearm held and operated with one or both hands on the grip; no shoulder stock is used.,https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.8_2.9_2.10_Handguns.png?raw=true,Handgun examples,Group,Handguns,How held,One hand (no shoulder stock)
 LongGuns,Two hands — braced against the shoulder,A firearm requiring both hands in separate positions and typically braced against the shoulder with a buttstock.,,,Group,Long Guns,How held,Two hands with shoulder stock
 RifledLongGuns,Rifled bore,A long gun with a rifled barrel.,,,,,Bore type,Rifled bore
-SelfLoadingPistols,No — magazine-fed with sliding action,A pistol that automatically chambers the next round after firing using a sliding action.,,,Type,Self-loading Pistols,,
-Revolvers,Yes — rotating cylinder,,,,Type,Revolvers,Action type,Rotating cylinder
-OtherHandguns,A handgun — but not a self-loading pistol or revolver,,,,Type,Other Handguns,,
+SelfLoadingPistols,Slide cycles back and chambers from a magazine,A pistol that automatically chambers the next round after firing using a sliding action.,,,Type,Self-loading Pistols,,
+Revolvers,Rotating cylinder advances to the next chamber,,,,Type,Revolvers,Action type,Rotating cylinder
+OtherHandguns,It must be manually loaded each shot,,,,Type,Other Handguns,,
 SubMachineGuns,Rifled bore — fires pistol-calibre ammunition — self-loading,A self-loading long gun chambered for pistol-calibre ammunition; typically compact.,,,Type,Sub-machine Guns,Loading,Self-loading
 ManPortableMachineGuns,Capable of sustained automatic fire — belt or large-capacity magazine,A fully automatic long gun designed to be carried and operated by an individual or small crew.,,,Type,Man-portable Machine Guns,,
 Rifles,Rifled bore — fires rifle-calibre ammunition,,,,Type,Rifles,,
 Shotguns,Smooth bore,,,,Type,Shotguns,Bore type,Smooth bore
-OtherLongGuns,A long gun — but not a sub-machine gun, machine gun, rifle, or shotgun,,,,Type,Other Long Guns,,
+OtherLongGuns,A long gun — but none of the above types,,,,Type,Other Long Guns,,
 SelfLoadingRifles,Automatically — action cycles by itself after each shot,,,,Sub-type,Self-loading Rifles,Loading,Self-loading (cycles automatically after each shot)
 ManuallyOperatedRifles,Manually — must be cycled by hand between shots,,,,Sub-type,Manually Operated Rifles,Loading,Manual (must be cycled by hand between shots)
 SelfLoadingShotguns,Automatically — action cycles by itself after each shot,,,,Sub-type,Self-loading Shotguns,Loading,Self-loading (cycles automatically after each shot)
