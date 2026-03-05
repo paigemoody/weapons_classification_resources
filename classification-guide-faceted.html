@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[DEMO] Weapons Classification Guide (Faceted Filtering)</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useEffect, useMemo, useState } = React;
+
+    const APP_NAME = "[DEMO] Weapons Classification Guide (Faceted Filtering)";
+    const MODEL = {
+  "questions": [
+    {
+      "nodeId": "How held",
+      "questionHtml": "How held",
+      "questionText": "How held",
+      "imageSrc": "",
+      "options": [
+        {
+          "optionId": "How held|One hand — no shoulder stock",
+          "titleHtml": "One hand — no shoulder stock",
+          "contextHtml": "",
+          "plainLabel": "One hand — no shoulder stock",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "How held|Two hands — braced against shoulder",
+          "titleHtml": "Two hands — braced against shoulder",
+          "contextHtml": "",
+          "plainLabel": "Two hands — braced against shoulder",
+          "imageSrc": ""
+        }
+      ]
+    },
+    {
+      "nodeId": "Bore type",
+      "questionHtml": "Bore type",
+      "questionText": "Bore type",
+      "imageSrc": "",
+      "options": [
+        {
+          "optionId": "Bore type|Rifled bore",
+          "titleHtml": "Rifled bore",
+          "contextHtml": "",
+          "plainLabel": "Rifled bore",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "Bore type|Smooth bore",
+          "titleHtml": "Smooth bore",
+          "contextHtml": "",
+          "plainLabel": "Smooth bore",
+          "imageSrc": ""
+        }
+      ]
+    },
+    {
+      "nodeId": "Loading",
+      "questionHtml": "Loading",
+      "questionText": "Loading",
+      "imageSrc": "",
+      "options": [
+        {
+          "optionId": "Loading|Cycles automatically",
+          "titleHtml": "Cycles automatically",
+          "contextHtml": "",
+          "plainLabel": "Cycles automatically",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "Loading|Must be cycled manually",
+          "titleHtml": "Must be cycled manually",
+          "contextHtml": "",
+          "plainLabel": "Must be cycled manually",
+          "imageSrc": ""
+        }
+      ]
+    },
+    {
+      "nodeId": "Action mechanism",
+      "questionHtml": "Action mechanism",
+      "questionText": "Action mechanism",
+      "imageSrc": "",
+      "options": [
+        {
+          "optionId": "Action mechanism|Semi-automatic",
+          "titleHtml": "Semi-automatic",
+          "contextHtml": "",
+          "plainLabel": "Semi-automatic",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "Action mechanism|Rotating cylinder",
+          "titleHtml": "Rotating cylinder",
+          "contextHtml": "",
+          "plainLabel": "Rotating cylinder",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "Action mechanism|Fully automatic",
+          "titleHtml": "Fully automatic",
+          "contextHtml": "",
+          "plainLabel": "Fully automatic",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "Action mechanism|Break-action",
+          "titleHtml": "Break-action",
+          "contextHtml": "",
+          "plainLabel": "Break-action",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "Action mechanism|Bolt-action",
+          "titleHtml": "Bolt-action",
+          "contextHtml": "",
+          "plainLabel": "Bolt-action",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "Action mechanism|Lever-action",
+          "titleHtml": "Lever-action",
+          "contextHtml": "",
+          "plainLabel": "Lever-action",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "Action mechanism|Pump-action",
+          "titleHtml": "Pump-action",
+          "contextHtml": "",
+          "plainLabel": "Pump-action",
+          "imageSrc": ""
+        }
+      ]
+    }
+  ],
+  "leaves": [
+    {
+      "leafId": "SelfLoadingPistols",
+      "leafText": "Self-loading Pistols",
+      "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.13_SelfLoading_Pistols.png?raw=true",
+      "description": "A self-loading pistol with a rifled barrel that fires one round per trigger pull and automatically cycles the action.",
+      "arcsParts": [
+        "Small Arms",
+        "Handguns",
+        "Self-loading Pistols"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "One hand — no shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Cycles automatically"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Semi-automatic"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "Revolvers",
+      "leafText": "Revolvers",
+      "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.12_Revolvers.png?raw=true",
+      "description": "A handgun with a rifled barrel and a rotating cylinder that holds multiple cartridges.",
+      "arcsParts": [
+        "Small Arms",
+        "Handguns",
+        "Revolvers"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "One hand — no shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Must be cycled manually"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Rotating cylinder"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "OtherHandguns",
+      "leafText": "Other Handguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Handguns",
+        "Other Handguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "One hand — no shoulder stock"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "SubMachineGuns",
+      "leafText": "Sub-machine Guns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Sub-machine Guns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Cycles automatically"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "ManPortableMachineGuns",
+      "leafText": "Man-portable Machine Guns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Man-portable Machine Guns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Cycles automatically"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Fully automatic"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "OtherLongGuns",
+      "leafText": "Other Long Guns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Other Long Guns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "AutomaticRifles",
+      "leafText": "Automatic Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Self-loading Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Cycles automatically"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Fully automatic"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "SemiAutomaticRifles",
+      "leafText": "Semi-automatic Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Self-loading Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Cycles automatically"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Semi-automatic"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "BreakActionRifles",
+      "leafText": "Break-action Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Must be cycled manually"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Break-action"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "BoltActionRifles",
+      "leafText": "Bolt-action Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Must be cycled manually"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Bolt-action"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "LeverActionRifles",
+      "leafText": "Lever-action Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Must be cycled manually"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Lever-action"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "PumpActionRifles",
+      "leafText": "Pump-action Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Must be cycled manually"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Pump-action"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "OtherManuallyOperatedRifles",
+      "leafText": "Other Manually Operated Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Must be cycled manually"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "AutomaticShotguns",
+      "leafText": "Automatic Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Self-loading Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Cycles automatically"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Fully automatic"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "SemiAutomaticShotguns",
+      "leafText": "Semi-automatic Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Self-loading Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Cycles automatically"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Semi-automatic"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "BreakActionShotguns",
+      "leafText": "Break-action Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Must be cycled manually"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Break-action"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "BoltActionShotguns",
+      "leafText": "Bolt-action Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Must be cycled manually"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Bolt-action"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "LeverActionShotguns",
+      "leafText": "Lever-action Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Must be cycled manually"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Lever-action"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "PumpActionShotguns",
+      "leafText": "Pump-action Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Must be cycled manually"
+        },
+        {
+          "key": "Action mechanism",
+          "value": "Pump-action"
+        }
+      ],
+      "depth": 0
+    },
+    {
+      "leafId": "OtherManuallyOperatedShotguns",
+      "leafText": "Other Manually Operated Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands — braced against shoulder"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Must be cycled manually"
+        }
+      ],
+      "depth": 0
+    }
+  ],
+  "optionToLeafIds": {
+    "How held|One hand — no shoulder stock": [
+      "SelfLoadingPistols",
+      "Revolvers",
+      "OtherHandguns"
+    ],
+    "How held|Two hands — braced against shoulder": [
+      "SubMachineGuns",
+      "ManPortableMachineGuns",
+      "OtherLongGuns",
+      "AutomaticRifles",
+      "SemiAutomaticRifles",
+      "BreakActionRifles",
+      "BoltActionRifles",
+      "LeverActionRifles",
+      "PumpActionRifles",
+      "OtherManuallyOperatedRifles",
+      "AutomaticShotguns",
+      "SemiAutomaticShotguns",
+      "BreakActionShotguns",
+      "BoltActionShotguns",
+      "LeverActionShotguns",
+      "PumpActionShotguns",
+      "OtherManuallyOperatedShotguns"
+    ],
+    "Bore type|Rifled bore": [
+      "SelfLoadingPistols",
+      "Revolvers",
+      "SubMachineGuns",
+      "ManPortableMachineGuns",
+      "OtherLongGuns",
+      "AutomaticRifles",
+      "SemiAutomaticRifles",
+      "BreakActionRifles",
+      "BoltActionRifles",
+      "LeverActionRifles",
+      "PumpActionRifles",
+      "OtherManuallyOperatedRifles"
+    ],
+    "Bore type|Smooth bore": [
+      "AutomaticShotguns",
+      "SemiAutomaticShotguns",
+      "BreakActionShotguns",
+      "BoltActionShotguns",
+      "LeverActionShotguns",
+      "PumpActionShotguns",
+      "OtherManuallyOperatedShotguns"
+    ],
+    "Loading|Cycles automatically": [
+      "SelfLoadingPistols",
+      "SubMachineGuns",
+      "ManPortableMachineGuns",
+      "AutomaticRifles",
+      "SemiAutomaticRifles",
+      "AutomaticShotguns",
+      "SemiAutomaticShotguns"
+    ],
+    "Loading|Must be cycled manually": [
+      "Revolvers",
+      "BreakActionRifles",
+      "BoltActionRifles",
+      "LeverActionRifles",
+      "PumpActionRifles",
+      "OtherManuallyOperatedRifles",
+      "BreakActionShotguns",
+      "BoltActionShotguns",
+      "LeverActionShotguns",
+      "PumpActionShotguns",
+      "OtherManuallyOperatedShotguns"
+    ],
+    "Action mechanism|Semi-automatic": [
+      "SelfLoadingPistols",
+      "SemiAutomaticRifles",
+      "SemiAutomaticShotguns"
+    ],
+    "Action mechanism|Rotating cylinder": [
+      "Revolvers"
+    ],
+    "Action mechanism|Fully automatic": [
+      "ManPortableMachineGuns",
+      "AutomaticRifles",
+      "AutomaticShotguns"
+    ],
+    "Action mechanism|Break-action": [
+      "BreakActionRifles",
+      "BreakActionShotguns"
+    ],
+    "Action mechanism|Bolt-action": [
+      "BoltActionRifles",
+      "BoltActionShotguns"
+    ],
+    "Action mechanism|Lever-action": [
+      "LeverActionRifles",
+      "LeverActionShotguns"
+    ],
+    "Action mechanism|Pump-action": [
+      "PumpActionRifles",
+      "PumpActionShotguns"
+    ]
+  },
+  "initialCandidates": [
+    "SelfLoadingPistols",
+    "Revolvers",
+    "OtherHandguns",
+    "SubMachineGuns",
+    "ManPortableMachineGuns",
+    "OtherLongGuns",
+    "AutomaticRifles",
+    "SemiAutomaticRifles",
+    "BreakActionRifles",
+    "BoltActionRifles",
+    "LeverActionRifles",
+    "PumpActionRifles",
+    "OtherManuallyOperatedRifles",
+    "AutomaticShotguns",
+    "SemiAutomaticShotguns",
+    "BreakActionShotguns",
+    "BoltActionShotguns",
+    "LeverActionShotguns",
+    "PumpActionShotguns",
+    "OtherManuallyOperatedShotguns"
+  ]
+};
+
+    function intersect(a, b) {
+      const setB = new Set(b);
+      return a.filter(x => setB.has(x));
+    }
+
+    function App() {
+      const [activeQuestionId, setActiveQuestionId] = useState(MODEL.questions[0]?.nodeId || null);
+      const [answers, setAnswers] = useState({});
+      const [unknowns, setUnknowns] = useState({});
+      const [errorMsg, setErrorMsg] = useState("");
+
+      const candidates = useMemo(() => {
+        let cur = MODEL.initialCandidates;
+        for (const [, optionId] of Object.entries(answers)) {
+          cur = intersect(cur, MODEL.optionToLeafIds[optionId] || []);
+        }
+        return cur;
+      }, [answers]);
+
+      const leafById = useMemo(() => {
+        const m = new Map();
+        for (const lf of MODEL.leaves) m.set(lf.leafId, lf);
+        return m;
+      }, []);
+
+      const rankedHypotheses = useMemo(() => {
+        return candidates.map(id => leafById.get(id)).filter(Boolean)
+          .sort((a, b) => (a.leafText || "").localeCompare(b.leafText || ""));
+      }, [candidates, leafById]);
+
+      const questionMeta = useMemo(() => {
+        const meta = new Map();
+        for (const q of MODEL.questions) {
+          const optionCounts = q.options.map(opt =>
+            intersect(candidates, MODEL.optionToLeafIds[opt.optionId] || []).length
+          );
+          const isRelevant = optionCounts.some(c => c > 0);
+          const canNarrow = optionCounts.some(c => c > 0 && c < candidates.length);
+          meta.set(q.nodeId, { canNarrow, isRelevant });
+        }
+        return meta;
+      }, [candidates]);
+
+      useEffect(() => {
+        if (!activeQuestionId) return;
+        const meta = questionMeta.get(activeQuestionId);
+        if (meta && meta.isRelevant) return;
+        const next = MODEL.questions.find(q => questionMeta.get(q.nodeId)?.isRelevant);
+        if (next) setActiveQuestionId(next.nodeId);
+      }, [activeQuestionId, questionMeta]);
+
+      const resetAll = () => {
+        setAnswers({});
+        setUnknowns({});
+        setErrorMsg("");
+        setActiveQuestionId(MODEL.questions[0]?.nodeId || null);
+      };
+
+      const chooseOption = (nodeId, optionId) => {
+        setErrorMsg("");
+        let cur = MODEL.initialCandidates;
+        for (const [nid, oid] of Object.entries({ ...answers, [nodeId]: optionId })) {
+          cur = intersect(cur, MODEL.optionToLeafIds[oid] || []);
+        }
+        if (cur.length === 0) {
+          setErrorMsg("That choice conflicts with earlier answers. Try a different option, or reset a previous answer.");
+          return;
+        }
+        setAnswers(prev => ({ ...prev, [nodeId]: optionId }));
+        setUnknowns(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
+      };
+
+      const markUnknown = (nodeId) => {
+        setErrorMsg("");
+        setAnswers(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
+        setUnknowns(prev => ({ ...prev, [nodeId]: true }));
+      };
+
+      const removeAnswer = (nodeId) => {
+        setErrorMsg("");
+        setAnswers(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
+        setUnknowns(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
+      };
+
+      const activeQuestion = useMemo(
+        () => MODEL.questions.find(q => q.nodeId === activeQuestionId) || null,
+        [activeQuestionId]
+      );
+
+      const answerChips = useMemo(() => {
+        return MODEL.questions.flatMap(q => {
+          const optId = answers[q.nodeId];
+          if (!optId) return [];
+          const opt = q.options.find(o => o.optionId === optId);
+          return [{ nodeId: q.nodeId, questionText: q.questionText, optionLabel: opt?.plainLabel || "Selected" }];
+        });
+      }, [answers]);
+
+      return (
+        <div className="min-h-screen p-5 md:p-8">
+          <div className="max-w-6xl mx-auto">
+
+            <div className="mb-6">
+              <h1 className="text-2xl md:text-3xl font-bold text-slate-900">{APP_NAME}</h1>
+              <p className="text-slate-600 mt-2 max-w-3xl">
+                Start anywhere. Answer only what you can observe. Each answer narrows the list of possible classifications.
+              </p>
+            </div>
+
+            {errorMsg && (
+              <div className="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-800">
+                {errorMsg}
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+              {/* Left: Question menu */}
+              <div className="lg:col-span-4">
+                <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                  <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between">
+                    <div className="font-semibold text-slate-800">Questions</div>
+                    <button onClick={resetAll} className="text-sm text-slate-600 hover:text-slate-900">Reset All</button>
+                  </div>
+                  <div className="max-h-[70vh] overflow-auto">
+                    {MODEL.questions.map((q) => {
+                      const isAnswered = !!answers[q.nodeId];
+                      const isUnknown = !!unknowns[q.nodeId];
+                      const meta = questionMeta.get(q.nodeId) || { canNarrow: true, isRelevant: true };
+                      const isActive = q.nodeId === activeQuestionId;
+                      const selectedOption = isAnswered
+                        ? q.options.find(o => o.optionId === answers[q.nodeId])
+                        : null;
+                      return (
+                        <div
+                          key={q.nodeId}
+                          className={[
+                            "px-4 py-3 border-b border-slate-100 cursor-pointer",
+                            isActive ? "bg-blue-50" : "bg-white hover:bg-slate-50",
+                            !meta.isRelevant ? "opacity-50" : "",
+                          ].join(" ")}
+                          onClick={() => setActiveQuestionId(q.nodeId)}
+                        >
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="min-w-0">
+                              <div className="text-sm font-medium text-slate-900 truncate">
+                                {q.questionText || q.nodeId}
+                              </div>
+                              <div className="mt-1 flex items-center gap-2">
+                                {isAnswered ? (
+                                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 truncate max-w-[16rem]">
+                                    {selectedOption?.plainLabel || "Answered"}
+                                  </span>
+                                ) : (
+                                  <>
+                                    <span className={`text-xs px-2 py-0.5 rounded-full ${isUnknown ? "bg-amber-100 text-amber-800" : "bg-slate-100 text-slate-700"}`}>
+                                      {isUnknown ? "Unknown" : "Unanswered"}
+                                    </span>
+                                    <span className={`text-xs px-2 py-0.5 rounded-full ${meta.canNarrow ? "bg-blue-100 text-blue-800" : "bg-slate-100 text-slate-600"}`}>
+                                      {meta.canNarrow ? "Can narrow" : "Won't narrow"}
+                                    </span>
+                                  </>
+                                )}
+                              </div>
+                            </div>
+                            {(isAnswered || isUnknown) && (
+                              <button
+                                className="text-xs text-slate-600 hover:text-slate-900"
+                                onClick={(e) => { e.stopPropagation(); removeAnswer(q.nodeId); }}
+                              >
+                                Reset
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="mt-4 bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+                  <div className="font-semibold text-slate-800 mb-2">Your answers</div>
+                  {answerChips.length === 0 ? (
+                    <div className="text-sm text-slate-600">No answers yet. Pick any question to start.</div>
+                  ) : (
+                    <div className="flex flex-wrap gap-2">
+                      {answerChips.map((a) => (
+                        <button
+                          key={a.nodeId}
+                          onClick={() => setActiveQuestionId(a.nodeId)}
+                          className="text-left text-xs px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800"
+                        >
+                          <div className="font-semibold">{a.optionLabel}</div>
+                          <div className="text-slate-600 truncate max-w-[14rem]">{a.questionText}</div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Center: Active question */}
+              <div className="lg:col-span-5">
+                <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 md:p-6">
+                  {!activeQuestion ? (
+                    <div className="text-slate-700">No question selected.</div>
+                  ) : (
+                    <div>
+                      <div className="text-lg font-semibold text-slate-900 mb-5">
+                        {activeQuestion.questionText}
+                      </div>
+                      <div className="space-y-3">
+                        {activeQuestion.options.map((opt) => {
+                          const isSelected = answers[activeQuestion.nodeId] === opt.optionId;
+                          return (
+                            <button
+                              key={opt.optionId}
+                              onClick={() => chooseOption(activeQuestion.nodeId, opt.optionId)}
+                              className={[
+                                "w-full text-left rounded-xl border p-4 transition",
+                                isSelected
+                                  ? "border-blue-500 bg-blue-50"
+                                  : "border-slate-200 hover:border-blue-400 hover:bg-slate-50",
+                              ].join(" ")}
+                            >
+                              <div className="text-base font-semibold text-slate-900">
+                                {opt.plainLabel}
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                      <div className="mt-5">
+                        <button
+                          onClick={() => markUnknown(activeQuestion.nodeId)}
+                          className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800"
+                        >
+                          I don't know
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Right: Hypotheses */}
+              <div className="lg:col-span-3">
+                <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                  <div className="px-4 py-3 border-b border-slate-200">
+                    <div className="font-semibold text-slate-800">Possible Classifications</div>
+                    <div className="text-sm text-slate-600 mt-1">
+                      {candidates.length} remaining
+                    </div>
+                  </div>
+                  <div className="p-4 space-y-3">
+                    {rankedHypotheses.length === 0 ? (
+                      <div className="text-sm text-slate-700">No classifications remain.</div>
+                    ) : (
+                      rankedHypotheses.map((h) => (
+                        <div key={h.leafId} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                          {h.imageSrc && (
+                            <img
+                              src={h.imageSrc}
+                              alt={h.leafText}
+                              className="w-full max-h-24 object-contain rounded mb-2 bg-white"
+                            />
+                          )}
+                          <div className="text-sm font-semibold text-slate-900">{h.leafText}</div>
+                          {h.arcsParts.length > 0 && (
+                            <div className="mt-1 text-xs text-slate-500">
+                              {h.arcsParts.join(" \u203a ")}
+                            </div>
+                          )}
+                          {h.characteristics.length > 0 && (
+                            <div className="mt-2 space-y-1">
+                              {h.characteristics.map((c, i) => (
+                                <div key={i} className="flex gap-1 items-baseline">
+                                  <span className="text-xs text-slate-500 shrink-0">{c.key}:</span>
+                                  <span className="text-xs text-slate-700">{c.value}</span>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                          {h.description && (
+                            <div className="mt-2 text-xs text-slate-600">{h.description}</div>
+                          )}
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>

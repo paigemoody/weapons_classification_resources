@@ -1,0 +1,21 @@
+id,Name,Class,Group,Type,Sub-type,Description,Image URL,Image Caption,How held,Bore type,Loading,Action mechanism
+SelfLoadingPistols,Self-loading Pistols,Small Arms,Handguns,Self-loading Pistols,,A self-loading pistol with a rifled barrel that fires one round per trigger pull and automatically cycles the action.,https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.13_SelfLoading_Pistols.png?raw=true,Self-loading pistol examples,One hand — no shoulder stock,Rifled bore,Cycles automatically,Semi-automatic
+Revolvers,Revolvers,Small Arms,Handguns,Revolvers,,A handgun with a rifled barrel and a rotating cylinder that holds multiple cartridges.,https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.12_Revolvers.png?raw=true,Revolver examples,One hand — no shoulder stock,Rifled bore,Must be cycled manually,Rotating cylinder
+OtherHandguns,Other Handguns,Small Arms,Handguns,Other Handguns,,,,,One hand — no shoulder stock,,,
+SubMachineGuns,Sub-machine Guns,Small Arms,Long Guns,Sub-machine Guns,,,,,Two hands — braced against shoulder,Rifled bore,Cycles automatically,
+ManPortableMachineGuns,Man-portable Machine Guns,Small Arms,Long Guns,Man-portable Machine Guns,,,,,Two hands — braced against shoulder,Rifled bore,Cycles automatically,Fully automatic
+OtherLongGuns,Other Long Guns,Small Arms,Long Guns,Other Long Guns,,,,,Two hands — braced against shoulder,Rifled bore,,
+AutomaticRifles,Automatic Rifles,Small Arms,Long Guns,Rifles,Self-loading Rifles,,,,Two hands — braced against shoulder,Rifled bore,Cycles automatically,Fully automatic
+SemiAutomaticRifles,Semi-automatic Rifles,Small Arms,Long Guns,Rifles,Self-loading Rifles,,,,Two hands — braced against shoulder,Rifled bore,Cycles automatically,Semi-automatic
+BreakActionRifles,Break-action Rifles,Small Arms,Long Guns,Rifles,Manually Operated Rifles,,,,Two hands — braced against shoulder,Rifled bore,Must be cycled manually,Break-action
+BoltActionRifles,Bolt-action Rifles,Small Arms,Long Guns,Rifles,Manually Operated Rifles,,,,Two hands — braced against shoulder,Rifled bore,Must be cycled manually,Bolt-action
+LeverActionRifles,Lever-action Rifles,Small Arms,Long Guns,Rifles,Manually Operated Rifles,,,,Two hands — braced against shoulder,Rifled bore,Must be cycled manually,Lever-action
+PumpActionRifles,Pump-action Rifles,Small Arms,Long Guns,Rifles,Manually Operated Rifles,,,,Two hands — braced against shoulder,Rifled bore,Must be cycled manually,Pump-action
+OtherManuallyOperatedRifles,Other Manually Operated Rifles,Small Arms,Long Guns,Rifles,Manually Operated Rifles,,,,Two hands — braced against shoulder,Rifled bore,Must be cycled manually,
+AutomaticShotguns,Automatic Shotguns,Small Arms,Long Guns,Shotguns,Self-loading Shotguns,,,,Two hands — braced against shoulder,Smooth bore,Cycles automatically,Fully automatic
+SemiAutomaticShotguns,Semi-automatic Shotguns,Small Arms,Long Guns,Shotguns,Self-loading Shotguns,,,,Two hands — braced against shoulder,Smooth bore,Cycles automatically,Semi-automatic
+BreakActionShotguns,Break-action Shotguns,Small Arms,Long Guns,Shotguns,Manually Operated Shotguns,,,,Two hands — braced against shoulder,Smooth bore,Must be cycled manually,Break-action
+BoltActionShotguns,Bolt-action Shotguns,Small Arms,Long Guns,Shotguns,Manually Operated Shotguns,,,,Two hands — braced against shoulder,Smooth bore,Must be cycled manually,Bolt-action
+LeverActionShotguns,Lever-action Shotguns,Small Arms,Long Guns,Shotguns,Manually Operated Shotguns,,,,Two hands — braced against shoulder,Smooth bore,Must be cycled manually,Lever-action
+PumpActionShotguns,Pump-action Shotguns,Small Arms,Long Guns,Shotguns,Manually Operated Shotguns,,,,Two hands — braced against shoulder,Smooth bore,Must be cycled manually,Pump-action
+OtherManuallyOperatedShotguns,Other Manually Operated Shotguns,Small Arms,Long Guns,Shotguns,Manually Operated Shotguns,,,,Two hands — braced against shoulder,Smooth bore,Must be cycled manually,

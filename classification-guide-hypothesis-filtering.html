@@ -4,15 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>[DEMO] Weapons Classification Guide (Hypothesis Filtering)</title>
-
-  <!-- React (no build step) -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-
-  <!-- Babel for JSX in-browser (fine for a static demo; you can remove later if you build) -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-  <!-- Tailwind via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-50">
@@ -29,332 +23,312 @@
   "questions": [
     {
       "nodeId": "SmallArms",
-      "questionHtml": "<h1>Which Small Arms group best fits?</h1><p></p><img src='' />",
-      "questionText": "Which Small Arms group best fits?",
+      "questionHtml": "How would you hold this weapon to operate it?",
+      "questionText": "How would you hold this weapon to operate it?",
+      "imageSrc": "",
       "options": [
         {
-          "optionId": "SmallArms__TO__Handguns_BarrelType",
-          "dstNodeId": "Handguns_BarrelType",
-          "titleHtml": "Handgun",
-          "contextHtml": "<p>a firearm which is grasped by placing both the control hand and support hand around the pistol grip, and which may be readily fired with one hand (ARES p37)</p>",
-          "plainLabel": "Handgun",
+          "optionId": "SmallArms__TO__Handguns",
+          "dstNodeId": "Handguns",
+          "titleHtml": "One hand — no shoulder stock",
+          "contextHtml": "<p>A firearm held and operated with one or both hands on the grip; no shoulder stock is used.</p><p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Group: Handguns</p>",
+          "plainLabel": "One hand — no shoulder stock",
           "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.8_2.9_2.10_Handguns.png?raw=true"
         },
         {
           "optionId": "SmallArms__TO__LongGuns",
           "dstNodeId": "LongGuns",
-          "titleHtml": "Long Gun",
-          "contextHtml": "<p>A firearm which is grasped by placing the control hand and support hand in different locations, and which is typically fitted with a buttstock intended to be braced against the user’s shoulder when fired.</p>",
-          "plainLabel": "Long Gun",
+          "titleHtml": "Two hands — braced against the shoulder",
+          "contextHtml": "<p>A firearm requiring both hands in separate positions and typically braced against the shoulder with a buttstock.</p><p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Group: Long Guns</p>",
+          "plainLabel": "Two hands — braced against the shoulder",
           "imageSrc": ""
         }
       ]
     },
     {
-      "nodeId": "Handguns_BarrelType",
-      "questionHtml": "<h1>Which barrel type best fits what you see?</h1><p></p><img src='https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/small_arms_survey/visuals/Figure_3.4_Rifled_and_smooth-bore_barrels.png?raw=true' />",
-      "questionText": "Which barrel type best fits what you see?",
+      "nodeId": "Handguns",
+      "questionHtml": "How does the handgun chamber the next round?",
+      "questionText": "How does the handgun chamber the next round?",
+      "imageSrc": "",
       "options": [
         {
-          "optionId": "Handguns_BarrelType__TO__Handguns_Rifled",
-          "dstNodeId": "Handguns_Rifled",
-          "titleHtml": "Rifled",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Rifled",
+          "optionId": "Handguns__TO__SelfLoadingPistols",
+          "dstNodeId": "SelfLoadingPistols",
+          "titleHtml": "Slide cycles back and chambers from a magazine",
+          "contextHtml": "<p>A pistol that automatically chambers the next round after firing using a sliding action.</p><p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Type: Self-loading Pistols</p>",
+          "plainLabel": "Slide cycles back and chambers from a magazine",
           "imageSrc": ""
         },
         {
-          "optionId": "Handguns_BarrelType__TO__SmoothBore_OtherHandguns",
-          "dstNodeId": "SmoothBore_OtherHandguns",
-          "titleHtml": "Smooth Bore",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Smooth Bore",
+          "optionId": "Handguns__TO__Revolvers",
+          "dstNodeId": "Revolvers",
+          "titleHtml": "Rotating cylinder advances to the next chamber",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Type: Revolvers</p>",
+          "plainLabel": "Rotating cylinder advances to the next chamber",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "Handguns__TO__OtherHandguns",
+          "dstNodeId": "OtherHandguns",
+          "titleHtml": "It must be manually loaded each shot",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Type: Other Handguns</p>",
+          "plainLabel": "It must be manually loaded each shot",
           "imageSrc": ""
         }
       ]
     },
     {
       "nodeId": "LongGuns",
-      "questionHtml": "<h1>Which barrel type best fits?</h1><p></p><img src='' />",
-      "questionText": "Which barrel type best fits?",
+      "questionHtml": "What is the bore type?",
+      "questionText": "What is the bore type?",
+      "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/small_arms_survey/visuals/Figure_3.4_Rifled_and_smooth-bore_barrels.png?raw=true",
       "options": [
         {
-          "optionId": "LongGuns__TO__LongGuns_Rifled",
-          "dstNodeId": "LongGuns_Rifled",
-          "titleHtml": "Rifled",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Rifled",
-          "imageSrc": ""
-        },
-        {
-          "optionId": "LongGuns__TO__LongGuns_SmoothBore",
-          "dstNodeId": "LongGuns_SmoothBore",
-          "titleHtml": "Smooth Bore",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Smooth Bore",
-          "imageSrc": ""
-        }
-      ]
-    },
-    {
-      "nodeId": "Handguns_Rifled",
-      "questionHtml": "<h1>Which type of rifiled handgun best matches?</h1><p></p><img src='' />",
-      "questionText": "Which type of rifiled handgun best matches?",
-      "options": [
-        {
-          "optionId": "Handguns_Rifled__TO__Rifled_SelfLoadingPistols",
-          "dstNodeId": "Rifled_SelfLoadingPistols",
-          "titleHtml": "Self Loading Pistols",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Self Loading Pistols",
-          "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.13_SelfLoading_Pistols.png?raw=true"
-        },
-        {
-          "optionId": "Handguns_Rifled__TO__Rifled_Revolvers",
-          "dstNodeId": "Rifled_Revolvers",
-          "titleHtml": "Revolvers",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Revolvers",
-          "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.12_Revolvers.png?raw=true"
-        }
-      ]
-    },
-    {
-      "nodeId": "LongGuns_Rifled",
-      "questionHtml": "<h1>Which type of rifiled long gun best matches?</h1><p></p><img src='' />",
-      "questionText": "Which type of rifiled long gun best matches?",
-      "options": [
-        {
-          "optionId": "LongGuns_Rifled__TO__Rifled_SubMachineGuns",
-          "dstNodeId": "Rifled_SubMachineGuns",
-          "titleHtml": "Sub-machine Guns",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Sub-machine Guns",
-          "imageSrc": ""
-        },
-        {
-          "optionId": "LongGuns_Rifled__TO__Rifled_ManPortableMachineGuns",
-          "dstNodeId": "Rifled_ManPortableMachineGuns",
-          "titleHtml": "Man-portable Machine Guns",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Man-portable Machine Guns",
-          "imageSrc": ""
-        },
-        {
-          "optionId": "LongGuns_Rifled__TO__Rifles",
-          "dstNodeId": "Rifles",
-          "titleHtml": "Other",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Other",
-          "imageSrc": ""
-        }
-      ]
-    },
-    {
-      "nodeId": "LongGuns_SmoothBore",
-      "questionHtml": "<h1>Smooth-bore</h1><p></p><img src='' />",
-      "questionText": "Smooth-bore",
-      "options": [
-        {
-          "optionId": "LongGuns_SmoothBore__TO__Shotguns",
+          "optionId": "LongGuns__TO__Shotguns",
           "dstNodeId": "Shotguns",
-          "titleHtml": "Shotguns",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Shotguns",
+          "titleHtml": "Smooth bore",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Type: Shotguns</p>",
+          "plainLabel": "Smooth bore",
           "imageSrc": ""
         },
         {
-          "optionId": "LongGuns_SmoothBore__TO__OtherSmoothBoreLongGuns",
-          "dstNodeId": "OtherSmoothBoreLongGuns",
-          "titleHtml": "Other Smooth Bore Long Guns",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Other Smooth Bore Long Guns",
+          "optionId": "LongGuns__TO__RifledLongGuns",
+          "dstNodeId": "RifledLongGuns",
+          "titleHtml": "Rifled bore",
+          "contextHtml": "<p>A long gun with a rifled barrel.</p>",
+          "plainLabel": "Rifled bore",
+          "imageSrc": ""
+        }
+      ]
+    },
+    {
+      "nodeId": "RifledLongGuns",
+      "questionHtml": "What kind of rifled long gun is it?",
+      "questionText": "What kind of rifled long gun is it?",
+      "imageSrc": "",
+      "options": [
+        {
+          "optionId": "RifledLongGuns__TO__SubMachineGuns",
+          "dstNodeId": "SubMachineGuns",
+          "titleHtml": "Rifled bore — fires pistol-calibre ammunition — self-loading",
+          "contextHtml": "<p>A self-loading long gun chambered for pistol-calibre ammunition; typically compact.</p><p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Type: Sub-machine Guns</p>",
+          "plainLabel": "Rifled bore — fires pistol-calibre ammunition — self-loading",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "RifledLongGuns__TO__ManPortableMachineGuns",
+          "dstNodeId": "ManPortableMachineGuns",
+          "titleHtml": "Capable of sustained automatic fire — belt or large-capacity magazine",
+          "contextHtml": "<p>A fully automatic long gun designed to be carried and operated by an individual or small crew.</p><p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Type: Man-portable Machine Guns</p>",
+          "plainLabel": "Capable of sustained automatic fire — belt or large-capacity magazine",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "RifledLongGuns__TO__Rifles",
+          "dstNodeId": "Rifles",
+          "titleHtml": "Rifled bore — fires rifle-calibre ammunition",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Type: Rifles</p>",
+          "plainLabel": "Rifled bore — fires rifle-calibre ammunition",
+          "imageSrc": ""
+        },
+        {
+          "optionId": "RifledLongGuns__TO__OtherLongGuns",
+          "dstNodeId": "OtherLongGuns",
+          "titleHtml": "A long gun — but none of the above types",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Type: Other Long Guns</p>",
+          "plainLabel": "A long gun — but none of the above types",
           "imageSrc": ""
         }
       ]
     },
     {
       "nodeId": "Rifles",
-      "questionHtml": "<h1>Rifles: Which sub-type of rifled long guns matches best?</h1><p></p><img src='' />",
-      "questionText": "Rifles: Which sub-type of rifled long guns matches best?",
+      "questionHtml": "How does the rifle load the next round after firing?",
+      "questionText": "How does the rifle load the next round after firing?",
+      "imageSrc": "",
       "options": [
         {
           "optionId": "Rifles__TO__SelfLoadingRifles",
           "dstNodeId": "SelfLoadingRifles",
-          "titleHtml": "Self-Loading",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Self-Loading",
+          "titleHtml": "Automatically — action cycles by itself after each shot",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Sub-type: Self-loading Rifles</p>",
+          "plainLabel": "Automatically — action cycles by itself after each shot",
           "imageSrc": ""
         },
         {
           "optionId": "Rifles__TO__ManuallyOperatedRifles",
           "dstNodeId": "ManuallyOperatedRifles",
-          "titleHtml": "Manually-Loaded",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Manually-Loaded",
+          "titleHtml": "Manually — must be cycled by hand between shots",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Sub-type: Manually Operated Rifles</p>",
+          "plainLabel": "Manually — must be cycled by hand between shots",
           "imageSrc": ""
         }
       ]
     },
     {
       "nodeId": "Shotguns",
-      "questionHtml": "<h1>How is amunition loaded into the shotgun?</h1><p></p><img src='' />",
-      "questionText": "How is amunition loaded into the shotgun?",
+      "questionHtml": "How does the shotgun load the next round after firing?",
+      "questionText": "How does the shotgun load the next round after firing?",
+      "imageSrc": "",
       "options": [
         {
           "optionId": "Shotguns__TO__SelfLoadingShotguns",
           "dstNodeId": "SelfLoadingShotguns",
-          "titleHtml": "Self-Loading",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Self-Loading",
+          "titleHtml": "Automatically — action cycles by itself after each shot",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Sub-type: Self-loading Shotguns</p>",
+          "plainLabel": "Automatically — action cycles by itself after each shot",
           "imageSrc": ""
         },
         {
           "optionId": "Shotguns__TO__ManuallyOperatedShotguns",
           "dstNodeId": "ManuallyOperatedShotguns",
-          "titleHtml": "Manually",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Manually",
+          "titleHtml": "Manually — must be cycled by hand between shots",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Sub-type: Manually Operated Shotguns</p>",
+          "plainLabel": "Manually — must be cycled by hand between shots",
           "imageSrc": ""
         }
       ]
     },
     {
       "nodeId": "SelfLoadingRifles",
-      "questionHtml": "<h1>Which operation method of self-loading rifled long gun best fits?</h1><p></p><img src='' />",
-      "questionText": "Which operation method of self-loading rifled long gun best fits?",
+      "questionHtml": "How many rounds does the rifle fire per trigger pull?",
+      "questionText": "How many rounds does the rifle fire per trigger pull?",
+      "imageSrc": "",
       "options": [
         {
           "optionId": "SelfLoadingRifles__TO__AutomaticRifles",
           "dstNodeId": "AutomaticRifles",
-          "titleHtml": "Automatic Rifles",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Automatic Rifles",
+          "titleHtml": "Multiple rounds — continues firing while trigger is held",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Automatic Rifles</p>",
+          "plainLabel": "Multiple rounds — continues firing while trigger is held",
           "imageSrc": ""
         },
         {
           "optionId": "SelfLoadingRifles__TO__SemiAutomaticRifles",
           "dstNodeId": "SemiAutomaticRifles",
-          "titleHtml": "Semi-Automatic Rifles",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Semi-Automatic Rifles",
+          "titleHtml": "One round per trigger pull",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Semi-automatic Rifles</p>",
+          "plainLabel": "One round per trigger pull",
           "imageSrc": ""
         }
       ]
     },
     {
       "nodeId": "ManuallyOperatedRifles",
-      "questionHtml": "<h1>Which operation method manually-loading rifled long gun best fits?</h1><p></p><img src='' />",
-      "questionText": "Which operation method manually-loading rifled long gun best fits?",
+      "questionHtml": "What action mechanism does the rifle use?",
+      "questionText": "What action mechanism does the rifle use?",
+      "imageSrc": "",
       "options": [
         {
           "optionId": "ManuallyOperatedRifles__TO__BreakActionRifles",
           "dstNodeId": "BreakActionRifles",
-          "titleHtml": "Break Action Rifles",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Break Action Rifles",
+          "titleHtml": "Break-action — barrel hinges open to load",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Break-action Rifles</p>",
+          "plainLabel": "Break-action — barrel hinges open to load",
           "imageSrc": ""
         },
         {
           "optionId": "ManuallyOperatedRifles__TO__BoltActionRifles",
           "dstNodeId": "BoltActionRifles",
-          "titleHtml": "Bolt Action Rifles",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Bolt Action Rifles",
+          "titleHtml": "Bolt-action — handle on the side of the receiver",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Bolt-action Rifles</p>",
+          "plainLabel": "Bolt-action — handle on the side of the receiver",
           "imageSrc": ""
         },
         {
           "optionId": "ManuallyOperatedRifles__TO__LeverActionRifles",
           "dstNodeId": "LeverActionRifles",
-          "titleHtml": "Lever Action Rifles",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Lever Action Rifles",
+          "titleHtml": "Lever-action — lever below the receiver",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Lever-action Rifles</p>",
+          "plainLabel": "Lever-action — lever below the receiver",
           "imageSrc": ""
         },
         {
           "optionId": "ManuallyOperatedRifles__TO__PumpActionRifles",
           "dstNodeId": "PumpActionRifles",
-          "titleHtml": "Pump Action Rifles",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Pump Action Rifles",
+          "titleHtml": "Pump-action — fore-end slides back and forth",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Pump-action Rifles</p>",
+          "plainLabel": "Pump-action — fore-end slides back and forth",
           "imageSrc": ""
         },
         {
           "optionId": "ManuallyOperatedRifles__TO__OtherManuallyOperatedRifles",
           "dstNodeId": "OtherManuallyOperatedRifles",
-          "titleHtml": "Other Manually Operated Rifles",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Other Manually Operated Rifles",
+          "titleHtml": "A manually operated rifle — but none of the action types above",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Other Manually Operated Rifles</p>",
+          "plainLabel": "A manually operated rifle — but none of the action types above",
           "imageSrc": ""
         }
       ]
     },
     {
       "nodeId": "SelfLoadingShotguns",
-      "questionHtml": "<h1>Which self-loading shotgun matches best?</h1><p></p><img src='' />",
-      "questionText": "Which self-loading shotgun matches best?",
+      "questionHtml": "How many rounds does the shotgun fire per trigger pull?",
+      "questionText": "How many rounds does the shotgun fire per trigger pull?",
+      "imageSrc": "",
       "options": [
         {
           "optionId": "SelfLoadingShotguns__TO__AutomaticShotguns",
           "dstNodeId": "AutomaticShotguns",
-          "titleHtml": "Automatic Shotguns",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Automatic Shotguns",
+          "titleHtml": "Multiple rounds — continues firing while trigger is held",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Automatic Shotguns</p>",
+          "plainLabel": "Multiple rounds — continues firing while trigger is held",
           "imageSrc": ""
         },
         {
           "optionId": "SelfLoadingShotguns__TO__SemiAutomaticShotguns",
           "dstNodeId": "SemiAutomaticShotguns",
-          "titleHtml": "Semi-Automatic Shotguns",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Semi-Automatic Shotguns",
+          "titleHtml": "One round per trigger pull",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Semi-automatic Shotguns</p>",
+          "plainLabel": "One round per trigger pull",
           "imageSrc": ""
         }
       ]
     },
     {
       "nodeId": "ManuallyOperatedShotguns",
-      "questionHtml": "<h1>Which manually operated shotguns matches best?</h1><p></p><img src='' />",
-      "questionText": "Which manually operated shotguns matches best?",
+      "questionHtml": "What action mechanism does the shotgun use?",
+      "questionText": "What action mechanism does the shotgun use?",
+      "imageSrc": "",
       "options": [
         {
           "optionId": "ManuallyOperatedShotguns__TO__BreakActionShotguns",
           "dstNodeId": "BreakActionShotguns",
-          "titleHtml": "Break Action Shotguns",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Break Action Shotguns",
+          "titleHtml": "Break-action — barrel hinges open to load",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Break-action Shotguns</p>",
+          "plainLabel": "Break-action — barrel hinges open to load",
           "imageSrc": ""
         },
         {
           "optionId": "ManuallyOperatedShotguns__TO__BoltActionShotguns",
           "dstNodeId": "BoltActionShotguns",
-          "titleHtml": "Bolt Action Shotguns",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Bolt Action Shotguns",
+          "titleHtml": "Bolt-action — handle on the side of the receiver",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Bolt-action Shotguns</p>",
+          "plainLabel": "Bolt-action — handle on the side of the receiver",
           "imageSrc": ""
         },
         {
           "optionId": "ManuallyOperatedShotguns__TO__LeverActionShotguns",
           "dstNodeId": "LeverActionShotguns",
-          "titleHtml": "Lever Action Shotguns",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Lever Action Shotguns",
+          "titleHtml": "Lever-action — lever below the receiver",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Lever-action Shotguns</p>",
+          "plainLabel": "Lever-action — lever below the receiver",
           "imageSrc": ""
         },
         {
           "optionId": "ManuallyOperatedShotguns__TO__PumpActionShotguns",
           "dstNodeId": "PumpActionShotguns",
-          "titleHtml": "Pump Action Shotguns",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Pump Action Shotguns",
+          "titleHtml": "Pump-action — fore-end slides back and forth",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Pump-action Shotguns</p>",
+          "plainLabel": "Pump-action — fore-end slides back and forth",
           "imageSrc": ""
         },
         {
           "optionId": "ManuallyOperatedShotguns__TO__OtherManuallyOperatedShotguns",
           "dstNodeId": "OtherManuallyOperatedShotguns",
-          "titleHtml": "Other Manually Operated Shotguns",
-          "contextHtml": "<p></p>",
-          "plainLabel": "Other Manually Operated Shotguns",
+          "titleHtml": "A manually operated shotgun — but none of the action types above",
+          "contextHtml": "<p class=\"text-xs text-slate-400 mt-1\">Points toward ARCS Method of Operation: Other Manually Operated Shotguns</p>",
+          "plainLabel": "A manually operated shotgun — but none of the action types above",
           "imageSrc": ""
         }
       ]
@@ -362,131 +336,565 @@
   ],
   "leaves": [
     {
-      "leafId": "SmoothBore_OtherHandguns",
-      "leafHtml": "<h1>Other handguns</h1><p></p><img src='' />",
-      "leafText": "Other handguns",
-      "depth": 2
-    },
-    {
-      "leafId": "Rifled_SelfLoadingPistols",
-      "leafHtml": "<h1>Self-loading Pistols</h1><p></p><img src='https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.13_SelfLoading_Pistols.png?raw=true' />",
-      "leafText": "Self-loading Pistols",
-      "depth": 3
-    },
-    {
-      "leafId": "Rifled_Revolvers",
-      "leafHtml": "<h1>Revolvers</h1><p></p><img src='https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.12_Revolvers.png?raw=true' />",
-      "leafText": "Revolvers",
-      "depth": 3
-    },
-    {
-      "leafId": "Rifled_SubMachineGuns",
-      "leafHtml": "<h1>Sub-machine guns</h1><p></p><img src='' />",
-      "leafText": "Sub-machine guns",
-      "depth": 3
-    },
-    {
-      "leafId": "Rifled_ManPortableMachineGuns",
-      "leafHtml": "<h1>Man-portable machine guns</h1><p></p><img src='' />",
-      "leafText": "Man-portable machine guns",
-      "depth": 3
-    },
-    {
-      "leafId": "OtherSmoothBoreLongGuns",
-      "leafHtml": "<h1>Other smooth-bore long guns</h1><p></p><img src='' />",
-      "leafText": "Other smooth-bore long guns",
-      "depth": 3
-    },
-    {
       "leafId": "AutomaticRifles",
-      "leafHtml": "<h1>Automatic Rifles</h1><p></p><img src='' />",
       "leafText": "Automatic Rifles",
-      "depth": 5
-    },
-    {
-      "leafId": "SemiAutomaticRifles",
-      "leafHtml": "<h1>Semi-Automatic Rifles</h1><p></p><img src='' />",
-      "leafText": "Semi-Automatic Rifles",
-      "depth": 5
-    },
-    {
-      "leafId": "BreakActionRifles",
-      "leafHtml": "<h1>Break-action Rifles</h1><p></p><img src='' />",
-      "leafText": "Break-action Rifles",
-      "depth": 5
-    },
-    {
-      "leafId": "BoltActionRifles",
-      "leafHtml": "<h1>Bolt-action Rifles</h1><p></p><img src='' />",
-      "leafText": "Bolt-action Rifles",
-      "depth": 5
-    },
-    {
-      "leafId": "LeverActionRifles",
-      "leafHtml": "<h1>Lever-action Rifles</h1><p></p><img src='' />",
-      "leafText": "Lever-action Rifles",
-      "depth": 5
-    },
-    {
-      "leafId": "PumpActionRifles",
-      "leafHtml": "<h1>Pump-action Rifles</h1><p></p><img src='' />",
-      "leafText": "Pump-action Rifles",
-      "depth": 5
-    },
-    {
-      "leafId": "OtherManuallyOperatedRifles",
-      "leafHtml": "<h1>Other Manually Operated Rifles</h1><p></p><img src='' />",
-      "leafText": "Other Manually Operated Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Self-loading Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Self-loading (cycles automatically after each shot)"
+        },
+        {
+          "key": "Fires per trigger pull",
+          "value": "Multiple rounds (fully automatic)"
+        }
+      ],
       "depth": 5
     },
     {
       "leafId": "AutomaticShotguns",
-      "leafHtml": "<h1>Automatic Shotguns</h1><p></p><img src='' />",
       "leafText": "Automatic Shotguns",
-      "depth": 5
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Self-loading Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Self-loading (cycles automatically after each shot)"
+        },
+        {
+          "key": "Fires per trigger pull",
+          "value": "Multiple rounds (fully automatic)"
+        }
+      ],
+      "depth": 4
     },
     {
-      "leafId": "SemiAutomaticShotguns",
-      "leafHtml": "<h1>Semi-Automatic Shotguns</h1><p></p><img src='' />",
-      "leafText": "Semi-Automatic Shotguns",
-      "depth": 5
-    },
-    {
-      "leafId": "BreakActionShotguns",
-      "leafHtml": "<h1>Break Action Shotguns</h1><p></p><img src='' />",
-      "leafText": "Break Action Shotguns",
+      "leafId": "BoltActionRifles",
+      "leafText": "Bolt-action Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Manual (must be cycled by hand between shots)"
+        },
+        {
+          "key": "Action type",
+          "value": "Bolt-action (handle on side of receiver)"
+        }
+      ],
       "depth": 5
     },
     {
       "leafId": "BoltActionShotguns",
-      "leafHtml": "<h1>Bolt Action Shotguns</h1><p></p><img src='' />",
-      "leafText": "Bolt Action Shotguns",
+      "leafText": "Bolt-action Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Manual (must be cycled by hand between shots)"
+        },
+        {
+          "key": "Action type",
+          "value": "Bolt-action (handle on side of receiver)"
+        }
+      ],
+      "depth": 4
+    },
+    {
+      "leafId": "BreakActionRifles",
+      "leafText": "Break-action Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Manual (must be cycled by hand between shots)"
+        },
+        {
+          "key": "Action type",
+          "value": "Break-action (barrel hinges open to load)"
+        }
+      ],
+      "depth": 5
+    },
+    {
+      "leafId": "BreakActionShotguns",
+      "leafText": "Break-action Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Manual (must be cycled by hand between shots)"
+        },
+        {
+          "key": "Action type",
+          "value": "Break-action (barrel hinges open to load)"
+        }
+      ],
+      "depth": 4
+    },
+    {
+      "leafId": "LeverActionRifles",
+      "leafText": "Lever-action Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Manual (must be cycled by hand between shots)"
+        },
+        {
+          "key": "Action type",
+          "value": "Lever-action (lever below the receiver)"
+        }
+      ],
       "depth": 5
     },
     {
       "leafId": "LeverActionShotguns",
-      "leafHtml": "<h1>Lever Action Shotguns</h1><p></p><img src='' />",
-      "leafText": "Lever Action Shotguns",
-      "depth": 5
+      "leafText": "Lever-action Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Manual (must be cycled by hand between shots)"
+        },
+        {
+          "key": "Action type",
+          "value": "Lever-action (lever below the receiver)"
+        }
+      ],
+      "depth": 4
     },
     {
-      "leafId": "PumpActionShotguns",
-      "leafHtml": "<h1>Pump Action Shotguns</h1><p></p><img src='' />",
-      "leafText": "Pump Action Shotguns",
+      "leafId": "ManPortableMachineGuns",
+      "leafText": "Man-portable Machine Guns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Man-portable Machine Guns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        }
+      ],
+      "depth": 3
+    },
+    {
+      "leafId": "OtherHandguns",
+      "leafText": "Other Handguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Handguns",
+        "Other Handguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "One hand (no shoulder stock)"
+        }
+      ],
+      "depth": 2
+    },
+    {
+      "leafId": "OtherLongGuns",
+      "leafText": "Other Long Guns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Other Long Guns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        }
+      ],
+      "depth": 3
+    },
+    {
+      "leafId": "OtherManuallyOperatedRifles",
+      "leafText": "Other Manually Operated Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Manual (must be cycled by hand between shots)"
+        }
+      ],
       "depth": 5
     },
     {
       "leafId": "OtherManuallyOperatedShotguns",
-      "leafHtml": "<h1>Other Manually Operated Shotguns</h1><p></p><img src='' />",
       "leafText": "Other Manually Operated Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Manual (must be cycled by hand between shots)"
+        }
+      ],
+      "depth": 4
+    },
+    {
+      "leafId": "PumpActionRifles",
+      "leafText": "Pump-action Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Manually Operated Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Manual (must be cycled by hand between shots)"
+        },
+        {
+          "key": "Action type",
+          "value": "Pump-action (fore-end slides back and forth)"
+        }
+      ],
       "depth": 5
+    },
+    {
+      "leafId": "PumpActionShotguns",
+      "leafText": "Pump-action Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Manually Operated Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Manual (must be cycled by hand between shots)"
+        },
+        {
+          "key": "Action type",
+          "value": "Pump-action (fore-end slides back and forth)"
+        }
+      ],
+      "depth": 4
+    },
+    {
+      "leafId": "Revolvers",
+      "leafText": "Revolvers",
+      "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.12_Revolvers.png?raw=true",
+      "description": "A handgun with a rifled barrel and a rotating cylinder that holds multiple cartridges.",
+      "arcsParts": [
+        "Small Arms",
+        "Handguns",
+        "Revolvers"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "One hand (no shoulder stock)"
+        },
+        {
+          "key": "Action type",
+          "value": "Rotating cylinder"
+        }
+      ],
+      "depth": 2
+    },
+    {
+      "leafId": "SelfLoadingPistols",
+      "leafText": "Self-loading Pistols",
+      "imageSrc": "https://github.com/paigemoody/weapons_classification_resources.github.io/blob/gh-pages/sources/ARES_arms_munitions_classification_system/visuals/Figure2.13_SelfLoading_Pistols.png?raw=true",
+      "description": "A self-loading pistol with a rifled barrel that fires one round per trigger pull and automatically cycles the action.",
+      "arcsParts": [
+        "Small Arms",
+        "Handguns",
+        "Self-loading Pistols"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "One hand (no shoulder stock)"
+        }
+      ],
+      "depth": 2
+    },
+    {
+      "leafId": "SemiAutomaticRifles",
+      "leafText": "Semi-automatic Rifles",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Rifles",
+        "Self-loading Rifles"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Self-loading (cycles automatically after each shot)"
+        },
+        {
+          "key": "Fires per trigger pull",
+          "value": "One round (semi-automatic)"
+        }
+      ],
+      "depth": 5
+    },
+    {
+      "leafId": "SemiAutomaticShotguns",
+      "leafText": "Semi-automatic Shotguns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Shotguns",
+        "Self-loading Shotguns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Smooth bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Self-loading (cycles automatically after each shot)"
+        },
+        {
+          "key": "Fires per trigger pull",
+          "value": "One round (semi-automatic)"
+        }
+      ],
+      "depth": 4
+    },
+    {
+      "leafId": "SubMachineGuns",
+      "leafText": "Sub-machine Guns",
+      "imageSrc": "",
+      "description": "",
+      "arcsParts": [
+        "Small Arms",
+        "Long Guns",
+        "Sub-machine Guns"
+      ],
+      "characteristics": [
+        {
+          "key": "How held",
+          "value": "Two hands with shoulder stock"
+        },
+        {
+          "key": "Bore type",
+          "value": "Rifled bore"
+        },
+        {
+          "key": "Loading",
+          "value": "Self-loading"
+        }
+      ],
+      "depth": 3
     }
   ],
   "optionToLeafIds": {
-    "SmallArms__TO__Handguns_BarrelType": [
-      "Rifled_Revolvers",
-      "Rifled_SelfLoadingPistols",
-      "SmoothBore_OtherHandguns"
+    "SmallArms__TO__Handguns": [
+      "OtherHandguns",
+      "Revolvers",
+      "SelfLoadingPistols"
     ],
     "SmallArms__TO__LongGuns": [
       "AutomaticRifles",
@@ -497,66 +905,26 @@
       "BreakActionShotguns",
       "LeverActionRifles",
       "LeverActionShotguns",
+      "ManPortableMachineGuns",
+      "OtherLongGuns",
       "OtherManuallyOperatedRifles",
       "OtherManuallyOperatedShotguns",
-      "OtherSmoothBoreLongGuns",
       "PumpActionRifles",
       "PumpActionShotguns",
-      "Rifled_ManPortableMachineGuns",
-      "Rifled_SubMachineGuns",
       "SemiAutomaticRifles",
-      "SemiAutomaticShotguns"
+      "SemiAutomaticShotguns",
+      "SubMachineGuns"
     ],
-    "Handguns_BarrelType__TO__Handguns_Rifled": [
-      "Rifled_Revolvers",
-      "Rifled_SelfLoadingPistols"
+    "Handguns__TO__SelfLoadingPistols": [
+      "SelfLoadingPistols"
     ],
-    "Handguns_BarrelType__TO__SmoothBore_OtherHandguns": [
-      "SmoothBore_OtherHandguns"
+    "Handguns__TO__Revolvers": [
+      "Revolvers"
     ],
-    "LongGuns__TO__LongGuns_Rifled": [
-      "AutomaticRifles",
-      "BoltActionRifles",
-      "BreakActionRifles",
-      "LeverActionRifles",
-      "OtherManuallyOperatedRifles",
-      "PumpActionRifles",
-      "Rifled_ManPortableMachineGuns",
-      "Rifled_SubMachineGuns",
-      "SemiAutomaticRifles"
+    "Handguns__TO__OtherHandguns": [
+      "OtherHandguns"
     ],
-    "LongGuns__TO__LongGuns_SmoothBore": [
-      "AutomaticShotguns",
-      "BoltActionShotguns",
-      "BreakActionShotguns",
-      "LeverActionShotguns",
-      "OtherManuallyOperatedShotguns",
-      "OtherSmoothBoreLongGuns",
-      "PumpActionShotguns",
-      "SemiAutomaticShotguns"
-    ],
-    "Handguns_Rifled__TO__Rifled_SelfLoadingPistols": [
-      "Rifled_SelfLoadingPistols"
-    ],
-    "Handguns_Rifled__TO__Rifled_Revolvers": [
-      "Rifled_Revolvers"
-    ],
-    "LongGuns_Rifled__TO__Rifled_SubMachineGuns": [
-      "Rifled_SubMachineGuns"
-    ],
-    "LongGuns_Rifled__TO__Rifled_ManPortableMachineGuns": [
-      "Rifled_ManPortableMachineGuns"
-    ],
-    "LongGuns_Rifled__TO__Rifles": [
-      "AutomaticRifles",
-      "BoltActionRifles",
-      "BreakActionRifles",
-      "LeverActionRifles",
-      "OtherManuallyOperatedRifles",
-      "PumpActionRifles",
-      "SemiAutomaticRifles"
-    ],
-    "LongGuns_SmoothBore__TO__Shotguns": [
+    "LongGuns__TO__Shotguns": [
       "AutomaticShotguns",
       "BoltActionShotguns",
       "BreakActionShotguns",
@@ -565,8 +933,35 @@
       "PumpActionShotguns",
       "SemiAutomaticShotguns"
     ],
-    "LongGuns_SmoothBore__TO__OtherSmoothBoreLongGuns": [
-      "OtherSmoothBoreLongGuns"
+    "LongGuns__TO__RifledLongGuns": [
+      "AutomaticRifles",
+      "BoltActionRifles",
+      "BreakActionRifles",
+      "LeverActionRifles",
+      "ManPortableMachineGuns",
+      "OtherLongGuns",
+      "OtherManuallyOperatedRifles",
+      "PumpActionRifles",
+      "SemiAutomaticRifles",
+      "SubMachineGuns"
+    ],
+    "RifledLongGuns__TO__SubMachineGuns": [
+      "SubMachineGuns"
+    ],
+    "RifledLongGuns__TO__ManPortableMachineGuns": [
+      "ManPortableMachineGuns"
+    ],
+    "RifledLongGuns__TO__Rifles": [
+      "AutomaticRifles",
+      "BoltActionRifles",
+      "BreakActionRifles",
+      "LeverActionRifles",
+      "OtherManuallyOperatedRifles",
+      "PumpActionRifles",
+      "SemiAutomaticRifles"
+    ],
+    "RifledLongGuns__TO__OtherLongGuns": [
+      "OtherLongGuns"
     ],
     "Rifles__TO__SelfLoadingRifles": [
       "AutomaticRifles",
@@ -642,150 +1037,110 @@
     "BreakActionShotguns",
     "LeverActionRifles",
     "LeverActionShotguns",
+    "ManPortableMachineGuns",
+    "OtherHandguns",
+    "OtherLongGuns",
     "OtherManuallyOperatedRifles",
     "OtherManuallyOperatedShotguns",
-    "OtherSmoothBoreLongGuns",
     "PumpActionRifles",
     "PumpActionShotguns",
-    "Rifled_ManPortableMachineGuns",
-    "Rifled_Revolvers",
-    "Rifled_SelfLoadingPistols",
-    "Rifled_SubMachineGuns",
+    "Revolvers",
+    "SelfLoadingPistols",
     "SemiAutomaticRifles",
     "SemiAutomaticShotguns",
-    "SmoothBore_OtherHandguns"
+    "SubMachineGuns"
   ]
 };
 
-    // Utility: intersection of two arrays of strings (small sizes; keep simple)
     function intersect(a, b) {
       const setB = new Set(b);
       return a.filter(x => setB.has(x));
     }
 
-    // Utility: stable sorting by depth desc, then label asc
     function sortHypotheses(hyps) {
       return [...hyps].sort((x, y) => {
-        if (y.depth !== x.depth) return y.depth - x.depth; // deeper = more specific
+        if (y.depth !== x.depth) return y.depth - x.depth;
         return (x.leafText || "").localeCompare(y.leafText || "");
       });
     }
 
     function App() {
-      // Which menu item (question) is currently open
       const [activeQuestionId, setActiveQuestionId] = useState(MODEL.questions[0]?.nodeId || null);
-
-      // Selections: nodeId -> optionId
-      // (Skipping a question = no entry for that nodeId.)
       const [answers, setAnswers] = useState({});
-
-      // For polite UI: if the user tries a contradictory choice, show an explanation
+      const [unknowns, setUnknowns] = useState({});
       const [errorMsg, setErrorMsg] = useState("");
 
-      // Derived: current candidate leaves after applying all answers as hard constraints
       const candidates = useMemo(() => {
         let cur = MODEL.initialCandidates;
-        for (const [nodeId, optionId] of Object.entries(answers)) {
-          const allowed = MODEL.optionToLeafIds[optionId] || [];
-          cur = intersect(cur, allowed);
+        for (const [, optionId] of Object.entries(answers)) {
+          cur = intersect(cur, MODEL.optionToLeafIds[optionId] || []);
         }
         return cur;
       }, [answers]);
 
-      // Derived: map leafId -> leaf object for display
       const leafById = useMemo(() => {
         const m = new Map();
         for (const lf of MODEL.leaves) m.set(lf.leafId, lf);
         return m;
       }, []);
 
-      // Derived: ranked hypotheses
       const rankedHypotheses = useMemo(() => {
-        const hyps = candidates
-          .map(id => leafById.get(id))
-          .filter(Boolean);
-        return sortHypotheses(hyps);
+        return sortHypotheses(candidates.map(id => leafById.get(id)).filter(Boolean));
       }, [candidates, leafById]);
 
-      // Derived: show only top N hypotheses (your "short ranked list")
-      const TOP_N = 5;
-      const topHypotheses = rankedHypotheses.slice(0, TOP_N);
 
-      // Derived: for each question, is it still "compatible" with current candidates?
-      // We use this to:
-      // - gray out questions that cannot affect the result anymore (optional)
-      // - or show a small badge ("already implied" etc.) later if you want
       const questionMeta = useMemo(() => {
         const meta = new Map();
-
         for (const q of MODEL.questions) {
-          // Union of candidates that match ANY option for this question:
-          // if union == candidates, then the question doesn't narrow anything right now.
-          let union = [];
-          const seen = new Set();
-          for (const opt of q.options) {
-            const allowed = MODEL.optionToLeafIds[opt.optionId] || [];
-            for (const id of intersect(candidates, allowed)) {
-              if (!seen.has(id)) {
-                seen.add(id);
-                union.push(id);
-              }
-            }
-          }
-          const canNarrow = union.length > 0 && union.length < candidates.length;
-          const isRelevant = union.length > 0; // if 0, the question is fully incompatible with current candidates
+          const optionCounts = q.options.map(opt =>
+            intersect(candidates, MODEL.optionToLeafIds[opt.optionId] || []).length
+          );
+          const isRelevant = optionCounts.some(c => c > 0);
+          const canNarrow = optionCounts.some(c => c > 0 && c < candidates.length);
           meta.set(q.nodeId, { canNarrow, isRelevant });
         }
         return meta;
       }, [candidates]);
 
-      // When the active question becomes irrelevant (due to answers), auto-jump to the next relevant one
       useEffect(() => {
         if (!activeQuestionId) return;
         const meta = questionMeta.get(activeQuestionId);
         if (meta && meta.isRelevant) return;
-
-        const next = MODEL.questions.find(q => (questionMeta.get(q.nodeId)?.isRelevant));
+        const next = MODEL.questions.find(q => questionMeta.get(q.nodeId)?.isRelevant);
         if (next) setActiveQuestionId(next.nodeId);
       }, [activeQuestionId, questionMeta]);
 
       const resetAll = () => {
         setAnswers({});
+        setUnknowns({});
         setErrorMsg("");
         setActiveQuestionId(MODEL.questions[0]?.nodeId || null);
       };
 
-      const skipQuestion = (nodeId) => {
-        setErrorMsg("");
-        setAnswers(prev => {
-          const next = { ...prev };
-          delete next[nodeId];
-          return next;
-        });
-      };
-
-      // Try to set an answer; refuse if it would eliminate all candidates
       const chooseOption = (nodeId, optionId) => {
         setErrorMsg("");
-
-        // Compute what candidates would be if we applied this answer
         let cur = MODEL.initialCandidates;
-
         for (const [nid, oid] of Object.entries({ ...answers, [nodeId]: optionId })) {
-          const allowed = MODEL.optionToLeafIds[oid] || [];
-          cur = intersect(cur, allowed);
+          cur = intersect(cur, MODEL.optionToLeafIds[oid] || []);
         }
-
         if (cur.length === 0) {
           setErrorMsg("That choice conflicts with earlier answers. Try a different option, or remove a previous answer.");
           return;
         }
-
         setAnswers(prev => ({ ...prev, [nodeId]: optionId }));
+        setUnknowns(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
+      };
+
+      const markUnknown = (nodeId) => {
+        setErrorMsg("");
+        setAnswers(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
+        setUnknowns(prev => ({ ...prev, [nodeId]: true }));
       };
 
       const removeAnswer = (nodeId) => {
-        skipQuestion(nodeId);
+        setErrorMsg("");
+        setAnswers(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
+        setUnknowns(prev => { const n = { ...prev }; delete n[nodeId]; return n; });
       };
 
       const activeQuestion = useMemo(
@@ -793,35 +1148,22 @@
         [activeQuestionId]
       );
 
-      // For the "Your answers" panel: show question + selected option label
-      const answerChips = useMemo(() => {
-        const chips = [];
-        for (const q of MODEL.questions) {
-          const optId = answers[q.nodeId];
-          if (!optId) continue;
-          const opt = q.options.find(o => o.optionId === optId);
-          chips.push({
-            nodeId: q.nodeId,
-            questionText: q.questionText,
-            optionLabel: opt?.plainLabel || "Selected",
-          });
-        }
-        return chips;
-      }, [answers]);
+      const firstQuestionId = MODEL.questions[0]?.nodeId;
+      const firstAnswered = !!answers[firstQuestionId];
 
       return (
         <div className="min-h-screen p-5 md:p-8">
           <div className="max-w-6xl mx-auto">
 
-            {/* Header */}
             <div className="mb-6">
               <h1 className="text-2xl md:text-3xl font-bold text-slate-900">{APP_NAME}</h1>
               <p className="text-slate-600 mt-2 max-w-3xl">
-                Start anywhere. Answer only what you can tell. Each answer narrows down a ranked list of likely classifications.
+                {firstAnswered
+                  ? "Answer only what you can observe. Each answer narrows the list of possible classifications."
+                  : "Start by answering the first question, then choose any remaining questions in any order."}
               </p>
             </div>
 
-            {/* Error banner (for contradiction attempts) */}
             {errorMsg && (
               <div className="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-800">
                 {errorMsg}
@@ -835,71 +1177,60 @@
                 <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                   <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between">
                     <div className="font-semibold text-slate-800">Questions</div>
-                    <button
-                      onClick={resetAll}
-                      className="text-sm text-slate-600 hover:text-slate-900"
-                      title="Clear all answers"
-                    >
-                      Reset
-                    </button>
+                    <button onClick={resetAll} className="text-sm text-slate-600 hover:text-slate-900">Reset All</button>
                   </div>
-
                   <div className="max-h-[70vh] overflow-auto">
                     {MODEL.questions.map((q) => {
-                      const selected = !!answers[q.nodeId];
+                      const isAnswered = !!answers[q.nodeId];
+                      const isUnknown = !!unknowns[q.nodeId];
                       const meta = questionMeta.get(q.nodeId) || { canNarrow: true, isRelevant: true };
                       const isActive = q.nodeId === activeQuestionId;
-
-                      // We don't hard-disable irrelevant questions (people might want to explore),
-                      // but we visually deemphasize them.
-                      const rowClass = [
-                        "px-4 py-3 border-b border-slate-100 cursor-pointer",
-                        isActive ? "bg-blue-50" : "bg-white hover:bg-slate-50",
-                        !meta.isRelevant ? "opacity-50" : "",
-                      ].join(" ");
-
+                      const selectedOption = isAnswered
+                        ? q.options.find(o => o.optionId === answers[q.nodeId])
+                        : null;
                       return (
                         <div
                           key={q.nodeId}
-                          className={rowClass}
-                          onClick={() => setActiveQuestionId(q.nodeId)}
+                          className={[
+                            "px-4 py-3 border-b border-slate-100",
+                            (!firstAnswered && q.nodeId !== firstQuestionId)
+                              ? "opacity-40 cursor-not-allowed"
+                              : "cursor-pointer " + (isActive ? "bg-blue-50" : "bg-white hover:bg-slate-50"),
+                            (firstAnswered && !meta.isRelevant) ? "opacity-50" : "",
+                          ].join(" ")}
+                          onClick={() => {
+                            if (!firstAnswered && q.nodeId !== firstQuestionId) return;
+                            setActiveQuestionId(q.nodeId);
+                          }}
                         >
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
-                              <div className="text-sm font-medium text-slate-900 truncate">
+                              <div className="text-sm font-medium text-slate-900">
                                 {q.questionText || q.nodeId}
                               </div>
-
                               <div className="mt-1 flex items-center gap-2">
-                                {selected ? (
-                                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
-                                    Answered
+                                {isAnswered ? (
+                                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 truncate max-w-[16rem]">
+                                    {selectedOption?.plainLabel || "Answered"}
                                   </span>
                                 ) : (
-                                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">
-                                    Unanswered
-                                  </span>
-                                )}
-
-                                {meta.canNarrow ? (
-                                  <span className="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
-                                    Can narrow
-                                  </span>
-                                ) : (
-                                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
-                                    Won't narrow
-                                  </span>
+                                  <>
+                                    <span className={`text-xs px-2 py-0.5 rounded-full ${isUnknown ? "bg-amber-100 text-amber-800" : "bg-slate-100 text-slate-700"}`}>
+                                      {isUnknown ? "Unknown" : "Unanswered"}
+                                    </span>
+                                    <span className={`text-xs px-2 py-0.5 rounded-full ${meta.canNarrow ? "bg-blue-100 text-blue-800" : "bg-slate-100 text-slate-600"}`}>
+                                      {meta.canNarrow ? "Can narrow" : "Won't narrow"}
+                                    </span>
+                                  </>
                                 )}
                               </div>
                             </div>
-
-                            {selected && (
+                            {(isAnswered || isUnknown) && (
                               <button
                                 className="text-xs text-slate-600 hover:text-slate-900"
                                 onClick={(e) => { e.stopPropagation(); removeAnswer(q.nodeId); }}
-                                title="Remove this answer"
                               >
-                                Remove
+                                Reset
                               </button>
                             )}
                           </div>
@@ -909,28 +1240,6 @@
                   </div>
                 </div>
 
-                {/* Answers summary */}
-                <div className="mt-4 bg-white rounded-xl shadow-sm border border-slate-200 p-4">
-                  <div className="font-semibold text-slate-800 mb-2">Your answers</div>
-
-                  {answerChips.length === 0 ? (
-                    <div className="text-sm text-slate-600">No answers yet. Pick any question to start.</div>
-                  ) : (
-                    <div className="flex flex-wrap gap-2">
-                      {answerChips.map((a) => (
-                        <button
-                          key={a.nodeId}
-                          onClick={() => setActiveQuestionId(a.nodeId)}
-                          className="text-left text-xs px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800"
-                          title={a.questionText}
-                        >
-                          <div className="font-semibold">{a.optionLabel}</div>
-                          <div className="text-slate-600 truncate max-w-[14rem]">{a.questionText}</div>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
               </div>
 
               {/* Center: Active question */}
@@ -940,15 +1249,19 @@
                     <div className="text-slate-700">No question selected.</div>
                   ) : (
                     <div>
-                      <div
-                        className="prose max-w-none"
-                        dangerouslySetInnerHTML={{ __html: activeQuestion.questionHtml }}
-                      />
-
-                      <div className="mt-5 space-y-3">
+                      {activeQuestion.imageSrc && (
+                        <img
+                          src={activeQuestion.imageSrc}
+                          alt={activeQuestion.questionText}
+                          className="w-full max-h-48 object-contain rounded-lg mb-4 bg-slate-50"
+                        />
+                      )}
+                      <div className="text-lg font-semibold text-slate-900 mb-5">
+                        {activeQuestion.questionText}
+                      </div>
+                      <div className="space-y-3">
                         {activeQuestion.options.map((opt) => {
                           const isSelected = answers[activeQuestion.nodeId] === opt.optionId;
-
                           return (
                             <button
                               key={opt.optionId}
@@ -957,30 +1270,25 @@
                                 "w-full text-left rounded-xl border p-4 transition",
                                 isSelected
                                   ? "border-blue-500 bg-blue-50"
-                                  : "border-slate-200 hover:border-blue-400 hover:bg-slate-50"
+                                  : "border-slate-200 hover:border-blue-400 hover:bg-slate-50",
                               ].join(" ")}
                             >
                               <div className="flex gap-4 items-start">
-                                <div className="w-24 h-24 bg-slate-100 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
-                                  {opt.imageSrc ? (
+                                {opt.imageSrc && (
+                                  <div className="w-20 h-20 bg-slate-100 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
                                     <img
                                       src={opt.imageSrc}
-                                      alt={opt.plainLabel || "Option image"}
+                                      alt={opt.plainLabel}
                                       className="w-full h-full object-contain"
                                     />
-                                  ) : (
-                                    <span className="text-xs text-slate-400 px-2 text-center">No image</span>
-                                  )}
-                                </div>
-
+                                  </div>
+                                )}
                                 <div className="min-w-0">
-                                  <div
-                                    className="text-lg font-semibold text-slate-900"
-                                    dangerouslySetInnerHTML={{ __html: opt.titleHtml || opt.plainLabel || "Option" }}
+                                  <div className="text-base font-semibold text-slate-900"
+                                    dangerouslySetInnerHTML={{ __html: opt.titleHtml || opt.plainLabel }}
                                   />
                                   {opt.contextHtml && (
-                                    <div
-                                      className="mt-1 text-sm text-slate-700"
+                                    <div className="mt-1 text-sm text-slate-600"
                                       dangerouslySetInnerHTML={{ __html: opt.contextHtml }}
                                     />
                                   )}
@@ -990,21 +1298,13 @@
                           );
                         })}
                       </div>
-
-                      {/* Skip control: remove answer for this question */}
-                      <div className="mt-5 flex items-center gap-3">
+                      <div className="mt-5">
                         <button
-                          onClick={() => skipQuestion(activeQuestion.nodeId)}
+                          onClick={() => markUnknown(activeQuestion.nodeId)}
                           className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800"
                         >
-                          I don't know / skip
+                          I don't know
                         </button>
-
-                        {answers[activeQuestion.nodeId] && (
-                          <span className="text-sm text-slate-600">
-                            You can also remove your answer from the menu on the left.
-                          </span>
-                        )}
                       </div>
                     </div>
                   )}
@@ -1015,50 +1315,47 @@
               <div className="lg:col-span-3">
                 <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                   <div className="px-4 py-3 border-b border-slate-200">
-                    <div className="font-semibold text-slate-800">Hypotheses</div>
+                    <div className="font-semibold text-slate-800">Possible Classifications</div>
                     <div className="text-sm text-slate-600 mt-1">
-                      {candidates.length} possible outcome{candidates.length === 1 ? "" : "s"} remaining
+                      {candidates.length} remaining
                     </div>
                   </div>
-
                   <div className="p-4 space-y-3">
-                    {topHypotheses.length === 0 ? (
-                      <div className="text-sm text-slate-700">
-                        No hypotheses remain. (This shouldn't happen because we block contradictions.)
-                      </div>
+                    {rankedHypotheses.length === 0 ? (
+                      <div className="text-sm text-slate-700">No classifications remain.</div>
                     ) : (
-                      topHypotheses.map((h, idx) => (
-                        <div
-                          key={h.leafId}
-                          className="rounded-xl border border-slate-200 bg-slate-50 p-3"
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="text-xs font-semibold text-slate-600">
-                              Rank #{idx + 1}
+                      rankedHypotheses.map((h) => (
+                        <div key={h.leafId} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                          {h.imageSrc && (
+                            <img
+                              src={h.imageSrc}
+                              alt={h.leafText}
+                              className="w-full max-h-24 object-contain rounded mb-2 bg-white"
+                            />
+                          )}
+                          <div className="text-sm font-semibold text-slate-900">{h.leafText}</div>
+                          {h.arcsParts.length > 0 && (
+                            <div className="mt-1 text-xs text-slate-500">
+                              {h.arcsParts.join(" \u203a ")}
                             </div>
-                            <div className="text-xs text-slate-500">
-                              Specificity: {h.depth}
+                          )}
+                          {h.characteristics.length > 0 && (
+                            <div className="mt-2 space-y-1">
+                              {h.characteristics.map((c, i) => (
+                                <div key={i} className="flex gap-1 items-baseline">
+                                  <span className="text-xs text-slate-500 shrink-0">{c.key}:</span>
+                                  <span className="text-xs text-slate-700">{c.value}</span>
+                                </div>
+                              ))}
                             </div>
-                          </div>
-                          <div
-                            className="mt-2 text-sm font-semibold text-slate-900"
-                            dangerouslySetInnerHTML={{ __html: h.leafHtml }}
-                          />
+                          )}
+                          {h.description && (
+                            <div className="mt-2 text-xs text-slate-600">{h.description}</div>
+                          )}
                         </div>
                       ))
                     )}
-
-                    {rankedHypotheses.length > TOP_N && (
-                      <div className="text-xs text-slate-600">
-                        Showing top {TOP_N} of {rankedHypotheses.length}.
-                      </div>
-                    )}
                   </div>
-                </div>
-
-                <div className="mt-4 text-xs text-slate-500">
-                  Ranking currently prefers more specific (deeper) leaf categories.
-                  If you want a different ranking later (e.g., likelihood weights), we can add it.
                 </div>
               </div>
 
