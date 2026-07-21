@@ -1,0 +1,93 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size: 16px;
+  
+  /* Colors from design system */
+  --neutral-darkest: #1a1918;
+  --neutral-dark: #2e2e2e;
+  --neutral-gray: #292a2b;
+  --neutral-white: #fefefe;
+  --neutral-pure-white: #ffffff;
+  
+  --accent-gold: #ffbb00;
+  --accent-amber: #fab400;
+  
+  --cream-light: #fff1ce;
+  --cream-lighter: #fff0ce;
+  --cream-lightest: #fff1cf;
+  
+  /* Semantic tokens */
+  --background: var(--neutral-white);
+  --foreground: var(--neutral-darkest);
+  --card: var(--neutral-pure-white);
+  --card-foreground: var(--neutral-darkest);
+  --primary: var(--neutral-darkest);
+  --primary-foreground: var(--neutral-white);
+  --accent: var(--accent-gold);
+  --accent-foreground: var(--neutral-darkest);
+  --muted: var(--cream-light);
+  --muted-foreground: var(--neutral-gray);
+  --border: rgba(26, 25, 24, 0.1);
+  --radius: 0.5rem;
+  
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-neutral-darkest: var(--neutral-darkest);
+  --color-neutral-dark: var(--neutral-dark);
+  --color-neutral-gray: var(--neutral-gray);
+  --color-neutral-white: var(--neutral-white);
+  --color-cream-light: var(--cream-light);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  h1 {
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
+  }
+
+  h3, h4 {
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+  }
+
+  button {
+    font-weight: var(--font-weight-medium);
+  }
+}

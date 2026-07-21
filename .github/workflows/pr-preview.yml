@@ -1,118 +1,145 @@
-# Branch Preview + Regenerate root HTML files when the Mermaid source changes
-# -------------------------------------------------------------------------
-# Repo layout (repo root):
-# - weapons-classification-flowchart.mmd                         (source)
-# - classification-guide.html                                    (generated output #1)
-# - classification-guide-hypothesis-filtering.html               (generated output #2)
+# Build and deploy the Vite/React app
+# ---------------------------------------------------------------
+# Repo layout:
+# - src/                         React source
+# - src/imports/                 CSV data files
+# - index.html                   Vite entry template
+# - package.json / vite.config.ts
 #
 # Goals:
-# 1) Any time weapons-classification-flowchart.mmd changes on ANY branch:
-#    - regenerate BOTH HTML files at the repo root
-#    - commit the regenerated HTML back to that SAME branch
-# 2) For non-gh-pages branches:
-#    - also publish a branch preview to gh-pages under:
-#        branch-preview/<branch-name>/
-# 3) For gh-pages itself:
-#    - do NOT publish a preview folder
-#    - just keep the source + generated HTML side-by-side at the root
+# 1) Any time source files change on ANY branch:
+#    - npm ci && npx vite build (with correct --base for deployment path)
+# 2) For the gh-pages branch:
+#    - Deploy dist/ via actions/deploy-pages to production
+#    - Production URL: https://paigemoody.github.io/weapons_classification_resources.github.io/
+# 3) For non-gh-pages branches:
+#    - Publish dist/ to branch-preview/<branch-name>/ on gh-pages via peaceiris
+#    - Preview URL: https://paigemoody.github.io/weapons_classification_resources.github.io/branch-preview/<branch-name>/
+#
+# NOTE: For production deploys to work, GitHub Pages source must be set to
+# "GitHub Actions" in repo Settings → Pages.
 
 name: Branch Preview
 
 on:
   push:
-    # Run only when the ONE source Mermaid file changes (plus generator/workflow changes).
-    # This prevents commit loops because the workflow commits HTML files, not the .mmd.
     paths:
-      - "weapons-classification-flowchart.mmd"
-      - "src/mermaid_to_clickthrough.py"
-      - "src/mermaid_to_hypothesis_filtering.py"
-      - ".github/workflows/branch-preview.yml"
-      - "classification-guide-hypothesis-filtering.html"
-      - "classification-guide.html"
+      - "src/**"
+      - "scripts/**"
+      - "index.html"
+      - "package.json"
+      - "package-lock.json"
+      - "vite.config.ts"
+      - "postcss.config.mjs"
+      - ".github/workflows/pr-preview.yml"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
-  contents: write
+  contents: write       # peaceiris preview push to gh-pages
+  pages: write          # actions/deploy-pages production deploy
+  id-token: write       # actions/deploy-pages OIDC token
+  pull-requests: read
 
 concurrency:
   group: branch-preview-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build-commit-and-maybe-publish-preview:
+  check-pr-status:
     runs-on: ubuntu-latest
-
-    # Extra loop guard: if the actor is GitHub Actions (from our own commit), don't run.
+    # Loop guard: don't re-run when the bot itself pushes (e.g. preview deploys)
     if: ${{ github.actor != 'github-actions[bot]' }}
+    outputs:
+      is_draft: ${{ steps.check.outputs.is_draft }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          IS_DRAFT=$(gh pr view "${{ github.ref_name }}" --repo "${{ github.repository }}" --json isDraft -q '.isDraft' 2>/dev/null || echo "false")
+          echo "is_draft=$IS_DRAFT" >> $GITHUB_OUTPUT
+
+  build-and-deploy:
+    needs: check-pr-status
+    runs-on: ubuntu-latest
+    if: ${{ needs.check-pr-status.outputs.is_draft != 'true' }}
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          fetch-depth: 0
-          persist-credentials: true
+          node-version: "24"
+          cache: "npm"
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch latest CSV data from Google Sheets
+        run: npm run fetch-data
+
+      - name: Validate CSV data
+        run: npm run validate-data
+
+      # Build with base path matching the deployment location so asset URLs are correct
+
+      - name: Build (production — gh-pages branch)
+        if: ${{ github.ref_name == 'gh-pages' }}
+        run: npx vite build --base=/weapons_classification_resources.github.io/
+
+      - name: Build (preview — feature branch)
+        if: ${{ github.ref_name != 'gh-pages' }}
+        run: npx vite build --base=/weapons_classification_resources.github.io/branch-preview/${{ github.ref_name }}/
+
+      # --- Production deploy (gh-pages branch only) ---
+
+      - name: Upload Pages artifact
+        if: ${{ github.ref_name == 'gh-pages' }}
+        uses: actions/upload-pages-artifact@v3
         with:
-          python-version: "3.13"
+          path: dist/
 
-      # Generate BOTH HTML outputs at the repo root
-      - name: Regenerate classification-guide.html at repo root
-        run: |
-          python src/mermaid_to_clickthrough.py \
-            --input-mmd weapons-classification-flowchart.mmd \
-            --output-html classification-guide.html \
-            --app-name "[DEMO] Weapons Classification Guide"
+      - name: Deploy to GitHub Pages
+        if: ${{ github.ref_name == 'gh-pages' }}
+        id: deployment
+        uses: actions/deploy-pages@v4
 
-      - name: Regenerate classification-guide-hypothesis-filtering.html at repo root
-        run: |
-          python src/mermaid_to_hypothesis_filtering.py \
-            --input-mmd weapons-classification-flowchart.mmd \
-            --output-html classification-guide-hypothesis-filtering.html \
-            --app-name "[DEMO] Weapons Classification Guide (Hypothesis Filtering)"
+      # --- Preview deploy (all other branches) ---
+      # Surgically write only branch-preview/<branch>/ on gh-pages.
+      # Using plain git instead of peaceiris so nothing outside that
+      # subdirectory is ever staged or committed.
 
-      # Commit BOTH regenerated HTML files back to the SAME branch
-      - name: Commit regenerated HTML back to the same branch
-        env:
-          BRANCH_NAME: ${{ github.ref_name }}
+      - name: Deploy preview to gh-pages
+        if: ${{ github.ref_name != 'gh-pages' }}
         run: |
-          git config user.name  "github-actions[bot]"
+          # Save the build output before switching branches
+          cp -r dist/ /tmp/preview-dist/
+
+          git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Stage only the generated HTML files (not the whole repo)
-          git add classification-guide.html classification-guide-hypothesis-filtering.html
+          git fetch origin gh-pages
+          git checkout gh-pages
 
-          # If neither file changed, skip committing
+          PREVIEW_PATH="branch-preview/${{ github.ref_name }}"
+          rm -rf "$PREVIEW_PATH"
+          mkdir -p "$PREVIEW_PATH"
+          cp -r /tmp/preview-dist/. "$PREVIEW_PATH/"
+
+          # Stage ONLY the preview subdirectory — nothing else
+          git add "$PREVIEW_PATH"
+
           if git diff --cached --quiet; then
-            echo "No HTML changes to commit."
-            exit 0
+            echo "No changes — skipping commit"
+          else
+            git commit -m "Preview deploy: ${{ github.ref_name }}"
+            # Retry push with rebase to handle concurrent branch deploys
+            for i in 1 2 3; do
+              git push origin gh-pages && break
+              git pull --rebase origin gh-pages
+            done
           fi
-
-          git commit -m "Regenerate generated HTML outputs [skip ci]"
-          git push origin "HEAD:${BRANCH_NAME}"
-
-      # Everything below is ONLY for preview branches (not gh-pages itself)
-      - name: Prepare dist/ payload for branch preview publish
-        if: ${{ github.ref_name != 'gh-pages' }}
-        run: |
-          # dist/ is just a publish payload directory (NOT a source-of-truth).
-          # Your source + generated HTML remain at the repo root.
-          mkdir -p dist
-
-          # Copy both HTML files into the preview payload
-          cp classification-guide.html dist/classification-guide.html
-          cp classification-guide-hypothesis-filtering.html dist/classification-guide-hypothesis-filtering.html
-
-          # Disable Jekyll processing so GitHub Pages serves files as-is.
-          touch dist/.nojekyll
-
-      - name: Publish preview to gh-pages under branch-preview/<branch-name>/
-        if: ${{ github.ref_name != 'gh-pages' }}
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: dist
-          destination_dir: branch-preview/${{ github.ref_name }}
-          enable_jekyll: false
-          keep_files: true

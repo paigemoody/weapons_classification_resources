@@ -1,0 +1,5 @@
+source_id,source_name,source_url,source_type,notes,"offset
+
+(how does the page number in the actual pdf relate to the page number in the pdf reader? eg if the pdf says page 1 but the reader says page 2, the value would be 1. if they match, the value is 0)"
+ares_guide,ARES Arms and Munitions Classification System,https://armamentresearch.com/wp-content/uploads/2022/08/The-ARES-Arms-Munitions-Classification-System-ARCS-ver1.3-public-release.pdf#page=4,pdf,,1
+sas_guide,SAS Weapons Identification Guide,https://www.smallarmssurvey.org/sites/default/files/SAS-HB-06-Weapons-ID-Guide-Full.pdf,pdf,,0

@@ -1,306 +1,112 @@
-# [WIP] Weapons Classification Assistant
+# Weapons Classification Assistant
 
-An interactive tool to assist in classifying Small Arms based on the **ARES Arms & Munitions Classification System (ARCS)** and the **SAS Weapons Identification Guide**.
+An interactive tool for classifying small arms based on the **ARES Arms & Munitions Classification System (ARCS)** and the **SAS Weapons Identification Guide**.
 
-This tool guides users through a step-by-step visual taxonomy to classify an item down to its **type** (ARCS Levels 1–3), then provides guidance on how to proceed toward **identification** (determining make, model, and variant) (this part is coming soon!).
+Select observable physical characteristics of a weapon (how it's held, bore type, loading mechanism, action) and matching weapon classifications are filtered in real time.
 
+**Live site**: https://paigemoody.github.io/weapons_classification_resources.github.io/
 
-## Quick Start Workflow
+---
 
-This project uses a **GitHub-first** workflow with automatic HTML generation via GitHub Actions. No local setup required for editing!
+## Prerequisites
 
-### The Basic Flow
+- Node.js v24+
 
-```
-Edit Mermaid → Commit to branch → Preview on web → Create PR → Merge to main
-```
+---
 
-## Project files
-
-- `weapons-classification-flowchart.mmd`  
-  Mermaid source for the decision flow (this is the file you edit).
-
-Generated outputs (kept next to the `.mmd` at the repo root):
-
-- `classification-guide.html`  
-  Generated interactive click-through guide (the "start at the top" experience).
-- `classification-guide-hypothesis-filtering.html`  
-  Generated "start anywhere" hypothesis-filtering guide (menu-based; skip questions).
-
-Generator scripts:
-
-- `src/mermaid_to_clickthrough.py`  
-  Generates `classification-guide.html`.
-- `src/mermaid_to_hypothesis_filtering.py`  
-  Generates `classification-guide-hypothesis-filtering.html`.
-
-
-## GitHub-first editing and previews (no local setup required)
-
-This project is set up so you can make changes **directly on GitHub**, preview them on the web, and only then publish them to the main site.
-
-### What is a "branch" and why do we use it?
-
-A **branch** is basically a "safe workspace" for changes.
-
-- When you create a branch, you get a copy of the project where you can experiment.
-- Changes you make on your branch **do not affect the main site**.
-- You'll get a **preview link** for your branch so you can see exactly what changed.
-- When everything looks good, you merge your branch into `gh-pages` to publish to the main site.
-
-Think of it like: "draft mode" → "preview" → "publish".
-
-
-
-## Step-by-step: edit the Mermaid file on GitHub and preview it
-
-### 1) Create your branch (your safe workspace)
-
-1. Open this repo on GitHub.
-2. Near the top-left of the file list, find the **branch dropdown** (it often shows the current branch name, like `gh-pages`).
-3. Click the dropdown.
-4. Type a new branch name (example: `diagram-fixes`).
-5. Click the option that says **Create branch: `diagram-fixes`**.
-
-You are now "on your branch." Anything you do next will only affect your branch.
-
-
-
-### 2) Open the Mermaid file and start editing
-
-1. In the file list, click **`weapons-classification-flowchart.mmd`**.
-2. Click the **pencil icon** (Edit) near the top-right of the file view.
-3. Make your edits in the editor.
-
-**Optional (nicer editing experience): Mermaid Live**
-1. Go to https://mermaid.live/edit
-2. Copy/paste the contents of `weapons-classification-flowchart.mmd` into Mermaid Live.
-3. Edit and validate the diagram.
-4. Copy the updated Mermaid text back into GitHub.
-
-
-### 3) Click "Commit changes" (this saves your edits)
-
-When you're done editing:
-
-1. Scroll down to the **Commit changes** section.
-2. You can leave the default message, or write something like: `Update decision flow`.
-3. Make sure it is committing to **your branch** (it should be, unless you changed it).
-4. Click the **Commit changes** button.
-
-✅ This is the moment your changes are saved to your branch.
-
-
-
-### 4) GitHub Actions regenerates the HTML automatically
-
-After you commit, GitHub Actions will automatically:
-
-- Parse your updated `weapons-classification-flowchart.mmd`
-- Regenerate `classification-guide.html` (click-through version)
-- Regenerate `classification-guide-hypothesis-filtering.html` (hypothesis-filtering version)
-- Commit both updated HTML files back to your branch
-- Publish a web preview for your branch
-
-You don't have to run anything locally for this flow.
-
-**Tip:** If you click the **Actions** tab on GitHub, you can watch the workflow run and see whether it succeeded.
-
-
-
-### 5) Open your preview links (see your changes on the web)
-
-Your branch preview will be available at:
-
-- Click-through guide (start at the top):  
-  `https://paigemoody.github.io/weapons_classification_resources.github.io/branch-preview/<your-branch-name>/classification-guide.html`
-
-- Hypothesis-filtering guide (start anywhere):  
-  `https://paigemoody.github.io/weapons_classification_resources.github.io/branch-preview/<your-branch-name>/classification-guide-hypothesis-filtering.html`
-
-**Example:**
-
-- `https://paigemoody.github.io/weapons_classification_resources.github.io/branch-preview/diagram-fixes/classification-guide.html`
-- `https://paigemoody.github.io/weapons_classification_resources.github.io/branch-preview/diagram-fixes/classification-guide-hypothesis-filtering.html`
-
-If your change was just committed, it may take a minute for GitHub Pages to show the update.
-
-
-
-## Publishing your changes to the main site (merge into `gh-pages`)
-
-When your preview looks good, you can publish it so everyone sees it on the main site.
-
-### 6) Create a Pull Request (PR)
-
-A Pull Request is a way to say: "I'm ready to move the changes from my branch into the main branch."
-
-1. On GitHub, go to the **Pull requests** tab.
-2. Click **New pull request**.
-3. For "base", choose `gh-pages`.
-4. For "compare", choose your branch (example: `diagram-fixes`).
-5. Click **Create pull request**.
-
-You can add a description explaining what changed and why.
-
-
-
-### 7) Merge the Pull Request
-
-When you're ready:
-
-1. Click **Merge pull request**
-2. Confirm the merge
-
-That publishes the changes to the main site.
-
-**Main site URLs:**
-
-- Click-through guide:  
-  `https://paigemoody.github.io/weapons_classification_resources.github.io/classification-guide.html`
-
-- Hypothesis-filtering guide:  
-  `https://paigemoody.github.io/weapons_classification_resources.github.io/classification-guide-hypothesis-filtering.html`
-
-**Note:** Because `gh-pages` is deployed from the branch, GitHub Pages may deploy twice:
-- Once for the merge commit
-- Once for the follow-up commit that updates the generated HTML files
-
-This is expected with the current setup.
-
-
-
-## Local development (optional)
-
-If you want to iterate locally (faster feedback, easier editing), you can.
-
-### Prerequisites
-
-This dev container comes with everything pre-installed:
-
-- **Python 3** and `pip3` on the `PATH`
-- **Git** (built from source) on the `PATH`
-- **Node.js**, `npm`, and `eslint` on the `PATH`
-- **Standard Unix utilities:** `curl`, `wget`, `grep`, `zip`, `tar`, `gzip`, etc.
-
-The environment is **Debian GNU/Linux 12 (bookworm)**.
-
-### Generate the HTML files
-
-From the repo root:
+## Local setup
 
 ```bash
-python3 src/mermaid_to_clickthrough.py \
-  --input-mmd weapons-classification-flowchart.mmd \
-  --output-html classification-guide.html \
-  --app-name "[DEMO] Weapons Classification Guide"
+npm install
+npm run fetch-data      # pull latest CSVs from Google Sheets
+npm run validate-data   # confirm the downloaded data is valid
+npm run dev
 ```
+
+Then open `http://localhost:5173`.
+
+---
+
+## Editing content
+
+All data is managed in the public Google Sheet:
+
+**[Weapons_Classifications__Small_Arms](https://docs.google.com/spreadsheets/d/1owsUDceWy-sG258SE8Z-gwTDLOQwIqAr6ADdfOln-2E/edit?gid=0#gid=0)**
+
+| Sheet tab | Purpose |
+|---|---|
+| `classification_options` | Weapon records — ARCS taxonomy levels, characteristic values, descriptions, and source page refs |
+| `characteristic_options` | Available options for each characteristic (e.g. `one_hand`, `rifled`) |
+| `characteristic_definitions` | Guidance text for visually identifying each characteristic |
+| `classification_definitions` | ARCS taxonomy level definitions (Class → Group → Type → Sub-type) |
+| `sources` | Reference sources and their PDF page offsets |
+
+### How changes get published
+
+1. Edit the Google Sheet
+2. Push any change to a branch — CI fetches the latest sheet data, validates it, then builds
+3. A branch preview is automatically deployed to:
+   ```
+   https://paigemoody.github.io/weapons_classification_resources.github.io/branch-preview/<branch-name>/
+   ```
+4. Open a PR to `gh-pages` to publish to production
+
+If the fetched data fails validation, the CI build is aborted — nothing broken can be deployed.
+
+### Updating data during local development
+
+After editing the Google Sheet, pull the latest data and verify it locally before pushing:
 
 ```bash
-python3 src/mermaid_to_hypothesis_filtering.py \
-  --input-mmd weapons-classification-flowchart.mmd \
-  --output-html classification-guide-hypothesis-filtering.html \
-  --app-name "[DEMO] Weapons Classification Guide (Hypothesis Filtering)"
+npm run fetch-data      # overwrites src/imports_new/ with latest sheet data
+npm run validate-data   # exits with an error if anything looks wrong
 ```
 
-### Preview locally
+The dev server hot-reloads automatically after the CSV files are updated.
 
-Start a simple HTTP server from the repo root:
+---
 
-```bash
-python3 -m http.server 8000
-```
+## CI pipeline
 
-Then open these URLs in your browser:
+Every push runs these steps in order — each must pass before the next runs:
 
-```bash
-"$BROWSER" http://localhost:8000/classification-guide.html
-"$BROWSER" http://localhost:8000/classification-guide-hypothesis-filtering.html
-```
+1. **Fetch** — `npm run fetch-data` pulls all sheet tabs from Google Sheets
+2. **Validate** — `npm run validate-data` checks structure and cross-references
+3. **Build** — `vite build` bundles the app with the correct base path
+4. **Deploy** — production (`gh-pages` branch) or branch preview (all other branches)
 
-### Using the dev container
+---
 
-This project includes a dev container configuration ([`.devcontainer/devcontainer.json`](.devcontainer/devcontainer.json)) with all necessary tools pre-installed.
+## Deployment
 
-To use it:
+GitHub Pages is configured to use **GitHub Actions** as its source (repo Settings → Pages). The workflow builds the app and deploys it — files are never served directly from the branch.
 
-1. Open the project in VS Code
-2. When prompted, click **Reopen in Container** or use the Command Palette (`Ctrl+Shift+P` → "Dev Containers: Reopen in Container")
-3. Run the generation commands above from the terminal
+### Production (`gh-pages` branch)
+Pushing to `gh-pages` triggers the full pipeline and deploys to the live site.
 
-All tools (Python, Node.js, Git, standard Unix utilities) are immediately available in the container terminal.
+### Branch previews (any other branch)
+Pushing to a feature branch deploys the built app to a subfolder on the `gh-pages` branch. Only that subfolder is modified — the production root is never touched.
 
+When a PR is closed or a branch is deleted, the preview folder is automatically removed via a cleanup workflow.
 
-## Understanding the generator scripts
+---
 
-### [`mermaid_to_clickthrough.py`](src/mermaid_to_clickthrough.py)
+## File reference
 
-Converts the Mermaid flowchart into a **click-through guide** where users:
-- Start at the top (root node)
-- Answer questions in sequence
-- Navigate forward/backward with breadcrumbs
+| File/Directory | Purpose |
+|---|---|
+| `src/app/App.tsx` | Main app component and filtering logic |
+| `src/app/data/weaponData.ts` | CSV parsing (PapaParse) and typed data layer |
+| `src/app/components/` | UI components (CharacteristicCard, OptionPanel, ResultsPanel, etc.) |
+| `src/imports_new/` | CSV data files (fetched from Google Sheets) |
+| `src/styles/` | Tailwind / theme styles |
+| `scripts/fetch-csvs.js` | Fetches sheet tabs from Google Sheets into `src/imports_new/` |
+| `scripts/validate-csvs.js` | Validates CSV structure and cross-references |
 
-**Features:**
-- Parses Mermaid syntax (nodes and edges with labels)
-- Supports rich HTML labels (including images)
-- Detects cycles and prevents infinite loops
-- Generates a React app embedded in a single HTML file
+---
 
-### [`mermaid_to_hypothesis_filtering.py`](src/mermaid_to_hypothesis_filtering.py)
+### Attributions
 
-Converts the Mermaid flowchart into a **hypothesis-filtering guide** where users:
-- Start anywhere (menu-based question list)
-- Skip questions they can't answer
-- See a ranked list of possible outcomes (hypotheses)
-- Answers are hard constraints (contradictions are blocked)
+Includes components from [shadcn/ui](https://ui.shadcn.com/) used under [MIT license](https://github.com/shadcn-ui/ui/blob/main/LICENSE.md).
 
-**Features:**
-- Builds a question-option model from the Mermaid tree
-- Computes leaf outcomes and depth ranking
-- Maps options to leaf sets for filtering
-- Prevents users from eliminating all possibilities
-- Generates a React app embedded in a single HTML file
-
-## Mermaid syntax reference
-
-The flowchart uses a simple Mermaid syntax:
-
-```mermaid
-flowchart TD
-  Start["Question or Category"]
-  Start --> |"Edge Label (option text)"| Next["Next node"]
-  Next --> |"Another option"| Leaf["Final outcome"]
-```
-
-**Key points:**
-
-- Node IDs: alphanumeric + underscores (e.g., `Handguns_Rifled`)
-- Node labels: enclosed in `["..."]` with optional HTML
-- Edge labels: after `-->` as `|"..."|` with optional HTML
-- Both node and edge labels support: `<h1>`, `<p>`, `<img>`, `<br />`, etc.
-
-## Troubleshooting
-
-### GitHub Actions workflow failed
-
-1. Go to the **Actions** tab on GitHub
-2. Click the failed workflow run
-3. Check the logs for error messages (usually parsing or file path issues)
-
-### HTML files are not regenerating
-
-- Make sure you committed to your **branch** (not directly to `gh-pages`)
-- Check that the workflow is enabled (Settings → Actions)
-- Wait a minute and refresh the page (GitHub Actions can take time)
-
-### Preview links are 404
-
-- Check that your branch name is correct
-- Wait a few minutes for GitHub Pages to deploy
-- Verify the branch was pushed to GitHub
-
-### Local generation fails
-
-- Ensure Python 3 is installed: `python3 --version`
-- Check file paths are correct (run commands from repo root)
-- Verify `.mmd` file is valid Mermaid syntax
+Includes photos from [Unsplash](https://unsplash.com) used under [license](https://unsplash.com/license).

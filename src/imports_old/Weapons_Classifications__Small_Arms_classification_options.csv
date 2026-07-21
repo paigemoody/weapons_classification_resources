@@ -1,0 +1,22 @@
+id,name,class,group,type,sub_type,how_held,bore_type,loading,method_of_operation,description,"reference_source_id
+",source_reference_page_number,image_source,source_image_page_number
+self_loading_pistols,Self-loading Pistols,small_arms,handguns,self_loading_pistols,none,one_hand,rifled,cycles_automatically,semi_automatic,A self-loading pistol with a rifled barrel that fires one round per trigger pull and automatically cycles the action.,ares_guide,40,ares_guide,41
+revolvers,Revolvers,small_arms,handguns,revolvers,none,one_hand,rifled,cycled_manually,rotating_cylinder,A handgun with a rifled barrel and a rotating cylinder that holds multiple cartridges.,ares_guide,38,ares_guide,38
+other_handguns,Other Handguns,small_arms,handguns,other_handguns,none,one_hand,rifled_or_smoothbore,none,,,ares_guide,36,,
+sub_machine_guns,Sub-machine Guns,small_arms,long_guns,sub_machine_guns,none,two_hands,rifled,cycles_automatically,,,ares_guide,66,ares_guide,66
+man_portable_machine_guns,Man-portable Machine Guns,small_arms,long_guns,man_portable_machine_guns,none,bipod_or_mount_supported,rifled,cycles_automatically,fully_automatic,,ares_guide,68,ares_guide,68
+other_long_guns,Other Long Guns,small_arms,long_guns,other_long_guns,none,two_hands,rifled_or_smoothbore,,,,ares_guide,50,,
+automatic_rifles,Automatic Rifles,small_arms,long_guns,rifles,self_loading,two_hands,rifled,cycles_automatically,fully_automatic,,ares_guide,76,,
+semi_automatic_rifles,Semi-automatic Rifles,small_arms,long_guns,rifles,self_loading,two_hands,rifled,cycles_automatically,semi_automatic,,ares_guide,75,,
+break_action_rifles,Break-action Rifles,small_arms,long_guns,rifles,manually_operated,two_hands,rifled,cycled_manually,break_action,,ares_guide,71,ares_guide,71
+bolt_action_rifles,Bolt-action Rifles,small_arms,long_guns,rifles,manually_operated,two_hands,rifled,cycled_manually,bolt_action,,ares_guide,72,ares_guide,72
+lever_action_rifles,Lever-action Rifles,small_arms,long_guns,rifles,manually_operated,two_hands,rifled,cycled_manually,lever_action,,ares_guide,72,ares_guide,72
+pump_action_rifles,Pump-action Rifles,small_arms,long_guns,rifles,manually_operated,two_hands,rifled,cycled_manually,pump_action,,ares_guide,72,ares_guide,72
+other_manually_operated_rifles,Other Manually Operated Rifles,small_arms,long_guns,rifles,manually_operated,two_hands,rifled,cycled_manually,other_manual_action,,ares_guide,62,ares_guide,62
+automatic_shotguns,Automatic Shotguns,small_arms,long_guns,shotguns,self_loading,two_hands,smooth_bore,cycles_automatically,fully_automatic,,ares_guide,56,ares_guide,56
+semi_automatic_shotguns,Semi-automatic Shotguns,small_arms,long_guns,shotguns,self_loading,two_hands,smooth_bore,cycles_automatically,semi_automatic,,ares_guide,56,ares_guide,56
+break_action_shotguns,Break-action Shotguns,small_arms,long_guns,shotguns,manually_operated,two_hands,smooth_bore,cycled_manually,break_action,,ares_guide,71,ares_guide,71
+bolt_action_shotguns,Bolt-action Shotguns,small_arms,long_guns,shotguns,manually_operated,two_hands,smooth_bore,cycled_manually,bolt_action,,ares_guide,72,ares_guide,72
+lever_action_shotguns,Lever-action Shotguns,small_arms,long_guns,shotguns,manually_operated,two_hands,smooth_bore,cycled_manually,lever_action,,ares_guide,72,ares_guide,72
+pump_action_shotguns,Pump-action Shotguns,small_arms,long_guns,shotguns,manually_operated,two_hands,smooth_bore,cycled_manually,pump_action,,ares_guide,72,ares_guide,72
+other_manually_operated_shotguns,Other Manually Operated Shotguns,small_arms,long_guns,shotguns,manually_operated,two_hands,smooth_bore,cycled_manually,,,ares_guide,71,ares_guide,71
