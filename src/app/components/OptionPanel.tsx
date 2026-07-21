@@ -162,7 +162,7 @@ export function OptionPanel({
             <div className="flex items-start justify-between gap-3">
               <div className="flex-1">
                 <h4 className={`mb-1 ${selectedOptionId === 'unknown' ? 'text-neutral-darkest' : ''}`}>
-                  Can't tell / Don't know
+                  can't tell / don't know
                 </h4>
                 <p className="text-sm text-muted-foreground">
                   Select this if you're unable to determine this characteristic from your image
