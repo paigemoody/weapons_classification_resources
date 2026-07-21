@@ -6,6 +6,8 @@ import sourcesCsv from '../../imports_new/Weapons_Classifications__Small_Arms_so
 
 export type CharacteristicType = 'how_held' | 'bore_type' | 'loading' | 'method_of_operation';
 
+export const formatLabel = (s: string) => s.replace(/_/g, ' ');
+
 export interface CharacteristicOption {
   id: string;
   name: string;
@@ -141,7 +143,7 @@ for (const row of optionsResult.data) {
 
   charOptions[id].push({
     id: (row['option'] ?? '').trim().toLowerCase(),
-    name: row['option'] ?? '',
+    name: formatLabel(row['option'] ?? ''),
     guidance: row['description'] ?? '',
     pdfPages,
     rawPdfPages,

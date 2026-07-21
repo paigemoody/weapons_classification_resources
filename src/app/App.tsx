@@ -90,8 +90,40 @@ export default function App() {
           <div className="max-w-7xl mx-auto">
             <h1 className="mb-2 text-4xl font-bold">Weapon Classification Assistant</h1>
             <p className="text-muted-foreground">
-              This tool assists in narrowing down possible weapon classifications to help focus your research. 
-              Based on the ARES Arms & Munitions Classification System (ARCS) and Small Arms Survey Handbook.
+              This tool assists in narrowing down possible weapon classifications to help focus your research.
+            </p>
+            <p className="text-muted-foreground">
+              📑 Based on the{' '}
+              <a
+                href="https://armamentresearch.com/wp-content/uploads/2022/08/The-ARES-Arms-Munitions-Classification-System-ARCS-ver1.3-public-release.pdf"
+                className="underline hover:text-foreground"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ARES Arms & Munitions Classification System (ARCS)
+              </a>
+              {' '}and the{' '}
+              <a
+                href="https://www.smallarmssurvey.org/sites/default/files/SAS-HB-06-Weapons-ID-Guide-Full.pdf"
+                className="underline hover:text-foreground"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Small Arms Survey Handbook
+              </a>
+              .
+            </p>
+            <p className="mt-1 text-sm italic text-muted-foreground">
+              Developed in partnership with Bellingcat through the{' '}
+              <a
+                href="https://www.hackshackers.com/every-organization-has-a-process-yours-just-isnt-written-down/"
+                className="underline hover:text-foreground"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Hacks/Hackers Newsroom AI Lab
+              </a>
+              .
             </p>
           </div>
         </div>
@@ -167,12 +199,15 @@ export default function App() {
               </div>
 
               {/* Right Column - Progress/Results */}
-              <div className="hidden lg:block min-h-0">
-                <ProgressPanel
-                  possibleMatches={possibleMatches}
-                  totalClassifications={WEAPON_CLASSIFICATIONS.length}
-                  selections={selections}
-                />
+              <div className="hidden lg:flex flex-col min-h-0 gap-4">
+                <h2 className="text-base font-semibold px-1 flex-shrink-0">Narrowing Results</h2>
+                <div className="flex-1 min-h-0">
+                  <ProgressPanel
+                    possibleMatches={possibleMatches}
+                    totalClassifications={WEAPON_CLASSIFICATIONS.length}
+                    selections={selections}
+                  />
+                </div>
               </div>
 
               {/* Mobile Option Panel */}

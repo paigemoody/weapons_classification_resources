@@ -1,5 +1,5 @@
 import { CheckCircle2, Circle, ExternalLink } from 'lucide-react';
-import { WeaponClassification, PDF_URL } from '../data/weaponData';
+import { WeaponClassification, PDF_URL, formatLabel } from '../data/weaponData';
 
 interface ProgressPanelProps {
   possibleMatches: WeaponClassification[];
@@ -19,7 +19,6 @@ export function ProgressPanel({
   return (
     <div className="bg-card border border-border rounded-lg h-full flex flex-col overflow-hidden">
       <div className="p-6 border-b border-border flex-shrink-0">
-        <h2 className="mb-2">Narrowing Results</h2>
         <p className="text-sm text-muted-foreground mb-4">
           Watch as your selections narrow down the possibile classifications. The more characteristics you select, the shorter the list of possible weapon classification.
         </p>
@@ -95,10 +94,10 @@ export function ProgressPanel({
                   <h4 className="font-medium text-sm mb-1">{weapon.name}</h4>
                   <div className="flex flex-wrap gap-1 mb-2">
                     <span className="text-xs px-2 py-0.5 bg-muted rounded border border-border">
-                      {weapon.group}
+                      {formatLabel(weapon.group)}
                     </span>
                     <span className="text-xs px-2 py-0.5 bg-muted rounded border border-border">
-                      {weapon.type}
+                      {formatLabel(weapon.type)}
                     </span>
                   </div>
                   {weapon.pdfPages && weapon.pdfPages.length > 0 && (

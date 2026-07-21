@@ -14,5 +14,5 @@ method_of_operation,break_action,"A hinge or ""top lever"" that allows the barre
 method_of_operation,bolt_action,A lever with a knob that moves back and forth,ares_guide,72,,
 method_of_operation,lever_action,A pivoting metal loop behind the trigger,ares_guide,72,,
 method_of_operation,pump_action,A sliding grip on the front furniture (the wood or plastic parts of the gun). A sliding handle on the front is a giveaway for pump-action.,ares_guide,72,,
-method_of_operation,muzzle_loading,Arms that do not use self-contained cartridges and must be loaded from the front of the barrel,ares_guide,,,
+method_of_operation,muzzle_loading,Arms that do not use self-contained cartridges and must be loaded from the front of the barrel,ares_guide,77,,
 method_of_operation,other_manual_action,,,,,
